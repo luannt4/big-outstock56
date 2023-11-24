@@ -1,10 +1,11 @@
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.dropdown';
 import utils from '@bigcommerce/stencil-utils';
+import Review from '../product/reviews';
 import ProductDetails from '../common/product-details';
 import { defaultModal, ModalEvents } from './modal';
 import 'slick-carousel';
-import { setCarouselState, onSlickCarouselChange, onUserCarouselChange } from '../common/carousel';
+import { setCarouselState, onSlickCarouselChange, onUserCarouselChange } from '../common/carousel/index';
 
 export default function (context) {
     const modal = defaultModal();
@@ -13,14 +14,23 @@ export default function (context) {
         event.preventDefault();
 
         const productId = $(event.currentTarget).data('productId');
+        const handleDropdownExpand = ({ currentTarget }) => {
+            const $dropdownMenu = $(currentTarget);
+            const dropdownBtnHeight = $dropdownMenu.prev().outerHeight();
 
-        modal.open({ size: 'large' });
+            $dropdownMenu.css('top', dropdownBtnHeight);
+
+            return modal.$modal.one(ModalEvents.close, () => $dropdownMenu.off('opened.fndtn.dropdown', handleDropdownExpand));
+        };
+
+        modal.open();
 
         utils.api.product.getById(productId, { template: 'products/quick-view' }, (err, response) => {
             if (err) return;
 
             modal.updateContent(response);
 
+            $('#modal .dropdown-menu').on('opened.fndtn.dropdown', handleDropdownExpand);
             modal.$content.find('.productView').addClass('productView--quickView');
 
             const $carousel = modal.$content.find('[data-slick]');
@@ -40,6 +50,9 @@ export default function (context) {
                     });
                 }
             }
+
+            /* eslint-disable no-new */
+            new Review({ $context: modal.$content });
 
             return new ProductDetails(modal.$content.find('.quickView'), context);
         });
