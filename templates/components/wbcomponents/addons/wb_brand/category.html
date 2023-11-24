@@ -1,0 +1,66 @@
+{{#if status }}
+<div class="module-wrapper wb-category {{class_sfx}}">
+
+	<div class="block-content clearfix">
+
+		<div id="homeBrands" class="productCarousel " data-column="{{column}}" data-limitation="{{limitation}}"
+			data-slick='{
+		        "dots": false,
+		        "infinite": false,
+		        "mobileFirst": true,
+		        "slidesToShow": 1,
+		        "slidesToScroll": 4,
+		        "responsive": [
+		            {
+		                "breakpoint": 1200,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": {{column}}
+		                }
+		            },
+					{
+		                "breakpoint": 992,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": {{subtract column  2}}
+		                }
+		            },
+		            {
+		                "breakpoint": 700,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 3
+		                }
+		            },
+		            {
+		                "breakpoint": 0,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 2,
+		                    "arrows": false
+		                }
+		            }
+		        ]
+		    }'
+
+		>
+
+			{{#for  limitation }}
+				{{> components/wbcomponents/addons/wb_brand/category/default-item
+					enable	= (lang  (concat (concat (concat (concat 'wbBanner.' ../prefix) '.banner') $index)'.enable'))
+					placeholder	= (lang  (concat (concat (concat (concat 'wbBanner.' ../prefix) '.banner') $index)'.placeholderImage'))
+					image	= (lang  (concat (concat (concat (concat 'wbBanner.' ../prefix) '.banner') $index)'.image'))
+					url		= (lang  (concat (concat (concat (concat 'wbBanner.' ../prefix) '.banner') $index)'.url'))
+					title	= (lang  (concat (concat (concat (concat 'wbBanner.' ../prefix) '.banner') $index)'.title'))
+				}}
+
+			{{/for}}
+
+		</div>
+
+
+
+	</div>
+</div>
+{{/if}}
+

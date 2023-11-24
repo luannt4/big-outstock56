@@ -1,0 +1,53 @@
+ <article class="blog-post product-grid">
+    {{#if post.thumbnail}}
+     <figure class="blog-thumbnail">
+         <div class="post-img-wrapp">
+             <a href="{{post.url}}">
+                 {{> components/common/responsive-img
+                 class="card-image"
+                 image=post.thumbnail
+                 fallback_size=theme_settings.blog_size
+                 lazyload=theme_settings.lazyload_mode
+                 }}
+             </a>
+         </div>
+     </figure>
+     {{/if}}
+
+     <div class="blog-post-info">
+        <div class="blog-header">
+            {{#if post.author}}<div class="blog-meta">{{lang 'blog.posted_by' name=post.author}}   </div>{{/if}}
+            <h3 class="blog-title">
+                <a href="{{post.url}}">{{post.title}}</a>
+            </h3>
+        </div>
+
+        <div class="blog-post-body">
+            {{#if show_desc '==' 'yes'}}
+            <p class="article-description ">
+                {{#if post.body}}
+                {{{post.body}}}
+                {{else}}
+                {{post.summary}}
+                &hellip;
+                {{/if}}
+            </p>
+            {{/if}}
+
+           {{#unless hide_readmore}}
+            <div class="post-bottom">
+
+            {{#if post.show_read_more}}
+                    <a href="{{url}}" class="btn--readmore" aria-label="{{lang 'wbTheme.blog.read_more'}}" title="{{lang 'wbTheme.blog.read_more'}}">  {{lang 'wbTheme.blog.read_more'}}</a>
+            {{/if}}
+
+            <div class="post-date">
+                {{post.date_published}}
+            </div>
+            </div>
+            {{/unless}}
+
+        </div>
+     </div>
+
+</article>

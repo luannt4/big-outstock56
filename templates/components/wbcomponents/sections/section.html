@@ -1,0 +1,20 @@
+{{#unless section '==' false }}
+<div class="wb-section wb-section--{{section}} {{#if class_section}}{{class_section}}{{/if}}">
+	{{#if container '==' 'yes'}}
+	<div class="container">
+	{{/if}}
+		{{#if 	section '==' 'section1'}} 	{{> components/wbcomponents/addons/wb_brand/category prefix="category" status=true  hide_heading=true column=6 limitation=6 }}
+				{{else if 	section '==' 'section2'}}   {{> components/wbcomponents/addons/wb_extraslider/horizontal status=true products = products.new productType="news"  row=2 columns=5  class_sfx="wb-extraslider--horizontal titleMline" }}
+				{{else if 	section '==' 'section3'}}   {{> components/wbcomponents/addons/wb_latest_blog/default status=true blogs= blog.recent_posts  show_desc="yes" column=4 hide_heading=false hide_readmore=true class_sfx="wb-extraslider--horizontal titleMline"}}
+				{{else if 	section '==' 'section4'}}
+					{{> components/wbcomponents/addons/wb_testimonial/default status=true prefix="wb_testimonial" class_sfx="titleMline" limitation=3 }}
+					{{> components/wbcomponents/addons/wb_instagram/default status=true   class_sfx=" " row=2 columns=3 hide_heading=false}}
+				{{else if 	section '==' 'section5'}}   {{> components/wbcomponents/addons/wb_brand/default prefix="company" status=true  hide_title=true column=5 limitation=5 }}
+
+		{{/if}}
+
+	{{#if container '==' 'yes'}}
+	</div>
+	{{/if}}
+</div>
+{{/unless}}

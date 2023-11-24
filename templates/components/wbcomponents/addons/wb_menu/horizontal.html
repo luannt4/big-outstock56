@@ -1,0 +1,28 @@
+{{#if status }}
+<article class="d-flex {{class_sfx}} ">
+	{{#if (lang (concat (concat 'wbTheme.' prefix) '.heading')) '!=' ' '}}
+		    <h5 class="hori-info-heading">
+				{{#if icon-fontawesom '==' ' '}}
+					<i class="fa fa-{{icon-fontawesome}}"></i> 
+				{{/if}}
+				{{lang (concat (concat 'wbTheme.' prefix) '.heading')}}
+				
+			</h5>
+	{{/if}}
+	
+	{{#if horizontal '==' 'true'}}
+    <ul class="hori-info-list list-inline">
+	{{else}}
+	<ul class="hori-info-list">
+	{{/if}}
+	{{#if limitation '>' 1}}
+		{{#for limitation}}
+			{{> components/wbcomponents/addons/wb_menu/default-item 
+				menu_info = (concat (concat (concat 'wbTheme.' ../prefix) '.row_' ) $index) 
+				horizontal =  ../horizontal
+			}}
+		{{/for}}
+	    {{/if}}
+    </ul>
+</article>
+{{/if}}

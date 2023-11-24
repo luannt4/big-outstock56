@@ -1,0 +1,179 @@
+<div {{#if theme_settings.product_cardfade '===' 'fade'}}
+		class="product-item-container card-image--fade"
+	 {{else if theme_settings.product_cardfade '===' 'jump'}}
+		class="product-item-container card-image--jump"
+	{{else}}
+		class="product-item-container card-image--fade"
+	 {{/if}}
+>
+    <div class="left-block " >
+		 {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+            {{#if theme_settings.product_sale_badges '===' 'sash'}}
+                <div class="sale-flag-sash">
+                    <span class="sale-text">{{lang 'wbTheme.categories.sale_badge_text'}}</span>
+                </div>
+            {{else if theme_settings.product_sale_badges '===' 'topleft'}}
+                <div class="sale-flag-side">
+                    <span class="sale-text">{{lang 'wbTheme.categories.sale_badge_text'}}</span>
+                </div>
+			{{else if theme_settings.product_sale_badges '===' 'discount'}}
+				{{#if price.with_tax}}
+					{{#if price.non_sale_price_with_tax}}
+						{{> components/wbcomponents/products/discount discounts = (multiply (divide (subtract price.non_sale_price_with_tax.value price.with_tax.value  ) price.non_sale_price_with_tax.value) 100)}}
+					{{/if}}
+				{{/if}}
+
+				{{#if price.without_tax}}
+					{{> components/wbcomponents/products/discount discounts = (multiply (divide (subtract price.non_sale_price_without_tax.value price.without_tax.value  ) price.non_sale_price_without_tax.value ) 100)}}
+				{{/if}}
+            {{else if theme_settings.product_sale_badges '===' 'burst'}}
+                <div class="starwrap">
+                    <div class="sale-text-burst">{{lang 'wbTheme.categories.sale_badge_text'}}</div>
+                    <div class="sale-flag-star"></div>
+                </div>
+            {{/if}}
+        {{/or}}
+
+
+		{{#if out_of_stock_message }}
+            <div class="sale-flag-side sale-flag-side--soldout">{{lang 'wbTheme.categories.soldout_badge_text'}}</div>
+		{{/if}}
+
+        <a href="{{url}}"
+		   class="product-item-photo"
+		   aria-label="{{name}},{{> components/products/product-aria-label}}"
+		   {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+		>
+			<div class="card-img-container ">
+				{{> components/common/responsive-img
+				image=image
+				class="card-image"
+				fallback_size=theme_settings.productgallery_size
+				lazyload=theme_settings.lazyload_mode
+				default_image=theme_settings.default_image_product
+				}}
+
+				{{#if theme_settings.product_cardfade  '===' 'fade'}}
+					{{#all  (if images.length '>' 1) }}
+					{{#each (limit images 2)}}
+						{{#if @index '>' 0}}
+						<div class="hover-img">
+							{{> components/common/responsive-img
+							image=this
+							class="card-image"
+							fallback_size=theme_settings.productgallery_size
+							lazyload=theme_settings.lazyload_mode
+							default_image=theme_settings.default_image_product
+							}}
+						</div>
+						{{/if}}
+					{{/each}}
+					{{/all}}
+				{{/if}}
+
+			</div>
+
+        </a>
+
+		<div class="wbcard-button-info">
+			{{#if theme_settings.show_product_compare}}
+			<div class="action-item buttons--compare " title="{{lang 'products.compare'}}">
+				<input class="form-check-input" id="product-compare-{{id}}"type="checkbox" name="products[]" value="{{id}}"   data-compare-id="{{id}}">
+				<label class="form-check-label"  for="product-compare-{{id}}" >
+					<svg width="16" height="14"><use xlink:href="#icon-layers" /></svg>
+				</label>
+
+			</div>
+			{{/if}}
+
+
+			{{#if theme_settings.show_product_quick_view}}
+			<div class="action-item buttons--quickview" title="{{lang 'products.quick_view'}}">
+
+				{{#if settings.data_tag_enabled}}
+				<a href="#" class="quickview btn-button d-none d-md-block" data-event-type="product-click" data-product-id="{{id}}" aria-label="{{lang 'products.quick_view'}}">
+					<svg width="16" height="14"><use xlink:href="#icon-eye" /></svg>
+				</a>
+				{{else}}
+				<a href="#" class="quickview btn-button d-none d-md-block" data-product-id="{{id}}" aria-label="{{lang 'products.quick_view'}}">
+					<svg width="16" height="14"><use xlink:href="#icon-eye" /></svg>
+				</a>
+				{{/if}}
+			</div>
+			{{/if}}
+
+		</div>
+
+    </div>
+
+    <div class="right-block" >
+		<p  class="card-brand" data-test-info-type="brandName">{{brand.name}}&nbsp;</p>
+        <h4 class="card-title">
+			<a aria-label="{{name}},{{> components/products/product-aria-label}}"
+			   href="{{url}}"
+			   {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+        </h4>
+
+		{{#if show_rating}}
+		<div class="card-group-price">
+			<div class="ratings ">
+				<div class="prod-rating" data-test-info-type="productRating">
+					<span class="rating--small">
+						{{> components/products/ratings rating=rating}}
+					</span>
+				</div>
+			</div>
+
+        </div>
+		{{/if}}
+
+		<div class="card-price-text" data-test-info-type="price">
+			{{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+			{{> components/products/price price=price}}
+			{{else}}
+			{{> components/common/login-for-pricing}}
+			{{/or}}
+		</div>
+
+        <div class="description">
+           {{summary }}
+
+        </div>
+
+		<div class="wbcard-button-addcart">
+			{{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+			{{#if show_cart_action}}
+			{{#if has_options}}
+			<div class="action-item addToCart">
+				<a href="{{url}}" data-event-type="product-click" class="quickview  button--cart" data-product-id="{{id}}">
+					<i class="icon icon--plus" aria-hidden="true"><svg><use xlink:href="#icon-plus"></use></svg></i>{{lang 'products.choose_options'}}</a>
+			</div>
+			{{/if}}
+
+			{{#if pre_order}}
+			<div class="action-item addToCart">
+				<a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button--cart">{{lang 'products.pre_order'}}</a>
+			</div>
+			{{/if}}
+
+			{{#if add_to_cart_url }}
+			<div class="action-item addToCart">
+				<a href="{{add_to_cart_url}}" data-product-id="{{id}}" data-event-type="product-click" data-button-type="add-cart" class="button--cart">
+					<i class="icon icon--plus" aria-hidden="true"><svg><use xlink:href="#icon-plus"></use></svg></i>
+					{{lang 'products.add_to_cart'}}
+				</a>
+				<span class="product-status-message aria-description--hidden">{{lang 'category.add_cart_announcement'}}</span>
+			</div>
+			{{/if}}
+			{{#if out_of_stock_message }}
+			<div class="action-item addToCart">
+				<a href="{{url}}" data-event-type="product-click" class="button--cart" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+			</div>
+			{{/if}}
+			{{/if}}
+			{{/or}}
+		</div>
+
+
+    </div>
+</div>

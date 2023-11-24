@@ -1,0 +1,19 @@
+{{!--
+Arguments:
+	- moduleId (number): section instance index number
+	- class_sfx (string): Use for CSS class styling suffix
+--}}
+
+{{#if status }}
+<div class="module clearfix {{class_sfx}}">
+{{> components/wbcomponents/addons/wb_deal/topdeal/default_deals
+    category_id =(lang (concat (concat 'wbTheme.wb_deals.category_' moduleId) '.category_id'))
+    banner_img = (lang (concat (concat 'wbTheme.wb_deals.category_' moduleId) '.image'))
+    banner_placeholder =(lang (concat (concat 'wbTheme.wb_deals.category_' moduleId) '.placeholderImage'))
+    banner_url =(lang (concat (concat 'wbTheme.wb_deals.category_' moduleId) '.url'))
+}}
+</div>
+
+
+
+{{/if}}

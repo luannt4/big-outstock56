@@ -1,0 +1,74 @@
+{{#if theme_settings.instagram_status }}
+<div class="module-wrapper  wb-instagram {{class_sfx}} ">
+	{{#unless hide_heading}}
+	<h3 class="block-title">
+		<span class="title">{{lang 'wbTheme.wb_instagram.heading' }}</span>
+		<span class="subtitle">{{lang 'wbTheme.wb_instagram.subtitle' }}</span>
+	</h3>
+	{{/unless}}
+
+	<div id="instafeed" class=" productCarousel"
+		 data-instagram='{
+        "dots": false,
+        "arrows": false,
+        "infinite": true,
+        "mobileFirst": true,
+        "rows": {{row}},
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "responsive": [
+		            {
+		                "breakpoint": 1200,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": {{columns}}
+		                }
+		            },
+					{
+		                "breakpoint": 992,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": {{subtract columns  1}}
+		                }
+		            },
+		            {
+		                "breakpoint": 700,
+		                "settings": {
+		                    "slidesToScroll": 1,
+							"slidesToShow": 3
+		                }
+		            },
+		            {
+		                "breakpoint": 0,
+		                "settings": {
+		                    "slidesToScroll": 1,
+							"slidesToShow": 2
+		                }
+		            }
+		        ]}'
+	>
+
+	</div>
+</div>
+
+<script type="text/javascript" src="{{cdn '/assets/js/theme/wbtheme/instafeed/instafeed.min.js'}}"></script>
+<script type="text/javascript">
+	// <![[
+	(function() {
+		"use strict";
+		var feed = new Instafeed({
+			accessToken: "{{lang 'wbTheme.wb_instagram.token' }}",
+			template: '<div class="instagram-item"><a  class="card-img-container" target="_blank" rel="noreferrer" href="{'+'{link}}" id="{'+'{id}}">   <img class="card-image lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{'+'{image}}" alt="{'+'{link}}" title="{'+'{link}}" /></a></div>',
+			sortBy: 'most-recent',
+			limit: 10,
+			links: true,
+			after: function() {
+				document.getElementById('instafeed').dispatchEvent(new CustomEvent("instafeedAfter"));
+			}
+		});
+		feed.run();
+	})();
+	// ]]>
+</script>
+
+{{/if}}

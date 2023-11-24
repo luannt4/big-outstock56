@@ -1,0 +1,150 @@
+
+{{#if category.products }}
+<div class="wb-deals-detail"
+	data-slick='{
+		"slidesToShow": 1,
+		"slidesToScroll": 1,
+		"fade": true,
+		"asNavFor": ".wb-deals-items"
+	}'
+>
+	
+	{{#forEach category.products }}
+		{{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}	
+		<article class="product-item-container d-flex">
+			<div class="left-block">
+			
+				{{#if price.with_tax}}
+					{{> components/wbcomponents/products/discount discounts = (multiply (divide (subtract price.with_tax.value price.rrp_with_tax.value ) price.rrp_with_tax.value) 100)}}
+				{{/if}}
+				
+				{{#if price.non_sale_price_with_tax}}
+					{{> components/wbcomponents/products/discount discounts = (multiply (divide (subtract price.with_tax.value price.non_sale_price_with_tax.value ) price.non_sale_price_with_tax.value) 100)}}
+				{{/if}}
+				
+				{{#if price.without_tax}}
+					{{> components/wbcomponents/products/discount discounts = (multiply (divide (subtract price.without_tax.value  price.non_sale_price_without_tax.value) price.without_tax.value) 100)}}
+				{{/if}}
+				
+				<a href="{{url}}" class="product-item-photo">
+					<img class="card-image lazyload" data-sizes="auto" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{getImage image 'deals_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}" width="300" height="300">
+				</a>
+				
+			</div>
+
+			<div class="right-block">
+				<h4 class="card-title">
+					<a href="{{url}}">{{name}}</a>
+				</h4>
+				
+				<div class="ratings ">
+					<div class="prod-rating" data-test-info-type="productRating">
+						<span class="rating--small">
+							{{> components/products/ratings rating=rating}}
+						</span>
+					</div>
+				</div>
+				
+				{{#if brand.name}}
+					<p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
+				{{/if}}
+				
+				
+				<div class="description">
+					{{summary }}
+				</div>
+
+				{{#or customer (if ../../theme_settings.restrict_to_login '!==' true)}}
+					{{> components/products/price price=price customer=customer}}
+				{{else}}
+					{{> components/common/login-for-pricing}}
+				{{/or}}
+				
+				
+			</div>
+		</article>
+		
+		{{/or}}
+	{{/forEach}}
+
+</div>
+
+<div class="wb-deals-items"
+	data-slick='{
+		"slidesToShow": 5,
+		"slidesToScroll": 1,
+		"focusOnSelect": true,
+		"asNavFor": ".wb-deals-detail",
+		"centerMode" : true,
+		"responsive": [
+			{
+				"breakpoint": 1200,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 5
+				}
+			},
+			{
+				"breakpoint": 1199,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 3
+				}
+			},
+			{
+				"breakpoint": 992,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 3,
+					"centerMode" : false
+				}
+			},
+			{
+				"breakpoint": 480,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 2,
+					"centerMode" : false
+				}
+			}
+		]
+	}'
+>
+	{{#forEach category.products }}
+		{{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+		<article class="wb-deals--thumb {{ ../../theme_settings.product_sale_badges}}">
+			<div class="wb-deals-image-thumb">
+					
+				{{#if price.with_tax}}
+					{{> components/wbcomponents/products/discount discounts = (multiply (divide (subtract price.with_tax.value price.rrp_with_tax.value ) price.rrp_with_tax.value) 100)}}
+				{{/if}}
+				
+				{{#if price.non_sale_price_with_tax}}
+					{{> components/wbcomponents/products/discount discounts = (multiply (divide (subtract price.with_tax.value price.non_sale_price_with_tax.value ) price.non_sale_price_with_tax.value) 100)}}
+				{{/if}}
+				{{#if price.without_tax}}
+					{{> components/wbcomponents/products/discount discounts = (multiply (divide (subtract price.without_tax.value  price.non_sale_price_without_tax.value) price.without_tax.value) 100)}}
+				{{/if}}
+				
+				<img class="card-image lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{getImage image 'extraslider_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}" width="85" height="85">
+			</div>
+			<h4 class="wb-deals-title text-truncate">
+				<a href="{{url}}">{{name}}</a>
+			</h4>
+		</article>
+		{{/or}}
+	{{/forEach}}
+	
+</div>
+
+{{else}}
+
+	<div class="alertBox alertBox--info"  style="margin:30px 0px">
+		<div class="alertBox-column alertBox-icon">
+			<icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+		</div>
+		<p class="alertBox-column alertBox-message">
+			<span>{{{lang 'wbTheme.wb_deals.noCategory' }}}</span>
+		</p>
+	</div>
+{{/if}}

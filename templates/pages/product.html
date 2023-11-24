@@ -1,0 +1,71 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+cart: true
+---
+{{inject 'productId' product.id}}
+
+{{#partial "page"}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div class="row page sidebar--{{theme_settings.settings_detailSidebar}}">
+        {{#if theme_settings.settings_detailSidebar '!=' 'none' }}
+        <aside class="col-xxl-2 col-xl-3 col-lg-3 page-sidebar sidebar-offcanvas" id="faceted-search-container">
+            {{> components/wbcomponents/category/sidebar}}
+        </aside>
+        {{/if}}
+
+        <main class="{{#if theme_settings.settings_detailSidebar '!=' 'none' }}col-xxl-10 col-lg-9 col-sm-12 page-content {{else}} page-content {{/if}}"  id="product-listing-container">
+            {{#if theme_settings.settings_detailSidebar '!=' 'none' }}
+                <div class="sidebar-overlay"></div>
+                <div class="wb-opensidebar">
+                    <a href="javascript:void(0)" class="open-sidebar button button--action d-md-block d-lg-none"><i class="fa fa-sliders"></i> {{lang 'wbTheme.categories.sidebar' }} </a>
+                </div>
+            {{/if}}
+
+            <div itemscope itemtype="https://schema.org/Product">
+                {{> components/wbcomponents/products/product-view
+                    gallery = theme_settings.settings_productgallery
+                    title_sizechart= (lang 'wbTheme.products.name_sizechart')
+                    img_sizechart= (lang 'wbTheme.products.image_sizechart')
+                    schema=true
+                    cart= cart
+                }}
+
+                {{{region name="product_below_content"}}}
+
+                {{#if product.videos.list.length}}
+                    {{> components/products/videos product.videos}}
+                {{/if}}
+
+                {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+                    {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                {{/all}}
+
+                {{> components/products/tabs}}
+            </div>
+        </main>
+    </div>
+
+{{/partial}}
+{{> layout/base}}

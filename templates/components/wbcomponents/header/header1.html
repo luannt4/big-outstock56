@@ -1,0 +1,139 @@
+{{#if banners.top}}
+<div data-alert  class="banners--top alert-box" data-banner-location="top">
+    {{{limit banners.top 1}}}
+</div>
+{{/if}}
+
+<header class="header" {{#if stickyHeader }} data-sticky-header  {{/if}}>
+{{!-- HEADER MOBILE --}}
+<div class="header-mobile">
+    {{> components/wbcomponents/header/mheader }}
+</div>
+
+{{!-- HEADER CENTER --}}
+<div class="header-center">
+    <div class="grid-container">
+        <div class="logo-container">
+            {{> components/common/store-logo}}
+        </div>
+
+        {{> components/wbcomponents/addons/wb_mega/default status=true  display_mode="horizontal" }}
+
+        <div class="header-blockcart">
+
+            <div class="navUser">
+                <ul class="navUser-section ">
+
+                    <li class="navUser-item navUser-item--formSearch">
+                        <a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+                            <div class="cart-button">
+                                <div class="icon-search">
+                                    <svg width="18" height="18"><use xlink:href="#icon-search" /></svg>
+                                </div>
+                                <div class="icon-times">
+                                    <svg width="18" height="18"><use xlink:href="#icon-times" /></svg>
+                                </div>
+                            </div>
+                            <div class="navUser-item__label">
+                                {{lang 'forms.search.search'}}
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown--quickSearch" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+                            {{> components/wbcomponents/common/quick-search}}
+                        </div>
+                    </li>
+                    {{#if settings.show_wishlist}}
+                    <li class="navUser-item hidden">
+                        <a class="navUser-action navUser-item--wishlist" href="{{urls.account.wishlists.all}}">
+                            <div class="cart-button">
+                                <svg width="18" height="16"><use xlink:href="#icon-wishlist" /></svg>
+                            </div>
+                            <div class="navUser-item__text">
+                                <span class="navUser-item__label">Favorite</span>
+                                <p class="navUser-item__mytext">{{lang 'account.mobile_nav.wishlists'}}</p>
+                            </div>
+                        </a>
+                    </li>
+                    {{/if}}
+                    <li class="navUser-item navUser-item--cart">
+                        <a
+                                class="navUser-action cart-button--primary"
+                                data-cart-preview
+                                data-dropdown="cart-preview-dropdown"
+                                href="{{urls.cart}}"
+                                aria-label="{{lang 'cart.nav_aria_label'}}"
+                        >
+                            <div class="cart-button">
+                                <svg width="18" height="16"><use xlink:href="#icon-shopping-bag" /></svg>
+                                <span class="countPill cart-quantity">{{cart.quantity}}</span>
+                            </div>
+                            <div class="navUser-item__text">
+                                <p class="navUser-item__label text-shopping-cart">{{lang 'wbTheme.cart.myCart'}}</p>
+                                <p class="navUser-item__mytext cart-subtotal"><span class="cart-subtotal cart-text--account">{{cart.sub_total.formatted}}</span></p>
+                            </div>
+
+                        </a>
+                        <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+                    </li>
+
+                    <li class="navUser-item navUser-item--tool">
+                        <a class="navUser-action has-dropdown" href="#" data-dropdown="accountSelection"  aria-controls="accountSelection" aria-expanded="false" aria-label="{{lang 'common.sign_up'}}">
+                            <div class="cart-button">
+                                <svg width="18" height="18"><use xlink:href="#icon-alignright" /></svg>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu" id="accountSelection" data-dropdown-content aria-hidden="true">
+                            <ul class="navPages-list navPages-list--categories">
+                                <li class="dropdown-menu-item navPages-title"><strong>{{lang 'wbTheme.header.my_account'}}</strong></li>
+                                {{#if customer}}
+                                {{#if theme_settings.show_product_wishlist}}
+                                <li class="dropdown-menu-item"><a  href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a> </li>
+                                {{/if}}
+                                <li class="dropdown-menu-item"><a  href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a> </li>
+                                {{#if settings.returns_enabled}}
+                                <li class="dropdown-menu-item"><a  href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+                                {{/if}}
+                                <li class="dropdown-menu-item"> <a  href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a> </li>
+                                <li class="dropdown-menu-item"> <a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</span></a> </li>
+                                <li class="dropdown-menu-item"> <a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></li>
+                                <li class="dropdown-menu-item"><a  href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></li>
+                                <li class="dropdown-menu-item"><a  href="{{urls.auth.logout}}"><i class="fa fa-sign-out"></i>  {{lang 'common.logout'}}</a></li>
+                                {{else}}
+                                <li class="dropdown-menu-item"> <a href="{{urls.auth.login}}">{{lang 'common.login'}}</a></li>
+                                {{#if settings.account_creation_enabled}}
+                                <li class="dropdown-menu-item">  <a href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a></li>
+                                {{/if}}
+                                {{/if}}
+
+                            </ul>
+
+
+                            <ul class="navPage-currency list-inline" >
+                                <li class="dropdown-menu-item navPages-title"><strong>{{lang 'wbTheme.header.currency'}}</strong></li>
+                                {{#each currency_selector.currencies}}
+                                <li class="dropdown-menu-item">
+                                    <a href="{{{switch_url}}}">
+                                        {{{ flag }}}
+                                        {{#if is_active}}
+                                        {{name}}
+                                        {{else}}
+                                        {{name}}
+                                        {{/if}}
+                                    </a>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</header>
+{{{region name="header_bottom--global"}}}
+{{{region name="header_bottom"}}}
+

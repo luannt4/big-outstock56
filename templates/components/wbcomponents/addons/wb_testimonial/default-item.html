@@ -1,0 +1,23 @@
+{{#if status }}
+<div class="wb-testimonial--item">
+	<div class="wb-testimonial-img-info">
+		<div class="card-img-container">
+		{{#if avatar '!=' ' '}}
+		<img data-sizes="auto" class="card-image lazyload " src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn avatar }}" alt="{{author_name}}" />
+		{{else}}
+		<img  class="card-image " src="{{cdn placeholder}}"  alt="{{author_name}}" />
+		{{/if}}
+		</div>
+
+	</div>
+	<div class="wb-testimonial--info">
+		<h5>{{author_name}}</h5>
+		<span class="position">{{author_position}}</span>
+	</div>
+	<div class="wb-testimonial-text">
+		{{content}}
+	</div>
+
+
+</div>
+{{/if}}

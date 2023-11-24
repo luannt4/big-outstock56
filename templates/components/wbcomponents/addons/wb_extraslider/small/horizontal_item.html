@@ -1,0 +1,73 @@
+
+<section class="productCarousel products-list"
+
+    data-slick='{
+        "dots": false,
+        "infinite": false,
+        "mobileFirst": true,
+        "slidesToShow": {{columns}},
+        "slidesToScroll": 1,
+        "responsive": [
+            {
+				"breakpoint": 1900,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": {{columns}}
+				}
+			},
+			{
+				"breakpoint": 1260,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": {{subtract columns  1}}
+				}
+			},
+			{
+				"breakpoint": 991,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 3
+				}
+			},
+			{
+				"breakpoint": 700,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 2
+				}
+			},
+			{
+				"breakpoint": 320,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 1,
+					"dots": true,
+					"arrows": false
+
+				}
+			}
+        ]
+    }'
+
+>
+
+    {{#forEach products }}
+		{{#if ../row '==' 1}}
+			<div class="{{#if isFirst}}first-side{{/if}} productCarousel-slide product-layout product-list">
+				{{> components/wbcomponents/products/card_row theme_settings=../theme_settings  customer=../customer  show_rating=../settings.show_product_rating productsnew=../productsnew}}
+			</div>
+		{{else}}
+			{{#or isFirst (if index '===' (add 1 ../row)) (if index '===' (add 1 (multiply 2 ../row))) (if index '===' (add 1 (multiply 3 ../row))) (if index '===' (add 1 (multiply 4 ../row))) (if index '===' (add 1 (multiply 5 ../row))) }}
+			<div class="productCarousel-slide product-layout product-list">
+			{{/or}}
+
+			{{> components/wbcomponents/products/card_row theme_settings=../theme_settings customer=../customer show_rating=../settings.show_product_rating productsnew=../productsnew}}
+
+			{{#or (if index '===' ../row)(if index '==='(multiply 2 ../row)) (if index '==='(multiply 3 ../row)) (if index '==='(multiply 4 ../row)) (if index '==='(multiply 5 ../row)) (if index '===' total)}}
+				</div>
+			{{/or}}
+		{{/if}}
+
+    {{/forEach}}
+
+</section>

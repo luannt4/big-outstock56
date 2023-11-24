@@ -1,0 +1,494 @@
+// =============================================================================
+// BODY (CSS)
+//
+// 1. Header is fixed on small screens, use the content body to create the whitespace
+//    between it and the header on all situations. If you change the spacing here,
+//    please update .heroCarousel too.
+//
+// =============================================================================
+@import "module/heroCarousel";
+@import "module/listing_tabs";
+
+.module,
+.module-wrapper{
+    margin-bottom: 50px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+   .block-title{
+        padding: 0 ;
+        margin: 0 0 10px;
+        font-size: 22px;
+       letter-spacing: -.025em;
+       @include breakpoint("medium") {
+           font-size: 24px;
+       }
+    }
+}
+
+.titleMline{
+    .block-title{
+        font-size: 14px;
+        display: block;
+        text-align: center;
+        position: relative;
+        font-weight: 400;
+        margin: 20px auto 40px;
+
+        .title{
+            font-size: 30px;
+            font-weight: 500;
+            letter-spacing: -.025em;
+            text-transform: uppercase;
+            color: $gray-dark;
+        }
+        .subtitle{
+            color: #606060;
+            display: block;
+            margin: 0 auto;
+            line-height: 24px;
+            max-width: 40rem;
+        }
+    }
+
+}
+
+.page-sidebar{
+    .module, .module-wrapper{
+        margin-bottom: 30px;
+    }
+    .block-title,
+    .sidebarBlock-heading{
+        font-size: 18px;
+        margin:0;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    .navList{
+        a{
+            font-size: 14px;
+            @include linkGrayDark();
+        }
+    }
+}
+
+.card-title{margin-bottom: 5px; font-size: 14px;line-height: 22px;}
+.wb-section{display: inline-block; width: 100%; clear: both; }
+
+/*============MODULE BANNER TOP + BOTTOM==================*/
+.banner-figures{
+    .banner-figcaption__title{
+        margin: 10px 0;
+        @include linkColor($gray-dark,$background);
+    }
+    .banner-figcaption__text{
+        margin-bottom: 10px;
+        > p:last-child{
+            margin:0;
+        }
+    }
+    .button{
+        display: block;
+    }
+}
+.banners--top{
+    padding: 10px 30px;
+    background-color: #7ccd9f;
+    text-align:center;
+    color: #fff;
+    letter-spacing: 0.05em;
+    line-height: 24px;
+    margin: 0;
+    font-size: 12px;
+    background: #ff4444;
+    background: -webkit-linear-gradient(left, #5961ff, #30c780);
+    background: linear-gradient(to right, #2f36d8, #30c780);
+    background-repeat: repeat-x;
+    @include breakpoints(xs){
+        display: none;
+    }
+     p{ margin-bottom:0; @include text-overflow(); }
+
+    .button{margin:0 10px;    padding: .5rem 1rem;border-radius: 3px;
+        background: rgba(255,255,255,0.2);
+        border-color:rgba(255, 255, 255, 0.1);
+        color: #fff;
+        @include breakpoints(xs){margin:0; float: left;}
+        &:hover{
+            background: $background; border-color: $background;
+        }
+    }
+
+
+}
+
+/*============MODULE QUICKSEARCH RESULTS==================*/
+section.quickSearchResults {
+    ul.products-list{padding: 0; margin:0;}
+    li.product-list{
+        .product-item-container{border:none;
+            margin: 0;border-bottom: 1px solid #e5e5e5; padding: 10px; clear: both;
+            overflow: hidden;
+            .left-block{width:80px; padding: 0; border: none;}
+            .right-block{margin:0; overflow:hidden; padding: 0 15px;
+                .card-title{
+                    font-weight: normal;
+                }
+            }
+
+            &:hover{
+                background: #fbfcff;
+            }
+        }
+    }
+
+}
+.quickSearchMessage{margin: 15px;font-size: 18px; color: $gray-darker;}
+.dropdown--quickSearch {
+    background-color: white; box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);  overflow-y: scroll;
+    max-height: 300px;
+
+    @include breakpoint("medium") {
+        padding: 0;
+    }
+
+    .modal-close{border: 1px solid #999; font-size: 20px; height: 26px; width: 26px; line-height: 25px; margin:10px; }
+    @include breakpoint("medium") {
+
+        .form-input{background: none; border: none; font-size: 16px;}
+        .btn-link{font-size: 26px; @include linkGray();}
+    }
+
+
+    .modal-close{color: #999;right: 0.75rem;left: auto;}
+
+
+    .products-list {
+        padding: 0;
+        display: inline-block;
+        width: 100%;
+        margin: 0;
+        .product-layout{padding:0;
+            display: flex;
+            &:last-child{
+                .product-item-container{
+                    border-bottom: none;
+                }
+            }
+            .product-item-container{
+                width: 100%; margin-bottom: 0; clear: both;
+                border: none;padding:  10px;border-bottom: 1px solid #e5e5e5;
+                &:hover{background:#efefef;};
+
+                .right-block{margin: 0; overflow-y: hidden;}
+
+            }
+        }
+
+    }
+
+}
+
+
+/*============MODULE BREADCRUMB ==================*/
+
+.wb-breadcrumbs{
+    width: 100%;
+    padding: 30px 0 30px 0;
+    @include breakpoint("medium") {padding: 30px 0 30px 0;}
+    .entry-header{ padding: 0; }
+}
+
+.wb-breadcrumbs-bg{
+    background: #f5f5f5;
+    border-top: 1px solid #e4e4e4;
+    text-align: center; margin-bottom: 30px;
+    padding: 30px 0 ;
+    @include breakpoints(md){padding: 50px 0 50px; }
+    @include breakpoints(lg){padding: 50px 0 50px; margin-bottom: 50px;}
+    .entry-title{
+        font-size: 24px; font-weight: normal; margin:0;
+    }
+}
+.breadcrumb{
+    &:before{display:none !important;}
+    .breadcrumb-item {display: inline-block;}
+    a.breadcrumb-label{ @include linkGray(); }
+}
+
+
+/*============MODULE SIDEBAR ==================*/
+//  ALL Category
+// -----------------------------------------------------------------------------
+.sidebar--categories{
+    ul.navList {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+        border:none;
+        .navList-item {
+            position: relative;
+            box-shadow: none;
+            background: transparent;
+            border-bottom: 1px solid #ebebeb;
+            &:last-child{ border: none; }
+            .navList-toggle{
+                color: $gray;
+            }
+            > .navList-action {
+                padding: 10px 0;
+                display: block;
+
+                @include linkGrayDark();
+                .sidebarBlock--categories & {
+                    margin-bottom: spacing("quarter");
+                }
+            }
+        }
+
+
+
+    }
+}
+
+.navList-subSection .navList-item {
+    margin-left: spacing("half");
+
+    &:before {
+        content: '-';
+        float: left;
+        margin-left: -(spacing("half"));
+    }
+}
+
+.navList-action{
+    &:hover{color: $color-textLink-hover;};
+}
+
+
+.navList-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: $navList-action-padding;
+    transform: rotate(-90deg) scale(0.7);
+
+    transition: 0.2s transform;
+    padding:10px;
+    &:hover{
+        fill: $background;
+    }
+
+    &.is-open {
+        transform: rotate(0deg)  scale(0.7);
+    }
+}
+
+ul.navList-subMenu-list {
+    display: none;
+
+    padding: 0 0 10px 0;
+    &.is-open {display: block; }
+    .navList-action{ padding: 3px 10px; }
+}
+
+ .navList-subMenu-item {
+    position: relative;
+    ul.navList-childList .navList-action{
+        &:before{
+            content: '';
+            display: inline-block;
+            margin-right: 7px; vertical-align: middle;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #999;
+
+        }
+        &:hover:before{
+            background: $background;
+        }
+    }
+}
+
+.navList-subMenu-action {
+    padding-left: spacing("single");
+}
+
+ul.navList-childList {
+    display: none;
+    margin-left: 15px;
+    padding: 0 0 10px 0;
+    &.is-open {
+        display: block;
+    }
+}
+
+.navList-childList-action {
+    padding-left: spacing("double");
+}
+
+//  REFINE BY
+// -----------------------------------------------------------------------------
+.facetedSearch-toggle + .facetedSearch-navList,
+.sidebarBlock + .facetedSearch-navList {
+    margin-top: 0rem;
+}
+
+@media (min-width: 801px){
+    .accordion--navList .accordion-indicator {
+        visibility: visible;    border: 1px solid #a5a5a5;
+    }
+}
+
+#sideShopByBrands ul, #sideShopByPrice ul{
+    display: block;
+    position: relative;
+    margin: 0;
+    list-style: none;
+
+    li{
+        position: relative;
+        display: block;
+        padding: 5px 0;
+        a{display: block;@include linkGray();}
+    }
+}
+
+
+// 3. Flow Us Social
+// -----------------------------------------------------------------------------
+
+.socialLinks {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    .socialLinks-item {
+        padding: 0;
+        margin-right: 10px;
+    }
+
+    .icon svg{
+        fill: $white;
+    }
+    .button {
+        border: none;
+        margin-bottom: 0;
+        color: #6c6c6c;
+    }
+    .button--icon {
+        background-color: #797979;
+        color: $color-white;
+        position: relative;
+        border-color: #797979;
+        margin: 0;
+        text-align: center;
+        padding: 0.7rem;
+        border-radius: 3px;
+        transition: 0.2s all ease-in-out 0s;
+        .icon{    height: 1.25rem;width: 1.25rem;}
+        &.button--icon:hover{opacity: 0.7;
+
+        }
+        &.button--facebook {background-color: #3b5999;border-color: #3b5999;}
+        &.button--email {background-color: #4d70ba;border-color: #4d70ba;}
+        &.button--print {background-color: #728dc8;border-color: #728dc8;}
+        &.button--twitter {background-color: #55acee;border-color: #55acee;}
+        &.button--pinterest {background-color: #bd081c;border-color: #bd081c;}
+        &.button--google {background-color: #dd4b39;border-color: #dd4b39;}
+        &.button--instagram {background-color: #c01157;border-color: #c01157;}
+
+    }
+	.button--small {
+        border: none;
+        min-width: 32px; height: 32px;
+
+        .icon{    height: 1.25rem;width: 1.25rem;}
+    }
+    .button--flat {
+        font-size: 14px;
+        position: relative;
+        border: 0;
+        margin: 0;
+        text-align: left;
+        line-height: 26px;
+
+        .icon{
+            height: 1.3rem;width: 1.3rem;transition: initial;
+            margin-right: 5px;
+        }
+
+        &:hover,&:focus{
+            opacity: 0.8;
+        }
+        &.button--facebook {color: #3b5999;}
+        &.button--email {color: #4d70ba;}
+        &.button--print {color: #728dc8;}
+        &.button--twitter {color: #55acee;}
+        &.button--pinterest {color: #bd081c;}
+        &.button--instagram {color: #c01157;}
+
+    }
+
+}
+.socialLinks--alt{
+    display: block;
+    .socialLinks-item{
+        display: block;
+        margin:0;
+        line-height: 30px;
+    }
+}
+
+// Sidebar Right
+// -----------------------------------------------------------------------------
+.sidebarRight{
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    background: #fff;
+    z-index: 999;
+    transform: translateY(-50%);
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    overflow: hidden;
+    display: none;
+    @include breakpoint("medium") {
+        display: block;
+    }
+    ul.sidebarRight-list {
+        padding: 0;
+        margin: 0;
+        li{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-bottom: 1px solid #e1e1e1;
+            a{
+                color: #666;
+                display: block;
+                text-align: center;
+                display: block;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &:hover{
+                    background: $buttonStyle-primary-backgroundColor;
+                    svg{
+                        fill: $white;
+                    }
+                }
+            }
+        }
+        svg{
+            width: 20px;
+            height: 20px;
+            fill: $textColor;
+        }
+    }
+}

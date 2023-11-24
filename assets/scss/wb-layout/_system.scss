@@ -1,0 +1,210 @@
+/*===============================================
+    [SASS DIRECTORY ]
+
+    [1] BACK TO TOP
+    [2] CookieMessage
+    [3] Sitcky Menu on Top
+    [4] Group Logo Position
+    [5] Banners hover effect
+    [6] Alert messages
+==============================================*/
+
+/*= [1] BACK TO TOP ==================*/
+
+.scrollToTop{
+    bottom: 100px;
+    position: fixed;display: block;
+    z-index: 6;
+    right: 30px;
+   transition :all 0.3s ease-in-out 0s;
+   opacity: 1;
+    .button--icon{
+        display: block;
+        width: 45px;
+        height: 45px;
+        padding: 0;
+        margin:0;
+        border-radius: 3px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        background: #999;
+        color: white;
+        text-align: center;
+        &:hover{background-color:$background;}
+
+    }
+    &.hidden-top {visibility: hidden; opacity: 0; bottom: 0px;}
+}
+
+/*============SB loadeding ==================*/
+.pace-done .wb-loadeding{display: none; height: auto;}
+.wb-loadeding{background: #fff url(#{$imgPath}loading.svg) no-repeat center center;;height: 100%; position: absolute;z-index: 2;top: 0;left: 0;right: 0;opacity: 1;}
+.productLoading{margin: 6rem 0rem ; text-align: center; display: block; width: 100%;}
+.lazyload {transition: all ease-in-out 700ms; display: table;margin: 0 auto;}
+/*==[2] cookieMessage ==================*/
+.cookieMessage{
+    position: fixed;
+    z-index: 550;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0 ;
+    background: $gray-dark;
+    color: white;
+    @include breakpoint("medium") {
+        .cookieMessage-text{width: calc(100% - 160px); padding: 0; float: left;
+          p{margin: 10px 0 0 ;}
+        }
+        .button{width: 160px; margin-bottom: 0; color: white;}
+    }
+
+}
+
+/*==[3] STICKY MENU ON TOP  ==================*/
+@media (min-width: 1200px){
+
+    header.sticky-top,
+    .homepage header.sticky-top{ position: fixed !important;  z-index:600; background-color: $header-bg; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+        height: 63px;
+        .sticky-hidden{display: none;}
+        .header-logo__link{
+            margin: 6px auto;
+        }
+        .verticalCategories{display: none;}
+        .navPages-verticalCategories:hover .verticalCategories{display: block;}
+    }
+
+  /*==[4] group Logo Position ==================*/
+
+
+}
+
+/*==[5] Banners hover effect ==================*/
+@include breakpoint(medium){
+
+    .wb-effect10 .banner-figures > div > a {
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .wb-effect10 .banner-figures > div > a:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 75%);
+        content: '';
+        opacity: 0;
+        transform: translate3d(0,50%,0);
+        transition: opacity 0.35s, transform 0.35s;
+    }
+
+    .wb-effect10 .banner-figures > div > a:hover:before {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+
+}
+
+
+
+
+/*==[5] Alert messages  ==================*/
+
+.alert,.alertBox {
+    padding: 18px 40px 18px 75px;
+    z-index: 30;
+    color: #FFF;
+    border-radius: 0;
+    position: relative;z-index: 1;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    transition: 1s all cubic-bezier(1, -0.01, 0, 0.99);
+    border:none;
+    background-color: #03A9F4;
+    i,.alertBox-icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        text-align: center;
+        width: 60px;
+        font-size: 32px;
+        -webkit-animation: alert-icon-anim 1s;
+        -moz-animation: alert-icon-anim 1s;
+        -ms-animation: alert-icon-anim 1s;
+        -o-animation: alert-icon-anim 1s;
+        animation: alert-icon-anim 1s;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+        padding:0;
+        &:before{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            line-height: 0;
+        }
+        .icon{
+            height: 3rem;
+            width: 3rem;
+        }
+    }
+    button.close {
+        position: absolute;
+        top: 50%;
+        line-height: 1;
+        right: 15px;
+        color: #FFF;
+        opacity: .7;
+        background: none;
+        border:none;
+        -moz-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+        -o-transform: translate(0, -50%);
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+    }
+
+}
+
+.alert a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 479px) {
+    .alert {padding-right: 30px; }
+    .alert button.close { right: 5px;}
+}
+
+.alert-success,.alertBox--success {background-color: #4caf50;
+    i,.alertBox-icon {background: #388E3C;}
+    a,a:focus,a:hover{color: #C8E6C9;}
+    svg{fill: #dfdfdf;}
+}
+
+.alert-danger,.alertBox--error {background-color: #F44336;
+    i,.alertBox-icon {background: #D32F2F;}
+    a,a:focus,a:hover{color: #FFCDD2;}
+    svg{fill: #dfdfdf;}
+}
+
+.alert-info,.alertBox--info {
+    background-color: #03A9F4;
+    i,.alertBox-icon{background: #0288D1;}
+    a,a:focus,a:hover{color: #B3E5FC;}
+    svg{fill: #dfdfdf;}
+}
+
+.alert-warning,.alertBox--warning {
+    background-color: #FF5722;
+    i,.alertBox-icon {background: #E64A19;}
+    a,a:focus,a:hover{color: #FFCCBC;}
+    svg{fill: #dfdfdf;}
+}
+
+/*==[6] Product Category Setting ==================*/
+.sidebar--right{
+    .page-sidebar{-webkit-box-ordinal-group: 2;-ms-flex-order: 2;order: 2;}
+    .page-content{-webkit-box-ordinal-group: 1;-ms-flex-order: 1;order: 1;}
+}

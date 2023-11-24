@@ -1,0 +1,126 @@
+{{!--
+Arguments:
+    - category_id (number)
+    - style (string): CSS class styling suffix
+
+Global variables:
+    - categories (array)
+--}}
+
+{{#if category_id '!==' ' '}}
+{{#withHash
+    categories               = categories
+    category_id              = category_id
+   
+}}
+{{#each categories}}
+	{{#if id '===' ../category_id}}
+		{{#if (merge ../../this 
+			category_name = name
+			category_url = url)}}
+		{{/if}}
+	{{else}}
+		{{#each children}}
+			{{#if id '===' ../../../category_id}}
+				{{#if (merge ../../../../this
+					category_name = name
+					category_url = url)}}
+				{{/if}}
+			{{/if}}
+		{{/each}}
+	{{/if}}
+{{/each}}
+
+
+{{#if category_url}}
+	<div id="wb-listing-tabs" class="wb-listing-tabs">
+		<div class="ltabs-heading block-title">
+			<h3>{{category_name}}</h3>
+			<div class="ltabs-tabs-wrap">
+				<span class='ltabs-tab-selected'></span>
+				<span class="ltabs-tab-arrow">▼</span>
+				<ul class="tabs ltabs-tabs" data-tab data-tab-listingtab role="tablist">
+				{{#each categories}}
+					
+					{{#if id '===' ../category_id}}
+						{{#each (limit children ../../../../limit_subcategory) }}
+							<li class="tab {{#if isFirst}} is-active {{/if}}" role="presentation">	
+								<a class="tab-title" href="#tab-wblisting-{{id}}" role="tab" tabindex="0" aria-selected="false" aria-controls="tab-wblisting-{{id}}">{{name}}</a>
+							</li>
+						{{/each}}
+					
+					{{else}}
+						{{!-- Category Level 2--}}
+						{{#each children}}
+							{{#if id '===' ../../../category_id}}
+								{{#each (limit children ../../../../../../limit_subcategory) }}
+								<li class="tab {{#if isFirst}} is-active {{/if}}" role="presentation">	
+									<a class="tab-title" href="#tab-wblisting-{{id}}" role="tab" tabindex="0" aria-selected="false" aria-controls="tab-wblisting-{{id}}">{{name}}</a>
+								</li>
+								{{/each}}
+						
+							{{/if}}
+
+							
+						{{/each}}
+						
+					{{/if}}
+					
+				{{/each}}
+				
+				</ul>
+			</div>	
+			
+		</div>
+		
+		<div class="ltabs-container">
+			<div class="ltabs-items-container">
+				{{#each categories}}
+					{{#if id '===' ../category_id}}
+						{{#each (limit children ../../../../limit_subcategory) }}
+							<section role="tabpanel" aria-hidden="false" class="tab-content {{#if isFirst}} is-active {{/if}}" id="tab-wblisting-{{id}}" 
+								data-items-listingtabs="{{concat url '?sort=newest'}}"
+								data-urltemplate="wbcomponents/addons/wb_listing_tabs/default/default_items">
+								
+								{{> components/wbcomponents/addons/wb_listing_tabs/default/product-loading }}
+							</section>
+	
+						{{/each}}
+					{{else}}
+						{{#each children}}
+							{{#if id '===' ../../../category_id}}
+							{{#forEach (limit children ../../../../../../limit_subcategory) }}
+								<section role="tabpanel" aria-hidden="false" class="tab-content {{#if isFirst}} is-active {{/if}}" id="tab-wblisting-{{id}}" 
+								data-items-listingtabs="{{concat url '?sort=newest'}}"
+									data-urltemplate="sbthemes/module/sb_listing_tabs/default/default_items">
+									
+									{{> components/wbcomponents/addons/wb_listing_tabs/default/product-loading }}
+								</section>
+							{{/forEach}}
+							{{/if}}
+						{{/each}}
+					
+					{{/if}}
+				{{/each}}
+				
+			
+				
+			</div>
+			
+		</div>
+		
+	</div>
+
+	{{else}}
+	<div class="alert alert-info" role="alert" style="margin:0px">
+		<i class="fa fa-info-circle"></i> 
+	   {{{lang 'wbTheme.wb_listingtab.noCategory' }}}
+	</div>
+{{/if}}
+{{/withHash}}
+	
+
+{{/if}}
+	
+
+

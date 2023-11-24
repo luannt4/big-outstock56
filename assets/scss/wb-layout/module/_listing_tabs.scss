@@ -1,0 +1,161 @@
+
+// WB Listing Tabs
+// -----------------------------------------------------------------------------
+.wb-listing-tabs{ clear: both;float: left;width: 100%;
+    @include roundSliderArrow();
+    @include cardItemfadeOut();
+    @include noGridCarousel();
+
+    .ltabs-heading{
+
+        min-height: 40px;
+        @include breakpoint(small) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h3{
+            margin:0; font-weight: normal;
+            font-size: 20px;
+            @include breakpoint("medium") {
+                font-size: 24px;
+            }
+        }
+
+        .ltabs-tabs-wrap{
+            position: relative;
+            z-index: 2;
+
+            @include breakpoint("medium") {
+                margin-right: 100px;
+            }
+            .ltabs-tab-selected,
+            .ltabs-tab-arrow{display: none;}
+
+        }
+        ul.tabs{border: 0; display: table; margin: 0 auto;
+            li.tab{ border:none;}
+            .tab-title{
+                color: $gray-dark;
+                font-weight: 400;
+                font-size: 14px;
+                padding:0.3rem 1rem 0;
+            }
+            li:last-child{
+                .tab-title{
+                    padding-right: 0;
+                }
+            }
+
+
+            .is-active a,li:hover a{
+                color: $color-textLink-hover;
+            }
+        }
+
+        /*Menu Tabs Responsive*/
+        div.ltabs-selectbox {
+            position: relative;
+            display: table;
+
+            line-height: 30px;
+            clear: both;
+            cursor: pointer;
+            z-index:5;
+
+            .ltabs-tab-selected,
+            .ltabs-tab-arrow{
+                position: relative;
+                float: left;
+                height: 30px;
+                z-index: 1;
+                display: inline-block;
+
+            }
+            .ltabs-tab-selected{
+                width: 167px;
+                text-indent: 10px;
+                font-weight: normal;
+                border: 1px solid #DDD;
+                border-right: none;
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+                background: #FFF;
+                overflow: hidden;
+                font-size: 14px;
+            }
+            .ltabs-tab-arrow {
+                width: 30px;
+                border: 1px solid #ddd;
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+                text-align: center;
+                font-size: 12px;
+                background: #DDD;
+            }
+
+            .ltabs-tabs {
+                position: absolute;
+                top: 28px;
+                left: 0;
+                width: 100%;
+                padding: 0;
+                border: 1px solid #ddd;
+                border-bottom-right-radius: 3px;
+                border-bottom-left-radius: 3px;
+                overflow: hidden;
+                background: #fff;
+                display: none;
+                z-index: 1;
+
+                li {
+                    margin: 0 !important;
+                    padding: 0;
+                    float: none;
+                    border: none;
+                    > a {
+                        display: block;
+                        padding: 0 10px;
+                        text-align: left;
+                        font-weight: 400;
+                        text-transform: capitalize;
+                    }
+                }
+            }
+            .ltabs-tabs.ltabs-open {
+                display: block;
+            }
+
+        }
+
+
+
+    }
+
+    .view_all--link{
+        margin-top:25px;
+        padding: 13px 30px;
+        font-size: 14px;
+        border-radius: 40px;
+    }
+    .ltabs-banner{
+        @include breakpoints(lg){
+            @include display-grid();
+            grid-template-columns: 450px minmax(250px, 1fr);
+            -ms-grid-columns:450px 30px 1fr;
+            grid-gap: 20px;
+
+        }
+        @include breakpoints(md){
+            @include display-grid();
+            grid-template-columns: 380px minmax(250px, 1fr);
+            grid-gap: 15px;
+        }
+    }
+
+}
+
+.bannerAlign-right{
+    .ltabs-container{direction: rtl;}
+    .ltabs-items-content{direction: ltr;}
+}

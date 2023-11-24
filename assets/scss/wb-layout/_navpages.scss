@@ -1,0 +1,470 @@
+// =============================================================================
+// Navpages (CSS)
+// =============================================================================
+.navPages-container{
+	position: static;
+	margin: auto 0;
+	.wb-banner{margin: 0 0 10px;}
+	.navPage-subMenu-banner{margin-bottom: 15px;
+		@include hoverFade();
+	}
+}
+.navPages-contentbottom{
+	background: #cc1414;
+	padding: 15px 0;
+	color: $white;
+	text-align: center;
+	margin-top: 40px;
+	margin-bottom: -40px;
+}
+.navPages-horizontal{
+	.imageArea  .card-img-container:after{
+		padding-bottom: 60%;
+	}
+	@media (min-width: 992px){.navPages-action-moreIcon svg{stroke: none ; }}
+
+	@include breakpoint("medium") {
+
+		ul.navPages-list{ width: 100%; vertical-align: middle;
+			ul{list-style: none; margin: 0; padding: 0;  width: 100%;}
+			/*--more arrow--*/
+			//.has-subMenu-moreIcon-level1 .navPages-action-moreIcon{transform: rotate(90deg); width: 16px; height: 16px; display: inline-block; margin: 0;}
+
+			/** NavPages item page **/
+			> li.navPages-item{ float: left; position: relative;
+
+				> .navPages-action{
+					font-size:14px;
+					color: stencilColor("navUser-color");
+					padding: 1rem 2.5rem;
+					font-weight: 500;
+					padding-left: 0;
+					text-transform: uppercase;
+					&:before{
+						content: "";
+						position: absolute;
+						bottom: 14px;
+						width: 0;
+						left: 0px;
+						height: 2px;
+						background-color: stencilColor("navUser-color-hover");
+						transition: width .4s ease-in-out;
+					}
+					&:hover{
+						color: stencilColor("navUser-color-hover");
+					}
+				}
+
+                &.float-right{
+                  .navPages-action{
+					  padding-right: 0;
+					  padding-left: 3rem;
+				  }
+                }
+
+				&:hover{
+					> .navPages-action:before{
+						width: calc(100% - 40px);
+					}
+					//> .navPages-action{color: $navPage-subMenu-item--is-highlighted-color;}
+				}
+
+				/*.has-subMenu.is-root + .navPage-subMenu-horizontal{width: 100%;}*/
+				.navPage-subMenu {
+					background: $white;
+					box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+					transition: all 0.35s ease-in-out;
+					transform: translateY(30px);
+					opacity: 0;
+					visibility: hidden;
+					min-width: 220px;
+					left: 0;
+					@include breakpoint("large") {
+						display: block;
+					}
+
+					.navPage-subMenu-item{
+						width: auto;float: none;margin: 0 -1rem;
+						@include linkColor($gray-dark,stencilColor("navUser-color-hover"));
+					}
+					.navPages-action-moreIcon{
+
+						width: 16px; height: 16px;
+						position: absolute;
+						right: 0;
+						top:0;
+						z-index: 5;
+						margin: 10px 12px 0 0 ;
+						display: block;
+					}
+					.subMenu--level2{
+						left: 100%; top:0;
+						transform: translate(0px,50px);
+					}
+
+					// Link Menu Item
+					.navPages-action{
+						border-bottom: none; margin-bottom: 0;
+						padding: 5px 10px;
+						font-weight: 400;
+						font-size:14px;
+					}
+				}
+
+
+				//Hover submenu level 1
+				&:hover > .navPage-subMenu,
+				.navPage-subMenu.is-open{
+					opacity: 1;
+					visibility: visible;
+					z-index: 105;
+					transform: translateY(0px);
+					@include breakpoint("large") {
+						display: block;
+					}
+
+				}
+
+				//Hover submenu level2
+				li.navPage-subMenu-item{ position: relative;z-index: 10;
+					&:hover > .subMenu--level2{
+						opacity: 1;
+						visibility: visible;
+						transform: translate(0px,0px);
+					}
+				}
+
+			}
+
+			/** NavPages item categories **/
+			> li.hasMegamenu{ position: static;
+				.navPages-action{position: relative;z-index: 1; background: none;}
+				.navPage-subMenu {
+					width: 100%;
+					padding: 40px 0;
+					z-index: 90;
+					@include breakpoints(lg) {
+						> .row {
+							max-width: 1240px;
+							margin: 0 auto;
+						}
+					}
+
+
+					.navPage-subMenu-item{width: 20% ; float: left; margin: 0;}
+					.columns-2 .navPage-subMenu-item{width: 50%;}
+					.columns-3 .navPage-subMenu-item{width: 33.33%;}
+					.columns-4 .navPage-subMenu-item{width: 25%;}
+					.columns-5 .navPage-subMenu-item{width: 20%;}
+					.columns-6 .navPage-subMenu-item{width: 16.666667%;}
+					// Link Menu Item
+
+					.navPages-action{
+						padding: 0 0 5px 0;
+
+					}
+					.navPages-action-depth-max{
+						margin-bottom:10px; font-weight: 600;
+						font-size: 16px;
+						@include text-overflow();
+					}
+				}
+
+
+			}
+		}
+	}
+}
+
+
+// =============================================================================
+// Navpages - verticalCategories (CSS)
+// =============================================================================
+.navPages-verticalCategories{
+	position: relative;
+	.icon-alignleft{
+		fill: $white;
+		stroke: $white;
+	}
+}
+.navPages-verticalCategories .megamenuToogle-wrapper{
+	color:$buttonStyle-primary-color;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 0 15px;
+	line-height: 45px;
+	font-weight: 500;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	.title-mega{display: inline-block; padding:  4px 10px;}
+
+
+}
+
+.verticalCategories {
+	@include breakpoint("medium") {
+		position: absolute;z-index: 2;
+		width: 100%;
+		background: #fff;
+		border-radius: 0 0 3px 3px;
+		border:1px solid #e6e6e6;
+		border-top: none;
+
+		&.is-open {
+			transform: rotateX(0);
+		}
+		ul{list-style: none; padding: 0; margin: 0 ;}
+		ul.navPage-subMenu-list{
+			width: 100%;float: left; margin: 0;
+
+			// Submenu content_column
+			.navPage-subMenu-item {}
+			&.grid-2{
+				.navPage-subMenu-item {width: 50%;
+					&:nth-child(2n+1){clear: both !important;}
+				}
+			}
+			&.grid-3{
+				.navPage-subMenu-item {width: 33%;
+					&:nth-child(3n+1){clear: both !important;}
+				}
+			}
+			&.grid-4{
+				.navPage-subMenu-item {width: 25%;
+					&:nth-child(4n+1){clear: both !important;}
+				}
+			}
+			&.grid-5{
+				.navPage-subMenu-item {width: 20%;
+					&:nth-child(5n+1){clear: both !important;}
+				}
+			}
+		}
+		.navPages-list {
+			display: block;
+		}
+		.navPages-item--default{position: relative;z-index: 1;}
+		.navPages-item {
+
+			padding: 0 20px;
+			float: none;
+			@include linkColor($gray-dark,stencilColor("navUser-color-hover"));
+
+			&:after{content:""; display: block; width: 100%; height: 1px; background:$navPage-borderColor;}
+
+			> .navPages-action {
+				//color: stencilColor("navPages-subMenu-color");
+				display: block;
+				padding: 9px 0;
+				font-size:14px;
+				font-weight: 400;
+				text-transform: capitalize;
+
+
+			}
+
+			.navPages__icon{margin-right: 5px;}
+			&:last-child{
+				&:after{
+					visibility: hidden;
+				}
+			}
+		}
+
+		.loadmore{cursor: pointer;
+			.navPages-action{border: none; }
+			.icon{
+				width: 1.1rem;
+				height: 1.1rem;
+				margin-right: 5px;
+			}
+			&:after{display:none;}
+
+
+		}
+
+		.navPages-list:not(.navPages-list-depth-max)  .navPages-action-moreIcon {
+			float: right;
+			width: 18px;
+			height: 18px;
+			svg{stroke: none;}
+
+		}
+
+		/*-- Submenu Moo Dropdown---*/
+		/*.navPages-item--default{position: relative;z-index: 1;}*/
+		.subMenu--default{
+			width: 240px;
+			left: 100%;
+			top: 0;
+			background: #fff;
+			padding:1.5rem 0 !important;
+			text-align:left;
+			box-shadow: 1px 2px 3px rgba($black, 0.25);
+			@include breakpoint("large") {
+				display: block;
+			}
+			.navPages-action-moreIcon{
+				display: block;
+
+			}
+			.navPage-subMenu-item{width: 100%; padding: 0 !important;}
+			.navPage-subMenu-action {
+				display: block;
+				padding: 5px 1.5rem;
+				border: none;
+				margin-bottom: 0;
+				font-size: 14px;
+				font-weight: normal;
+
+			}
+
+			//Hover submenu level2
+			ul{margin-bottom: 0;}
+			div.subMenu--level2{left: 100%;top:-21px; display: none;}
+			li.navPage-subMenu-item{ position: relative;z-index: 10;
+				&:hover > .subMenu--level2,
+				.is-open.subMenu--level2{
+					opacity: 1;
+					visibility: visible;
+					transform: translate(0px,0px);
+					display: block;
+				}
+			}
+
+		}
+
+		/*-- Submenu Mega Dropdown---*/
+		.subMenu--mega {
+			width: 300%;
+			left: 100%;
+			top: 0;
+			background: #fff;
+			box-shadow: 1px 2px 3px rgba($black, 0.25);
+			@include breakpoint("large") {
+				display: block;
+			}
+
+			.navPage-childList-item{padding: 3px 0;
+				.navPages-action{font-size: 14px; padding: 0;}
+			}
+			.navPage-subMenu-action {
+				display: block;
+				padding: 5px 0;
+				border-bottom: none;
+				text-transform: uppercase;
+				font-weight: 500;
+				margin-bottom: 0;
+				@include text-overflow();
+			}
+
+		}
+	}
+
+
+}
+
+// =============================================================================
+// verticalCategories -  Make the main menu open when hover
+// =============================================================================
+@mixin showSubMenu($vertical: true) {
+	margin-left: 0;
+	opacity: 1;
+	transform: if($vertical, translateY(0), translateX(0));
+	transition: 0s margin-left, opacity 0.2s ease 0.2s, transform 0.15s ease 0.2s;
+}
+
+@mixin hideSubMenu($vertical: true) {
+	opacity: 0;
+	margin-left: -9999px;
+	transform: if($vertical, translateY(32px), translateX(48px));
+
+	transition: 0s margin-left 0.4s, opacity 0.2s ease 0.2s, transform 0.15s ease 0.2s;
+}
+@include breakpoint("medium") {
+
+	/*Hover megamenuToogle-wrapper all Catelgory*/
+	.verticalCategories.is-open {@include hideSubMenu(true);}
+	.navPages-verticalCategories:hover {
+		.verticalCategories.is-open {@include showSubMenu(true);}
+	}
+}
+
+@include breakpoints(lg){
+	.verticalCategories {
+		/*Hover and Click navPage-subMenu*/
+		.navPage-subMenu {@include hideSubMenu(false);}
+		.navPages-item:hover {
+			.navPage-subMenu {
+				@include showSubMenu(false);
+			}
+		}
+	}
+}
+
+@include breakpoints(md){
+	.verticalCategories {
+		.navPage-subMenu {@include hideSubMenu(false);}
+		.navPage-subMenu.is-open {@include showSubMenu(false);}
+	}
+}
+
+
+//  verticalCategories -  layout Mobile
+// -----------------------------------------------------------------------------
+@media (max-width: 991px){
+	header .mobileMenu--vertical{
+		.mobileMenu-toggleIcon::before{width:20px;}
+		&.is-open .mobileMenu-toggleIcon::before{width:20px;}
+		.mobileMenu-toggleIcon{width:20px;}
+	}
+
+	.navPages-container{
+		background: #fff;
+		width: 320px;
+		position: fixed;
+		padding: 0;
+		z-index: 990;
+		text-align: left;
+		left: 0;  display: block;
+		box-shadow: -1px 0 2px rgba(0, 0, 0, 0.1);
+		transition: all 0.5s cubic-bezier(0.99, 0.95, 0.49, 1.03);
+		transform: translateX(-100%);
+		overflow: scroll;
+		&.is-open{ z-index: 990;padding-top: 0;transform: translateX(0%);}
+		/*.megamenuToogle-wrapper,.banners{display: none;}*/
+		.mobileMenu-toggle{right: 0;}
+
+		ul.navPages-list{list-style: none; clear: both;
+			.navPage-subMenu-item{
+				padding: 0;
+			}
+			> .navPages-item {
+				&:last-child{border-bottom:none;}
+				.badge{top: 5px;}
+			}
+			.navPage-subMenu-list,
+			.navPage-childList{list-style: none; margin-left: 0;
+				.navPages-action {
+					text-transform: capitalize;
+					font-weight: 400;
+					font-size: 14px;
+					padding: 6px 0;
+				}
+			}
+			.navPage-childList-default{display: block;}
+			.navPage-childList{    border-left: 1px solid #e6e6e6;}
+			.navPages-action{padding: 10px 0; font-size: 14px;  font-weight:500;}
+			.navPage-childList-action{padding: 0 0 0.35714rem; }
+			.navPages-action-moreIcon{
+				float: right;
+				width: 24px;
+				height:24px;
+				margin:0;
+				transform: rotate(90deg);
+			}
+			.is-open > .navPages-action-moreIcon{transform: rotate(-90deg);}
+		}
+	}
+}

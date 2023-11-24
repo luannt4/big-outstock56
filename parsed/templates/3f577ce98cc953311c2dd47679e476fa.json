@@ -1,0 +1,3 @@
+{
+  "components/wbcomponents/addons/wb_promotion/default-item": "\r\n{{#if status '==' 'true'}}\r\n<p class=\"wb-promotion--item\">\r\n\t<a href=\"{{url}}\" title=\"{{title}}\" >\r\n\t\t{{{title}}}\r\n\t</a>\r\n</p>\r\n{{/if}}\r\n"
+}

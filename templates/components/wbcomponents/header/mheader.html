@@ -1,0 +1,33 @@
+<div class="header-mobiletop" data-sticky-mheader>
+	<div class="container">
+        <div class="row align-items-center">
+			<div class="col-3 megamenu-container">
+				{{> components/wbcomponents/addons/wb_megamobile/default status=true  display_mode="vertical"  }}
+            </div>
+			<div class="col-6 logo-container">
+				{{> components/common/store-logo}}
+			</div>
+			<div class="col-3 cart-container ">
+
+				<a class="cart-button cart-button--primary"
+					data-cart-preview
+					data-dropdown="cart-preview-dropdown"
+					data-options="align:left"
+					href="{{urls.cart}}">
+					<div class="icon">
+						<svg width="31" height="27"><use xlink:href="#icon-shopping-bag" /></svg>
+					</div>
+
+					<span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
+				</a>
+			</div>
+
+		 </div>
+
+    </div>
+</div>
+<div class="header-mobilebottom "  >
+	<div class="container">
+	<div class="search-info-content ">{{> components/wbcomponents/common/quick-search}}</div>
+	</div>
+</div>

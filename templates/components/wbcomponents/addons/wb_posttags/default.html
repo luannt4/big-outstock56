@@ -1,0 +1,21 @@
+
+{{#if blog.posts}}
+<div class="module-wrapper blog-tags">
+	<h5 class="block-title">{{lang 'wbTheme.blog.popular_tags'}}</h5>
+	<div class="block-content clearfix">
+	{{#each blog.posts}}
+
+		{{#if tags}}
+			<ul class="tags">
+				{{#each tags}}
+				<li class="tag">
+					<a href="{{url}}">#{{name}}</a>
+				</li>
+				{{/each}}
+			</ul>
+		{{/if}}
+
+	{{/each}}
+	</div>
+</div>
+{{/if}}

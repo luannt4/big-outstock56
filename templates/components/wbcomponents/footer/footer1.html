@@ -1,0 +1,153 @@
+{{#if banners.bottom}}
+{{#if settings.data_tag_enabled}}
+<div class="banners" data-banner-location="bottom">
+	{{#each (limit banners.bottom_metadata 1)}}
+	<div class="container " data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+		<div data-event-type="promotion-click">
+			{{{this.content}}}
+		</div>
+	</div>
+	{{/each}}
+</div>
+{{else}}
+<div class="banners" data-banner-location="bottom">
+	<div class="banner">
+		{{{limit banners.bottom 1}}}
+	</div>
+</div>
+{{/if}}
+{{/if}}
+
+<footer class="footer " role="contentinfo">
+	{{!-- FOOTER CENTER --}}
+	<section class="footer-center ">
+		<div class="container">
+			<div class="row">
+				<article class="col-xl-3 col-lg-3 col-sm-12 footer-infor collapsed-block " data-section-type="storeInfo">
+					<div class="footer-logo">
+						{{> components/common/store-logo}}
+					</div>
+					<div class="footer-info-info">
+						<!--<p>{{lang 'wbTheme.footer.content' }}</p>-->
+						<address class="account"> <div class="icon icon-location"><svg><use xlink:href="#icon-map-marker-alt" /></svg></div> {{lang 'account.addresses.heading' }} :  {{nl2br settings.address}}</address>
+						<address class="email">
+							<div class="icon icon-envelope"><svg><use xlink:href="#icon-envelope" /></svg></div>  {{lang 'wbTheme.header.my_email' }}<a href="mailto:{{theme_settings.address_email}}">{{theme_settings.address_email}}</a>
+						</address>
+						{{#if settings.phone_number}}
+						<address class="phone"> <div class="icon icon-phone"><svg><use xlink:href="#icon-phone" /></svg></div>  {{{lang 'footer.call_us' phone_number=settings.phone_number}}}</address>
+						{{/if}}
+						{{#if theme_settings.social_icon_placement_top}}
+							{{> components/wbcomponents/common/social-links}}
+						{{/if}}
+					</div>
+				</article>
+
+
+				<article class="col collapsed-block " data-section-type="footer-webPages">
+					<h3 class="footer-info-heading">
+						{{lang 'footer.navigate'}}
+						<div class="expander" >
+							<i class="icon icon--angle-updown" aria-hidden="true">
+								<svg class="angle-up"><use xlink:href="#icon-angle-up"></use></svg>
+								<svg class="angle-down"><use xlink:href="#icon-angle-down"></use></svg>
+							</i>
+						</div>
+					</h3>
+					<ul class="footer-info-list">
+						{{#each (limit pages 5)}}
+						<li><a href="{{url}}">{{name}}</a></li>
+						{{/each}}
+						<li> <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a></li>
+					</ul>
+				</article>
+
+				{{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
+				<article class="col collapsed-block "  data-section-type="footer-brands">
+					<h3 class="footer-info-heading">
+						{{lang 'footer.brands'}}
+						<div class="expander" >
+							<i class="icon icon--angle-updown" aria-hidden="true">
+								<svg class="angle-up"><use xlink:href="#icon-angle-up"></use></svg>
+								<svg class="angle-down"><use xlink:href="#icon-angle-down"></use></svg>
+							</i>
+						</div>
+					</h3>
+					<ul class="footer-info-list">
+						{{#each (limit shop_by_brand 5)}}
+						<li>
+							<a href="{{url}}">{{name}}</a>
+						</li>
+						{{/each}}
+						<li class="footer-viewall"><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
+					</ul>
+				</article>
+				{{/and}}
+
+				<article class="col collapsed-block"  data-section-type="footer-categories">
+					<h3 class="footer-info-heading">
+						{{lang 'category.label'}}
+						<div class="expander" >
+							<i class="icon icon--angle-updown" aria-hidden="true">
+								<svg class="angle-up"><use xlink:href="#icon-angle-up"></use></svg>
+								<svg class="angle-down"><use xlink:href="#icon-angle-down"></use></svg>
+							</i>
+						</div>
+					</h3>
+					<ul class="footer-info-list">
+						{{#each (limit categories 5)}}
+						<li>
+							<a href="{{url}}">{{name}}</a>
+						</li>
+						{{/each}}
+						<li class="footer-viewall">
+							<a href="/categories">{{lang 'common.view_all'}}</a>
+						</li>
+					</ul>
+				</article>
+				<article class="col-xl-4 col-lg-4 col-sm-12 col collapsed-block footer-newletter"  data-section-type="footer-categories">
+					{{#if settings.show_newsletter_box}}
+					{{> components/wbcomponents/addons/wb_newsletter/default}}
+					{{/if}}
+				</article>
+				<div class="navUser__compare">
+					<a class="navUser-item--compare"
+					   href="{{urls.compare}}"
+					   data-compare-nav
+					   aria-label="{{lang 'common.compare'}}"
+					>
+						{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{{!-- FOOTER BOTTOM --}}
+	<section class="footer-bottom">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="footer-copyright col-lg-8">
+					{{#if theme_settings.show_copyright_footer}}
+					<span class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </span>
+					{{/if}}
+					{{#if theme_settings.show_powered_by}}
+					<span class="powered-by">{{lang 'footer.powered_by'}} <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a>. Themes by ibigecommerce.com</span>
+					{{/if}}
+				</div>
+
+				<div class="footer-payment col-lg-4 text-right">
+					{{> components/common/payment-icons}}
+				</div>
+
+				{{#if settings.paypal_commerce_credit_message}}
+				<div class="footer-copyright">
+					<p class="paypal-credit">{{nl2br settings.paypal_commerce_credit_message}}</p>
+				</div>
+				{{/if}}
+			</div>
+		</div>
+	</section>
+
+	{{{region name="ssl_site_seal--global"}}}
+
+</footer>

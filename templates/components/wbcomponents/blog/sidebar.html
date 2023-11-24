@@ -1,0 +1,18 @@
+
+<div class="sidebarBlock">
+    <!-- BEGIN Side All Categories -->
+    {{#if categories}}
+        {{> components/wbcomponents/addons/category }}
+    {{/if}}
+
+    {{#if blog.posts}}
+        {{> components/wbcomponents/blog/recent_posts posts=(limit blog.posts 5)}}
+    {{else}}
+        {{> components/wbcomponents/blog/recent_posts posts=(limit blog.recent_posts 5)}}
+    {{/if}}
+
+    {{> components/wbcomponents/addons/wb_posttags/default}}
+
+
+</div>
+

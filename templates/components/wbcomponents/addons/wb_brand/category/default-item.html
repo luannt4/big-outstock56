@@ -1,0 +1,32 @@
+{{#if enable '==' 'true'}}
+<div class="productCarousel-slide js-product-slide">
+	<div class="wb-category--item ">
+	{{#if image '!=' ' '}}
+		<a href="{{url}}" title="{{title}}" class="wb-category--link">
+			<div class="card-img-container ">
+				{{> components/common/responsive-img
+				class="img-fluid"
+				image=(cdn image)
+				fallback_size=theme_settings.blog_size
+				lazyload='lazyload'
+				}}
+			</div>
+			<div class="wb-category--content">
+				<h5>{{title}}</h5>
+			</div>
+		</a>
+
+	{{else}}
+		<a href="{{url}}" title="{{title}}" class="wb-category--link">
+			<div class="card-img-container ">
+				<img class="img-fluid" src="{{cdn placeholder}}" alt="{{title}}"  />
+			</div>
+
+			<div class="wb-category--content">
+				<h5>{{title}}</h5>
+			</div>
+		</a>
+	{{/if}}
+	</div>
+</div>
+{{/if}}

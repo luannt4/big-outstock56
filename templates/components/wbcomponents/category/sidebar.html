@@ -1,0 +1,18 @@
+<nav>
+
+    {{#if categories}}
+        {{> components/wbcomponents/addons/category }}
+    {{/if}}
+
+    {{#if category.faceted_search_enabled}}
+        {{> components/faceted-search/index category}}
+    {{else}}
+        {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+    {{/if}}
+
+	{{> components/wbcomponents/addons/wb_extraslider/default status=true products= products.top_sellers productType="top_sellers"  row=5 columns=1  class_sfx="wb-extraslider--sidebar" }}
+
+	{{> components/wbcomponents/addons/wb_banner/banner status=true prefix="cmsblock" showContent=true limitation=1 display_mode="" class_sfx=""}}
+
+
+</nav>

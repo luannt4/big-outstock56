@@ -1,0 +1,92 @@
+
+{{!--
+Arguments:
+	- moduleId (number): section instance index number
+	- class_sfx (string): Use for CSS class styling suffix
+--}}
+
+{{#if status }}
+	<div id="menumobile--verticalCategories" class="navPages-container navPages-verticalCategories">
+		<div class="mobile-verticalCategories" id="mobile--verticalCategories"   tabindex="-1">
+			<span class="mobileMenu-close" ><svg width="21" height="21"><use xlink:href="#icon-close"></use></svg></span>
+			<div class="mobileMenu-logo">
+				{{> components/common/store-logo}}
+			</div>
+
+			<div class="mobileMenu-body">
+
+				<ul class="navPages-list navPages-list--categories">
+					{{#each categories}}
+						{{> components/wbcomponents/addons/wb_megamobile/vertical/vertical-list
+							status = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.status'))
+							type-menu= (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.type-menu'))
+							icon-awesome = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.icon-awesome'))
+							icon-image = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.icon-image'))
+							content_column = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.content_column'))
+							banner_enable = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.show_banner'))
+							banner_mode = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.banner_mode'))
+							banner_url = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.url'))
+							banner_image = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.image'))
+							placeholder = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.placeholderImage'))
+						}}
+					{{/each}}
+				</ul>
+				<ul class="navPages-list navPages-list--categories">
+					{{#unless theme_settings.hide_content_navigation}}
+						{{#each pages}}
+								{{> components/wbcomponents/addons/wb_megamobile/horizontal/item-page
+									status = (lang (concat (concat 'wbTheme.wb_megamenu.webpage.menu_cat_'@index)'.status'))
+									icon-image = (lang (concat (concat 'wbTheme.wb_megamenu.webpage.menu_cat_'@index)'.icon-image'))
+									icon-awesome = (lang (concat (concat 'wbTheme.wb_megamenu.webpage.menu_cat_'@index)'.icon-awesome'))
+									badge = (lang (concat (concat 'wbTheme.wb_megamenu.webpage.menu_cat_'@index)'.menu-badge'))
+									position = (lang (concat (concat 'wbTheme.wb_megamenu.webpage.menu_cat_'@index)'.position'))
+									load-webpage = (lang (concat (concat 'wbTheme.wb_megamenu.webpage.menu_cat_'@index)'.load-webpage'))
+								}}
+							{{/each}}
+					{{/unless}}
+				</ul>
+
+				<ul class="navPages-list navPages-list--categories">
+					{{#if customer}}
+						{{#if theme_settings.show_product_wishlist}}
+						<li class="navPages-item navPages-item-page"><a  class="navPages-action" href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a> </li>
+						{{/if}}
+						<li class="navPages-item navPages-item-page"><a  class="navPages-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a> </li>
+						{{#if settings.returns_enabled}}
+						<li class="navPages-item navPages-item-page"><a  class="navPages-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+						{{/if}}
+						<li class="navPages-item navPages-item-page"> <a  class="navPages-action" href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a> </li>
+						<li class="navPages-item navPages-item-page"> <a class="navPages-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</span></a> </li>
+						<li class="navPages-item navPages-item-page"> <a class="navPages-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></li>
+						<li class="navPages-item navPages-item-page"><a  class="navPages-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></li>
+						<li class="navPages-item navPages-item-page"><a  class="navPages-action" href="{{urls.auth.logout}}"> <div class="icon icon--sign-out"> <svg><use xlink:href="#icon-sign-out"></use></svg></div> {{lang 'common.logout'}}</a></li>
+					{{else}}
+							<li class="navPages-item navPages-item-page"> <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a></li>
+							{{#if settings.account_creation_enabled}}
+							<li class="navPages-item navPages-item-page">  <a class="navPages-action" href="{{urls.auth.create_account}}"> {{lang 'common.sign_up'}}</a></li>
+							{{/if}}
+					{{/if}}
+				</ul>
+				<ul class="navPages-list navPage-currency" >
+					{{#each currency_selector.currencies}}
+					<li class="list-inline-item">
+						<a class="navPages-item navPages-item-page" href="{{{switch_url}}}">
+							{{#if is_active}}
+								{{name}}
+							{{else}}
+								{{name}}
+							{{/if}}
+						</a>
+					</li>
+					{{/each}}
+				</ul>
+
+			</div>
+		</div>
+	</div>
+	<div class="mobileMenu-overlay"></div>
+	<a href="#" class="mobileMenu-toggle mobileMenu--vertical" data-mobile-menu-toggle="menumobile--verticalCategories" aria-controls="menumobile--verticalCategories">
+		<span class="mobileMenu-toggleIcon"> Vertical Categories</span>
+	</a>
+{{/if}}
+

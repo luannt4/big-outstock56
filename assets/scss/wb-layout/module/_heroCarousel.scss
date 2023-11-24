@@ -1,0 +1,112 @@
+
+//====== SB SlideShow  =======
+.carousel-tooltip{
+    display: none;
+}
+.heroCarousel-play-pause-button{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: $gray;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.wb-slideshow{ overflow: hidden;
+
+        .slideshow  {border-radius: 3px; overflow: hidden;}
+        @include breakpoint("small") {
+        .slick-prev{left: 0;}
+        .slick-next{right: 0;}
+        }
+        @include roundSliderArrow();
+
+        @media (min-width: 1600px){
+            .heroCarousel {
+                overflow: hidden;
+                //max-height: 553.266px;
+            }
+        }
+        .slick-slider{ margin: 0;
+
+            ul.slick-dots{  bottom: 25px;  line-height: 100%; left: 50%; right: auto; width: auto;transform: translateX(-50%);
+                li{  width:auto; height: auto; background: none; padding: 0 5px;
+                    button{ border:0px solid transparent; opacity: 1;
+                        background: #d8d8d8;
+                        display: block;border-radius: 24px;  @include transition(all .3s ease-in-out 0s);
+                        width: 15px; height:15px;
+                        @include breakpoint(medium){
+                            border-radius: 15px;
+                            width: 15px; height:15px;
+                        }
+                        &:before{display:none;}
+                    }
+                    &.slick-active button{ background:$background;
+                        width: 40px;
+                        @include breakpoint(medium){
+                            width: 45px;
+                        }
+                    }
+                    //&:hover button{background-color: $background;}
+                }
+            }
+            .slick-slide{
+                &.slick-active{
+                    .heroCarousel-content{
+                        .heroCarousel-title{
+                            opacity: 1;
+                            animation: myeffect-slideshow 2s ease-in-out ;
+                        }
+                        .heroCarousel-description{
+                            opacity: 1;
+                            animation: myeffect-slideshow 1.5s ease-in-out ;
+                        }
+                        .heroCarousel-action{
+                            opacity: 1;
+                            animation: myeffect-slideshow 1s ease-in-out ;
+                        }
+                    }
+                }
+            }
+            .heroCarousel-content{
+                transform: none;text-align: left;
+                color:$white;
+                background: none;
+                top: 20%;padding: 0; width:auto;  width:90%;
+
+                @include breakpoints(lg){    max-width: 1410px; top: 30%;}
+                .heroCarousel-title{
+                    opacity: 0;
+                    font-size: 2rem;
+                    display: block;
+                    font-weight: normal;
+                    margin-bottom: 1.5rem;
+                    line-height: 140%;
+                    max-width: 600px;
+                    @include breakpoints(xl){font-size: 42px;}
+                }
+                .heroCarousel-description{
+                    font-size: 18px;
+                    max-width: 600px;
+                }
+
+                .heroCarousel-action{
+
+                    opacity: 0;
+                    font-weight: 600;
+                    @include btWhiteColor();
+
+                    margin-top: 35px;
+                    min-height: 50px;
+                    line-height: 26px;
+                    font-size: 13px;
+                    text-transform: uppercase;
+
+
+                }
+                .button--large{
+                    min-width: 180px;
+                }
+            }
+        }
+
+
+}

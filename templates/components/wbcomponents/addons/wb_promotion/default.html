@@ -1,0 +1,14 @@
+{{#if status }}
+<div class="module-wrapper wb-promotion {{class_sfx}}">
+	<marquee class="wb-promotion--carousel" direction="" onmouseover="this.stop();" onmouseout="this.start();">
+		{{#for  limitation }}
+		{{> components/wbcomponents/addons/wb_promotion/default-item
+
+		status	= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.status'))
+		url	= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.url'))
+		title	= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.title'))
+		}}
+		{{/for}}
+	</marquee>
+</div>
+{{/if}}

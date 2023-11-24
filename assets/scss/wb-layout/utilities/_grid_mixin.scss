@@ -1,0 +1,37 @@
+// Ensure CSS grid works with IE 11 spec.
+// https://css-tricks.com/browser-compatibility-css-grid-layouts-simple-sass-mixins/
+// sass-lint:disable no-vendor-prefixes, no-duplicate-properties
+@mixin display-grid() {
+  display: -ms-grid;
+  display: grid;
+}
+
+// $columns values should be delimited by a space
+@mixin grid-template-columns($columns...) {
+  grid-template-columns: $columns;
+  -ms-grid-columns: $columns;
+
+}
+
+@mixin grid-column($columns...) {
+  -ms-grid-column: $columns;
+}
+
+// $rows values should be delimited by a space
+@mixin grid-template-rows($rows...) {
+  -ms-grid-rows: $rows;
+  grid-template-rows: $rows;
+}
+
+// Can be used in combination with above grid-template-X mixins.
+// These result in the same output:
+// @include grid-template-columns(10px grid-repeat(4, 20px) 30px);
+// @include grid-template-columns(10px 20px 20px 20px 20px 30px);
+@function grid-repeat($repeat, $stuff: 1fr) {
+  $list: ();
+  @for $i from 1 through $repeat {
+    $list: append($list, $stuff, space);
+  }
+  @return $list;
+}
+

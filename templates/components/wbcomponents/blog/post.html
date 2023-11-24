@@ -1,0 +1,71 @@
+<article class=" col-sm-6 col-xs-12">
+    <div class="blog-post">
+        <div class="blog-post-figure">
+            {{#if post.thumbnail}}
+                <figure class="blog-thumbnail">
+                    <div class="post-img-wrapp">
+                        <a href="{{post.url}}">
+                            {{> components/common/responsive-img
+                                image=post.thumbnail
+                                class="card-image"
+                                fallback_size=theme_settings.blog_size
+                                lazyload=theme_settings.lazyload_mode
+                                default_image=theme_settings.default_image_product
+                            }}
+                        </a>
+                    </div>
+                    <div class="post-image-mask"><span></span></div>
+                </figure>
+            {{/if}}
+        </div>
+        <div class="blog-post-body">
+
+            <header class="blog-header">
+                <h2 class="blog-title">
+                    <a href="{{post.url}}">{{post.title}}</a>
+                </h2>
+                <div class="blog-meta">{{#if post.author}}{{lang 'blog.posted_by' name=post.author}}  {{/if}}</div>
+            </header>
+
+            <p class="article-description">
+                {{#if post.body}}
+                    {{{post.body }}}
+                {{else}}
+                    {{{post.summary}}}
+                {{/if}}
+            </p>
+
+            {{#unless hide_social_icons}}
+                {{>components/common/share style="flat"}}
+            {{/unless}}
+
+        <div class="post-bottom">
+            {{#if post.show_read_more}}
+            <div class="articleMore">
+                <a href="{{url}}" class="btn--readmore">{{lang 'blog.read_more'}}</a>
+            </div>
+            {{/if}}
+            <div class="post-date">
+                {{lang 'wbTheme.latest_blog.posted_date' date_published = post.date_published}}
+
+            </div>
+        </div>
+
+
+        {{#if show_tags}}
+            {{#if post.tags}}
+                <ul class="tags">
+                    {{#each post.tags}}
+                    <li class="tag">
+                        <a href="{{url}}">#{{name}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        {{/if}}
+
+
+
+    </div>
+    </div>
+</article>

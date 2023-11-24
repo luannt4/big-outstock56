@@ -1,0 +1,123 @@
+{{!--
+Arguments:
+    - category_id (number)
+    - style (string): CSS class styling suffix
+
+Global variables:
+    - categories (array)
+--}}
+
+{{#if category_id '!==' ' '}}
+
+{{#withHash
+    categories               = categories
+	category_id              = category_id
+	moduleId				= moduleId
+}}
+{{#each categories}}
+	{{#if id '===' ../category_id}}
+		{{#if (merge ../this
+			category_name = name
+			category_image = image
+			category_url = url)}}
+		{{/if}}
+	{{else}}
+		{{#each children}}
+			{{#if id '===' ../../category_id}}
+				{{#if (merge ../../this
+					category_name = name
+					category_url = url)}}
+				{{/if}}
+			{{/if}}
+		{{/each}}
+	{{/if}}
+{{/each}}
+
+
+{{#if category_url}}
+	<div id="wb-listing-tabs{{moduleId}}" class="wb-listing-tabs">
+		<div class="ltabs-heading block-title">
+			<h3>{{category_name}}</h3>
+
+			<div class="ltabs-tabs-wrap">
+				<span class='ltabs-tab-selected'></span>
+				<span class="ltabs-tab-arrow">▼</span>
+				<ul class="tabs ltabs-tabs">
+				{{#each categories}}
+					{{#if id '===' ../category_id}}
+						{{#each (limit children ../../limit_subcategory) }}
+							<li class="tab">
+								<a class="tab-title" href="{{url}}">{{name}}</a>
+							</li>
+						{{/each}}
+
+					{{else}}
+						{{!-- Category Level 2--}}
+						{{#each children}}
+							{{#if id '===' ../../category_id}}
+							{{#each (limit children ../../../limit_subcategory) }}
+									<li class="tab">
+										<a class="tab-title" href="{{url}}">{{name}}</a>
+									</li>
+								{{/each}}
+							{{/if}}
+
+						{{/each}}
+
+					{{/if}}
+				{{/each}}
+
+				</ul>
+			</div>
+		</div>
+
+		<div class="ltabs-container {{#if ../statusBanner}}ltabs-banner {{/if}}">
+				{{#if ../statusBanner}}
+					<div class="ltabs-items--image">
+						<div class="banner-figures">
+							<div class="banner-figure">
+								{{#if ../banner '!=' ' '}}
+									<a href="{{category_url}}" title="{{category_name}}">
+										{{> components/common/responsive-img
+											class="img-fluid"
+											image=(cdn ../banner)
+											fallback_size=theme_settings.blog_size
+											lazyload='lazyload'
+										}}
+									</a>
+								{{else}}
+									<a href="{{category_url}}" title="{{category_name}}"><img class="img-fluid" src="{{cdn ../placeholder}}" alt="{{../name}}"  /></a>
+								{{/if}}
+							</div>
+						</div>
+					</div>
+				{{/if}}
+
+				<div class="ltabs-items-content"
+					data-products-by-category-tabs="{{concat category_url '?sort=newest'}}"
+					data-urltemplate="wbcomponents/addons/wb_supper_category/home3/default_items" >
+					<div class="productLoading" >
+						<img class="img-responsive lazyload" src="{{cdn '/assets/img/loading.svg'}}" alt="loading" width="50" height="50" >
+					</div>
+
+				</div>
+
+		</div>
+	</div>
+	{{else}}
+	<div class="alertBox alertBox--info"  style="margin:30px 0px">
+		<div class="alertBox-column alertBox-icon">
+			<icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+		</div>
+		<p class="alertBox-column alertBox-message">
+			<span>{{{lang 'wbTheme.wb_supper_category.noCategory' }}}</span>
+		</p>
+	</div>
+{{/if}}
+{{/withHash}}
+
+
+{{/if}}
+
+
+

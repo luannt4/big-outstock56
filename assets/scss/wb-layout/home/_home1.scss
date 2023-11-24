@@ -1,0 +1,276 @@
+// =============================================================================
+// Home 1
+// =============================================================================
+
+.main-body{min-height:500px; overflow: hidden;  margin-bottom: 50px; }
+.page-content{margin-bottom: 30px;}
+.wb-section--section4{
+    background: #f5f5f5;
+    padding: 50px 0;
+    margin-bottom: 30px;
+    @include breakpoint(medium){
+        padding: 80px 0;
+        margin-bottom: 80px;
+    }
+    .container{
+        @include breakpoint(medium){
+            display: grid;
+            grid-template-columns:  repeat(2, minmax(100px, 1fr));
+            grid-gap: 60px;
+        }
+    }
+}
+//====== Custom Product and Category   =======
+.navUser__compare{
+    position: fixed;
+    z-index: 90;
+    top: 30%;
+    right: 30px;
+    a.navUser-item--compare{
+        @include buttonGray();
+        border-radius: 3px;
+        padding: 8px 20px;
+
+    }
+
+}
+// WB Latest Blog
+// -----------------------------------------------------------------------------
+div.wb-latestblog{
+   // @extend div.wb-extraslider--horizontal;
+    .post-img-wrapp{
+        max-width: get-width(stencilString('blog_size'));
+        @include lazy-loaded-padding('blog_size');
+    }
+    .blog-thumbnail {
+        margin: 0 0 1rem;
+        @include hoverFade();
+        .post-img-wrapp {
+            overflow: hidden;
+            position: relative;
+        }
+    }
+
+    .blog-post{
+        display: block;
+        margin-bottom: 0;
+    }
+    .blog-title {
+        font-size: 15px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        @include line-clamp(2);
+
+        a {@include linkGrayDark();}
+    }
+
+    .blog-meta{
+        font-size: 13px;
+        color: #999;
+    }
+
+    .post-bottom{
+        border-top: 1px solid #ebebeb;
+        margin-top: 12px;
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .blog-post-body{
+        font-size: 13px;
+    }
+
+    .btn--readmore{
+        color: $textBody;
+        text-transform: capitalize;
+        &:hover{color: $background;}
+    }
+
+
+
+}
+
+// WB Category
+// -----------------------------------------------------------------------------
+.wb-category{
+    margin-top: 50px;
+    @include extraSliderArrow();
+    &--item{
+        transition: 0.3s all ease-in-out;
+        background-color: #f7f7f7;
+        padding: 5px 15px;
+        border-radius: 5px;
+        @include breakpoint("medium") {
+            padding: 30px;
+        }
+        &:hover{
+            background-color: #eee;
+        }
+        h5{
+            margin: 10px 0 20px;
+            text-align: center;
+            color: $color-greyDarker;
+            line-height: 20px;
+            font-size: 15px;
+        }
+        .wb-category--count{
+            text-align: center;
+            display: block;
+            color: $color-greyLight;
+        }
+        &:hover{
+            img{
+                opacity: 0.8;
+            }
+            h5{
+                color:stencilColor("color-textLink--hover");
+            }
+        }
+    }
+    &--link{
+        display: block;
+        .card-img-container{
+            @include aspect-ratio(16, 10);
+        }
+    }
+
+}
+
+.wb-brand--company{
+    @include hoverFade();
+    .wb-brand--link:after{
+        padding-bottom:84px;
+    }
+}
+
+
+//====== Static Banner  ==========================================
+.banner-figures{padding: 0; background: none; color: $gray; text-align: left;
+    .banner-figcaption__title{margin: 10px 0 ;    }
+    .banner-figcaption__text{margin-bottom: 10px;}
+}
+.staticBanner{ border:none;
+    .block-content{ padding: 0; }
+    .flex-row{margin:0 -15px;
+        .banner-figures{margin: 0 15px;}
+    }
+}
+
+@include breakpoint("medium") {
+    .staticBanner--blockBanner1,
+    .staticBanner--blockBanner2{margin-bottom: 50px;}
+}
+
+div.staticBanner--sidebarBanner{
+    .block-content{padding: 0 !important;}
+}
+
+//====== SW Extraslider  ==========================================
+div.wb-extraslider--horizontal{
+    .slick-slide{
+        > div + div{
+            .product-layout{
+                margin-top: 50px;
+            }
+        }
+    }
+    @include extraSliderArrow();
+}
+
+
+div.wb-extraslider--sidebar{
+    @include roundSlickArrow();
+    .slick-slider .slick-prev,
+    .slick-slider .slick-next{top: -50px;}
+    .products-list .product-layout:before{display: none;}
+
+    .product-list .product-item-container{
+        margin-bottom: 20px;
+        padding: 0;
+        border-bottom: none;
+        overflow: hidden;
+        &:last-child{
+            margin: 0;
+        }
+        .left-block{float: left; margin: 0 15px 0 0; width: 85px; border:none;}
+        .right-block{padding: 0;}
+    }
+}
+
+
+// 2. WB Testimonial
+// -----------------------------------------------------------------------------
+.wb-testimonial{
+    @include breakpoint(medium) {
+        margin: 0;
+    }
+    .block-title{
+        margin-bottom: 20px;
+    }
+    &-img-info{
+        margin : 0 auto 10px;
+        border-radius: 50%;
+        display: block;
+        overflow: hidden;
+        max-width: 100px;
+        .card-img-container:after{
+            padding-bottom: 100%;
+        }
+    }
+    &--info{ text-align: center; margin-bottom: 15px;
+        h5{ margin:0;}
+        .position{
+            color: $background;
+            font-weight: 500;
+        }
+
+    }
+    &-text{
+        text-align: center;
+        max-width: 90%;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+}
+
+//  WB INSTAGRAM
+// -----------------------------------------------------------------------------
+.wb-instagram{
+    margin-bottom: 0;
+    .productCarousel{margin: 0 -5px;
+        .instagram-item{padding: 0 5px; }
+    }
+
+    .block-title{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        max-width: 270px;
+        width: 100%;
+        background: #fff;
+        text-align: center;
+        z-index: 2;
+        margin: 0 auto;
+        padding: 6.8% 1rem;
+        line-height: 22px;
+        .title{
+            color: $gray-dark;
+            margin-bottom: 0;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+        }
+        .subtitle{
+            font-size: 14px;
+        }
+    }
+    .card-img-container:after{
+        padding-bottom: 100%;
+    }
+
+}
+

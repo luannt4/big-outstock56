@@ -1,0 +1,20 @@
+
+    {{{ snippet "forms_search"}}}
+    <form class="wb-searchpro" action="{{urls.search}}">
+        <fieldset class="form-fieldset">
+            <div class="input-group">
+                <input class="form-control form-input" data-search-quick name="search_query"  data-error-message="{{lang 'search.error.empty_field'}}" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off">
+                <div class="input-group-append"  >
+                    <button class="btn btn-link" type="submit">
+                        <span class="icon">
+                            <svg class="lnr lnr-magnifier"><use xlink:href="#lnr-magnifier"></use></svg>
+                        </span>
+
+                    </button>
+                </div>
+            </div>
+            
+        </fieldset>
+    </form>
+    <section class="quickSearchResults " data-bind="html: results"></section>
+ 

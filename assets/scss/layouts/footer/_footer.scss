@@ -1,0 +1,124 @@
+// =============================================================================
+// FOOTER (CSS)
+// =============================================================================
+
+
+// Layout and columns
+// -----------------------------------------------------------------------------
+//
+// 1. To enable the grid's display: inline-block; to work properly, we need to
+//    remove the white-space that it creates between columns with font-size: 0;
+// 2. Re-set the font-size that was reduced to 0 in point 1 for children.
+//
+// -----------------------------------------------------------------------------
+
+.footer {
+    background-color: $footer-background;
+    padding: spacing("double") 0;
+    position: relative;
+}
+
+.footer-title-sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.footer-info {
+    @include grid-row($behavior: nest);
+    font-size: 0; // 1
+}
+
+
+// Content
+// -----------------------------------------------------------------------------
+
+.footer-info-heading {
+    color: $footer-heading-fontColor;
+
+
+    text-transform: inherit;
+    font-size: 16px;
+    @include breakpoint(small) {
+        font-size: fontSize("smaller");
+    }
+}
+
+.footer-info-list {
+    list-style: none;
+    margin-left: 0;
+
+    a {
+        color: stencilColor("color-greyMedium");
+        text-decoration: none;
+        transition: all 0.25s ease-in-out;
+        // scss-lint:disable NestingDepth
+        &:hover {
+            color: stencilColor("color-textLink--hover");
+        }
+        // scss-lint:enable NestingDepth
+    }
+}
+
+.footer-copyright {
+
+    > .powered-by {
+        color: stencilColor("color-greyLight");
+        //font-size: fontSize("tiny");
+        margin: 0;
+    }
+
+    > .paypal-credit {
+        color: stencilColor("color-greyLight");
+        //font-size: fontSize("tiny");
+        margin: 1em 0 2em;
+    }
+
+    a {
+        color: stencilColor("color-textLink");
+        text-decoration: none;
+
+        // scss-lint:disable NestingDepth
+        &:hover {
+            color: stencilColor("color-textLink--hover");
+        }
+        // scss-lint:enable NestingDepth
+    }
+}
+
+.footer-payment-icons {
+    height: remCalc(40);
+    //margin-top: spacing("single");
+
+    @include breakpoint("medium") {
+       // margin-top: spacing("double");
+    }
+
+    .footer-payment-icon {
+        height: remCalc(40);
+        margin: spacing("quarter");
+        vertical-align: middle;
+        width: remCalc(40);
+    }
+
+    svg {
+        fill: stencilColor("icon-color");
+        fill: #888888;
+    }
+}
+
+.footer-geotrust-ssl-seal {
+    @include breakpoint("small") {
+        bottom: 0;
+        position: absolute;
+        right: 16px;
+    }
+
+    table {
+        margin: auto;
+    }
+}
+

@@ -1,0 +1,61 @@
+// =============================================================================
+// RESPONSIVE (CSS)
+// =============================================================================
+
+@include breakpoints(md){
+
+    /*================ HEADER GROUP - No Remove ===================*/
+   .navUser .dropdown-menu.is-open{
+      &:after,&:before{display:none;}
+   }
+    .wb-slideshow .slick-slider .heroCarousel-content{
+        top:20%;
+        padding: 0 30px;
+        .heroCarousel-title{
+            margin-bottom: 1rem;
+            font-size: 26px;
+        }
+       .heroCarousel-description{display: none;}
+    }
+    .heroCarousel.slick-initialized {
+      max-height: 28rem;
+    }
+
+   /*====== Static Banner  - No Remove =======*/
+    div.staticBanner--services{
+        .block-content{overflow-x: scroll;   flex-wrap: inherit;
+             > *{flex: 0 0 33.33%;}
+        }
+
+    }
+
+   /*====== Page Category & Detail =======*/
+   .products-list .product-layout .product-item-container .button-group .addToCart{margin-bottom: 10px;}
+
+    /*====== Static Deals  - No Remove =======*/
+
+
+    /*====== Home Page 1 =======*/
+    .page-type-default,
+    .page-type-home2{
+        .header-center .grid-container{
+          grid-template-areas: "logo  cart"
+                                "navPages  navPages";
+          grid-template-columns: inherit;
+          grid-template-rows: 1fr 1fr ;
+          grid-template-columns: 200px 1fr ;
+          .logo-container{ order: 1; grid-area: logo;}
+          .navPages-horizontal{order: 3; grid-area: navPages;}
+          .header-blockcart{order: 1;  grid-area: cart;}
+        }
+        .navPages-horizontal ul.navPages-list > li.navPages-item > .navPages-action{
+          padding-right: 2rem;
+          padding-top:5px;
+        }
+    }
+
+
+    /*====== Home Page 2 =======*/
+
+}
+

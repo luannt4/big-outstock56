@@ -1,0 +1,49 @@
+// =============================================================================
+// LAYOUTS
+// =============================================================================
+
+
+// Global layouts
+// -----------------------------------------------------------------------------
+
+// Header
+@import "header/header";
+
+// Page
+
+// Footer
+@import "footer/footer";
+
+// Container
+
+
+// Page content layouts
+// -----------------------------------------------------------------------------
+
+// Blog
+
+// Sidebar blocks
+
+// Brand grid
+@import "brands/brandGrid";
+
+// Brand product list
+@import "brands/brand";
+
+// Product grid
+//@import "products/productGrid";
+
+// Product list
+//@import "products/productList";
+
+// Product view
+@import "products/productView";
+
+// Product Sale Badges
+@import "products/productSaleBadges";
+
+// Product view
+@import "products/productSwatch";
+
+// Account
+@import "account/account";

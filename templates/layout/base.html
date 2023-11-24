@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ resourceHints }}}
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="{{ head.title }}">
+        <script>
+            {{!-- Change document class from no-js to js so we can detect this in css --}}
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+
+        {{> components/common/polyfill-script }}
+        <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
+
+	{{#or (if theme_settings.csspreload '===' '') (if theme_settings.csspreload '===' 'none')}}
+		{{ getFontsCollection }}
+		{{{stylesheet '/assets/css/theme.css'}}}
+	{{else}}
+        <!-- connect to domain of Google Font files -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<script>document.write('{{{ getFontsCollection }}}'.replace(/:[i]{3,}/g, '').replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"'));</script>
+		<noscript>{{ getFontsCollection }}</noscript>
+        {{{stylesheet '/assets/css/critical.css'}}}
+	{{/or}}
+
+	{{#if theme_settings.csspreload '===' 'performance'}}
+		<style>@media (max-width: 800px) { .pace, .nanobar { display: none } }</style>
+		{{{stylesheet '/assets/css/theme.css'}}}
+
+		<script>window.stencilStyleLoaded = true;</script>
+		<script>window.lazySizesConfig = { loadHidden: false, expand: 150, expFactor: 3 }; window.lazySizesConfig.loadMode = 1;</script>
+
+	{{else if theme_settings.csspreload '===' 'speedtest'}}
+		<meta class="foundation-data-attribute-namespace">
+		<style id="themeCSSPreload">
+			meta.foundation-data-attribute-namespace { font-family: false }
+			body { visibility: hidden !important }
+		</style>
+
+		<style>@media (max-width: 800px) { .pace, .nanobar { display: none } }</style>
+		{{{stylesheet '/assets/css/theme.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet';var el=document.getElementById('themeCSSPreload');el.parentNode.removeChild(el);window.stencilStyleLoaded=true;window.stencilAutoload&&window.stencilAutoload()"}}}
+		<noscript>{{{stylesheet '/assets/css/theme.css'}}}</noscript>
+
+		<script>window.lazySizesConfig = { loadHidden: false, expand: 0 }; window.lazySizesConfig.loadMode = 1;</script>
+	{{/if}}
+
+    {{> components/common/polyfill-script }}
+
+    <script async rel="preconnect" src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
+    <script defer rel="preconnect" src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
+
+
+        {{{head.scripts}}}
+
+        {{~inject 'zoomSize' theme_settings.zoom_size}}
+        {{~inject 'productSize' theme_settings.product_size}}
+        {{~inject 'showAdminBar' theme_settings.show-admin-bar}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceModeSettings' settings.maintenance}}
+        {{~inject 'adminBarLanguage' (langJson 'admin')}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'channelId' settings.channel_id}}
+        {{~inject 'template' template}}
+        {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
+        {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
+        {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
+        {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
+        {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
+        {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
+</head>
+<body class="page-type-{{theme_settings.theme_style}} {{#forEach breadcrumbs}}{{#if total '==' 1}}homepage{{/if}}{{/forEach}} {{#if page_type '==' 'category'}} page--category{{else if page_type '==' 'product'}} page--product{{/if}}">
+<div id="wb-container" class="wb-effect10">
+    {{{snippet 'WB Block header'}}}
+    {{#if theme_settings.theme_style '==' 'default' }}
+        {{> components/wbcomponents/header/header1 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
+    {{else if theme_settings.theme_style '==' 'home2' }}
+        {{> components/wbcomponents/header/header2 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
+    {{else if theme_settings.theme_style '==' 'home3' }}
+        {{> components/wbcomponents/header/header3 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
+    {{else if theme_settings.theme_style '==' 'home4' }}
+        {{> components/wbcomponents/header/header4 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
+    {{else}}
+        {{> components/wbcomponents/header/header1 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
+    {{/if}}
+
+    {{{snippet 'WB Block Body'}}}
+    {{> components/common/body }}
+
+    {{{snippet 'WB Block Footer'}}}
+    {{#if theme_settings.theme_style '==' 'default' }}
+        {{> components/wbcomponents/footer/footer1 }}
+    {{else if theme_settings.theme_style '==' 'home2' }}
+        {{> components/wbcomponents/footer/footer2 }}
+    {{else if theme_settings.theme_style '==' 'home3' }}
+        {{> components/wbcomponents/footer/footer3 }}
+    {{else if theme_settings.theme_style '==' 'home4' }}
+        {{> components/wbcomponents/footer/footer4 }}
+    {{else}}
+        {{> components/wbcomponents/footer/footer1 }}
+    {{/if}}
+
+    {{#if theme_settings.general_backtotop}}
+    <section class="scrollToTop">
+        <button type="button" class="button button--icon hoverOutRound"  aria-label="{{lang 'carousel.arrowAriaLabel'}}  data-title="Scroll Up">
+        <i class="icon icon--chevron-up" aria-hidden="true"><svg><use xlink:href="#icon-angle-up"></use></svg></i>
+        </button>
+    </section>
+    {{/if}}
+
+    {{#if theme_settings.show_on_sidebarRight}}
+    <div class="sidebarRight">
+        <ul class="sidebarRight-list">
+            <li class="fixed_account">
+                <a href="{{urls.auth.login}}" class="icon" alt="login" >
+                    <svg class="lnr lnr-users"><use xlink:href="#lnr-users"></use></svg>
+                </a>
+            </li>
+            <li class="fixed_wishlist">
+                <a href="{{urls.account.wishlists.all}}" class="icon" alt="wishlists">
+                    <svg class="lnr lnr-star"><use xlink:href="#lnr-star"></use></svg>
+                </a>
+            </li>
+            <li class="fixed_contact">
+                <a href="/contact-us/" class="icon" alt="contact">
+                    <svg class="lnr lnr-envelope"><use xlink:href="#lnr-envelope"></use></svg>
+                </a>
+            </li>
+        </ul>
+    </div>
+    {{/if}}
+</div>
+
+<svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+<script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+
+{{#all (if theme_settings.csspreload '!==' '') (if theme_settings.csspreload '!==' 'none') }}
+    <script>
+        {{!-- Exported in app.js --}}
+        window.stencilBootstrapArgs = { page_type: "{{page_type}}", jsContext: {{jsContext}}, autoload: true };
+    </script>
+    <script  src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+
+{{else}}
+    <script  src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+    <script>
+        {{!-- Exported in app.js --}}
+        window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+    </script>
+{{/all}}
+
+
+{{#if theme_settings.show_on_topheader}}
+<!-- Begin  Top Header -->
+<script>
+    window.WBStickyHeader();
+    document.addEventListener('DOMContentLoaded', function(){
+        window.WBStickyHeader();
+    });
+</script>
+{{/if}}
+
+{{#if theme_settings.settings_ajaxcartpopup}}
+<!-- Show On Ajax Cart Popup -->
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        window.WBaddToCart();
+    });
+</script>
+{{/if}}
+
+{{#if theme_settings.instagram_status}}
+<!-- Show On instagram -->
+<script> window.WBInstagramFeed();</script>
+{{/if}}
+
+{{{footer.scripts}}}
+</body>
+</html>

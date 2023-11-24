@@ -1,0 +1,11 @@
+{{#if status '==' 'true'}}
+	{{#if horizontal '==' 'true'}}
+    <li class="list-inline-item">
+	{{else}}
+	<li class="list-item">
+	{{/if}}
+	
+		<a href="{{url}}">{{title}}</a>
+	</li>
+{{/if}}
+

@@ -1,0 +1,21 @@
+
+	<div class="wb-section wb-section--{{section}} {{#if class_section}}{{class_section}}{{/if}}">
+
+		{{#if container '==' 'yes'}}
+		<div class="container">
+		{{/if}}
+			{{#if 		section '==' 'section1'}}   {{> components/wbcomponents/addons/wb_extraslider/horizontal status=true products= products.new productType="top_sellers"  row=1 columns=7  class_sfx="wb-extraslider--horizontal titleMline" }}
+			{{else if 	section '==' 'section2'}}   {{> components/wbcomponents/addons/wb_brand/category prefix="home3category" status=true  hide_heading=false hide_title=false column=6 limitation=6 class_sfx="titleMline"}}
+			{{else if 	section '==' 'section3'}}  	{{> components/wbcomponents/addons/wb_deal/topdeal status=true  moduleId=1  class_sfx="wb-deals titleMline"  }}
+			{{else if 	section '==' 'section4'}} 	{{> components/wbcomponents/addons/wb_banner/banner status=true prefix="home3blockBanner1" showContent=false limitation=3  display_mode="horizontal" class_sfx=""}}
+			{{else if 	section '==' 'section5'}}   {{> components/wbcomponents/addons/wb_extraslider/horizontal-small status=true products = products.new productType="new"   row=2 columns=5  class_sfx="wb-extraslider--vertical titleMline" }}
+			{{else if 	section '==' 'section6'}}   {{> components/wbcomponents/addons/wb_promotion/default status=true prefix="wb_promotion" limitation=3 }}
+			{{else if 	section '==' 'section7'}}   {{> components/wbcomponents/addons/wb_extraslider/horizontal status=true products = products.featured productType="featured"   row=1 columns=7  class_sfx="wb-extraslider--horizontal titleMline" }}
+			{{else if 	section '==' 'section8'}}   {{> components/wbcomponents/addons/wb_latest_blog/default status=true blogs= blog.recent_posts  show_desc="yes" column=6 hide_heading=false hide_readmore=false class_sfx="titleMline"}}
+			{{else if 	section '==' 'section9'}}   {{> components/wbcomponents/addons/wb_brand/default prefix="company" status=true hide_heading=true hide_title=true column=7 limitation=7 }}
+			{{/if}}
+		{{#if container '==' 'yes'}}
+		</div>
+		{{/if}}
+	</div>
+

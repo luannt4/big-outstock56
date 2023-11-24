@@ -1,0 +1,21 @@
+
+    {{{ snippet "forms_search"}}}
+    <form class="wb-formSearch" action="{{urls.search}}">
+        <fieldset class="form-fieldset">
+            <div class="input-group">
+                <label for="ls-search" class="d-none">Search</label>
+                <input id="ls-search" aria-describedby="quickSearch" class="form-control form-input" data-search-quick name="search_query"  data-error-message="{{lang 'search.error.empty_field'}}" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off">
+
+                <div class="input-group-append"  >
+                    <button class="btn btn-secondary" type="submit">{{lang 'search.quick_search.input_label'}}</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+    <section class="dropdown dropdown--quickSearch quickSearchResults " data-bind="html: results">
+
+    </section>
+
+
+

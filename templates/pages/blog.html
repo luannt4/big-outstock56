@@ -1,0 +1,39 @@
+---
+blog:
+    posts:
+        limit: 6
+        pages: 3
+        summary: 200
+cart: true
+---
+
+{{#partial "head"}}
+    {{{stylesheet '/assets/css/blog.css'}}}
+{{/partial}}
+
+{{#partial "hero"}}
+	{{> components/wbcomponents/common/breadcrumbs breadcrumbs=breadcrumbs active_url=blog.url}}
+{{/partial}}
+
+{{#partial "page"}}
+<section class="page page--blog">
+    <div class="row">
+        <div class="col-xl-9 col-lg-8 col-md-12  page-content">
+            <div class="sidebar-overlay"></div>
+			<a href="javascript:void(0)" class="open-sidebar button button--action d-md-block d-lg-none"><i class="fa fa-bars"></i> {{lang 'wbTheme.categories.sidebar' }} </a>
+            <div class="blog-category row">
+                {{#each blog.posts}}
+                    {{> components/wbcomponents/blog/post post=this hide_social_icons=true settings=../settings   }}
+                {{/each}}
+            </div>
+            {{> components/common/paginator pagination.blog}}
+
+        </div>
+        <aside class="col-xl-3 col-lg-4 col-md-12  page-sidebar sidebar-offcanvas">
+            {{> components/wbcomponents/blog/sidebar}}
+        </aside>
+
+    </div>
+</section>
+{{/partial}}
+{{> layout/base}}

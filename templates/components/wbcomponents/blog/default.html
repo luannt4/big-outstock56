@@ -1,0 +1,84 @@
+<main class="page--blog--detail ">
+    <div class="row ">
+        <div class="col-lg-8 col-xl-9 col-md-12 page-content">
+			<div class="sidebar-overlay"></div>
+			<a href="javascript:void(0)" class="open-sidebar button button--action d-md-block d-lg-none"><i class="fa fa-bars"></i> {{lang 'wbTheme.categories.sidebar' }} </a>
+            <article class="blog-detail">
+                <div class="blog-post-figure">
+                    {{#if post.thumbnail}}
+                        <figure class="blog-thumbnail">
+                            <a href="{{post.url}}">
+                                {{> components/common/responsive-img
+                                image=post.thumbnail
+                                fallback_size=theme_settings.product_size
+                                lazyload='disabled'
+                                default_image=theme_settings.default_image_product
+                                }}
+                            </a>
+
+                        </figure>
+                    {{/if}}
+                </div>
+
+                <div class="blog-post-body">
+                    <div class="blog-header">
+                        <h2 class="blog-title">
+                            {{post.title}}
+                        </h2>
+                        <div class="blog-meta">
+                            {{lang 'blog.posted_by' name=post.author}} ,{{post.date_published}}
+                        </div>
+                    </div>
+                    <div class="blog-post-desc">
+                        {{#if post.body}}
+                            {{{post.body}}}
+                        {{else}}
+                            {{post.summary}}
+                             &hellip;
+                        {{/if}}
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="excerpt-meta clearfix">
+                        {{#if post.author}}
+                        <div class="meta meta-author">
+                            <label class="label">{{lang 'blog.posted_by' name=post.author}}</label>
+
+                        </div>
+                        {{/if}}
+
+                        {{#if show_tags }}
+                        <div class="meta meta-tags">
+                            {{#if post.tags}}
+                                <label class="label">{{lang 'wbTheme.blog.tags' }}</label>
+                                <ul class="tags">
+                                    {{#each post.tags}}
+                                    <li class="tag">
+                                        <a href="{{url}}">#{{name}}</a>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            {{/if}}
+                        </div>
+                        {{/if}}
+
+                        <div class="meta meta-sharing">
+                            {{>components/common/share}}
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </article>
+
+        </div>
+        <aside class="col-lg-4 col-xl-3 col-md-12 page-sidebar sidebar-offcanvas">
+            {{> components/wbcomponents/blog/sidebar}}
+        </aside>
+
+    </div>
+
+</main>
+

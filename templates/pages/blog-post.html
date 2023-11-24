@@ -1,0 +1,22 @@
+---
+products:
+    new:
+        limit: 5
+blog:
+    recent_posts:
+        limit: 10
+cart: true
+---
+{{#partial "head"}}
+    {{{stylesheet '/assets/css/blog.css'}}}
+{{/partial}}
+
+{{#partial "hero"}}
+	{{> components/wbcomponents/common/breadcrumbs breadcrumbs=breadcrumbs active_url=blog.url}}
+{{/partial}}
+
+{{#partial "page"}}
+{{> components/wbcomponents/blog/default post=blog.post show_tags=true}}
+
+{{/partial}}
+{{> layout/base}}

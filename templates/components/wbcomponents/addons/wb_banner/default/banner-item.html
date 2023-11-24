@@ -1,0 +1,45 @@
+
+<div class="banner-figures" >
+	{{#if icon '!=' ' '}}
+		<a href="{{url}}" class="icon banner-figure" aria-label="{{lang 'carousel.arrowAriaLabel'}} ">
+			<!-- To insert the icon: -->
+			<svg class="lnr {{icon}}"><use xlink:href="#{{icon}}"></use></svg>
+		</a>
+	{{else}}
+	<div class="banner-figure">
+		{{#if image '!=' ' '}}
+		<a href="{{url}}" aria-label="{{title}}">
+
+			{{> components/common/responsive-img
+			class="img-fluid"
+			image=(cdn image)
+			fallback_size=theme_settings.blog_size
+			lazyload='lazyload'
+			}}
+		</a>
+
+		{{else}}
+		<a href="{{url}}"><img class="img-fluid" src="{{cdn placeholder}}" alt="{{title}}"  /></a>
+		{{/if}}
+	</div>
+	{{/if}}
+
+
+	{{#if show_content}}
+	<div class="banner-figcaption">
+		<div class="banner-figcaption__body">
+			{{#if title '!=' ' '}}
+			<h5 class="banner-figcaption__title"><a href="{{url}}">{{title}}</a></h5>
+			{{/if}}
+
+			{{#if text '!=' ' '}}
+			<div class="banner-figcaption__text">{{{text}}}</div>
+			{{/if}}
+
+			{{#if button '!=' ' '}}
+			<a href="{{url}}" class="button button--action  banner-figcaption__button">{{button}}</a>
+			{{/if}}
+		</div>
+	</div>
+	{{/if}}
+</div>

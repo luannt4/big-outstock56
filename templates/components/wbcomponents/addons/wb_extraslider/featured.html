@@ -1,0 +1,74 @@
+{{#if status }}
+<div class="module-wrapper {{class_sfx}}">
+		
+		<div class="block-content row no-gutters" >
+			
+			{{#if products }}
+			<div class="wb-extraslider-detail products-list col-lg-10 col-md-12"
+				data-slick='{
+					"dots": false,
+					"slidesToShow": 1,
+					"slidesToScroll": 1,
+					"fade": true,
+					"focusOnSelect": true,
+					"arrows": true,
+					"asNavFor": ".wb-extraslider-items"
+				}'
+			>
+					
+					{{#forEach products }}
+						<div class="productCarousel-slide product-layout product-list">
+						{{> components/wbcomponents/addons/wb_extraslider/hotdeal/card_grid
+						show_wishlist=../settings.show_wishlist
+						show_rating=../settings.show_product_rating 
+						has_options =../settings.show_product_colorswatch 
+						alternate=../alternate
+						theme_settings=../theme_settings 
+						customer=../customer
+						}}
+						
+						</div>
+						
+						
+					{{/forEach}}
+
+				</div>
+
+				<div class="wb-extraslider-items col-lg-2 d-none d-lg-block"
+					data-slick='{
+						"dots": false,
+						"slidesToShow": 2,
+						"slidesToScroll": 1,
+						"verticalSwiping": true,
+						"vertical":true,
+						"focusOnSelect": true,
+						"arrows": false,
+						"asNavFor": ".wb-extraslider-detail"
+					}'
+				>
+					{{#forEach  products }}
+						<article class="wb-extraslider--thumb ">
+							<div class="wb-extraslider-image-thumb">
+								<img class="card-image lazyload" data-sizes="auto" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{getImage image 'extrathumb_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}" >
+							</div>
+						</article>
+					{{/forEach}}
+					
+				</div>
+				
+			{{else}}
+
+				<div class="alertBox alertBox--info"  style="margin:30px 0px">
+					<div class="alertBox-column alertBox-icon">
+						<icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+					</div>
+					<p class="alertBox-column alertBox-message">
+						<span>{{{lang 'wbTheme.wb_extraslider.noItem' }}}</span>
+					</p>
+				</div>
+	    	{{/if}}
+			
+		</div>
+	
+</div>
+{{/if}}

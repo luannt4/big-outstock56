@@ -1,0 +1,244 @@
+// =============================================================================
+// FOOTER (CSS)
+// =============================================================================
+
+
+// Layout and columns
+// -----------------------------------------------------------------------------
+//
+// 1. To enable the grid's display: inline-block; to work properly, we need to
+//    remove the white-space that it creates between columns with font-size: 0;
+// 2. Re-set the font-size that was reduced to 0 in point 1 for children.
+//
+// -----------------------------------------------------------------------------
+
+.footer {
+    overflow: hidden;
+    padding: 0;
+    clear: both;
+    color: $color-greyLight;
+    //border: none;
+}
+.homepage .footer-top{
+    display: block;
+}
+.footer-top{
+    padding-top: 40px;
+    display: none;
+    @include breakpoints(lg){padding-top: 60px;}
+}
+.footer-bottom{
+    padding: 40px 0;
+    border-top: 1px solid #313135;
+    text-align: center;
+}
+.footer-center{ padding: 50px 0 0px ; clear: both;}
+
+.footer-logo{
+    display: inline-block;
+    //background-color: $header-bg;
+    //border-radius: 5px;
+    a{
+        display: block;
+        text-align: left;
+        margin: 0 ;
+    }
+
+    .header-logo-image-container{
+        min-height: inherit;
+    }
+    .header-logo-image{
+        margin:0;
+    }
+}
+
+// Content
+// -----------------------------------------------------------------------------
+.footer-info-heading {
+    border: none;
+    margin: 0 0 20px 0;
+    color: $white;
+}
+.footer-newsletter-summary{
+    margin-bottom: 15px;
+}
+.footer-info-list {
+    list-style: none;
+
+    li{
+        //@include linkColor(#93979c,$linkColor);
+        a {
+            padding: 4px 0;
+            display:block;
+        }
+        &.footer-viewall{
+            a{
+                @include linkGraylighter();
+                color: #c1c1c1;
+            }
+        }
+
+    }
+    .image_hotline{
+        mask: url("#{$imgPath}/icon/icon-hotline.svg") no-repeat;
+
+        background-color: $background;
+        width: 60px; min-height: 60px;
+        margin-bottom: 20px;
+
+    }
+    .info-phone{
+        color: #a7a7a7;
+        margin-left: 15px;
+        a{
+            font-size: 22px;
+            color: $background;
+        }
+    }
+}
+.footer-webpages-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    li{
+        display: inline-block;
+        display: inline-flex;
+        line-height: 1;
+        &:not(:last-child){
+            padding-right: 2rem;
+            border-right: 1px solid;
+            border-color: rgba(255,255,255,.1);
+        }
+        &:not(:first-child){
+            padding-left: 2rem;
+        }
+        a{
+            color: stencilColor("color-greyLight");
+            &:hover {
+                color: stencilColor("color-textLink--hover");
+            }
+        }
+    }
+}
+.footer-infor{
+    @include breakpoints(lg){
+        padding-right: 50px;
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+    address{margin-bottom: 0.5rem; font-style: normal;  }
+}
+
+.footer-copyright {
+    > .powered-by {
+        margin: 0;
+    }
+    a {
+        color: stencilColor("color-textLink--hover");
+
+        &:hover {
+            color: stencilColor("color-textLink--hover");
+        }
+        // scss-lint:enable NestingDepth
+    }
+}
+
+// Newsletter Now
+// -----------------------------------------------------------------------------
+.footer-newletter{
+    @include breakpoints(lg){
+        padding-left: 50px;
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+}
+div.newsletterSubscription {
+    margin-bottom:20px;
+    position: static;
+
+    .newsletterForm-left{
+        margin-bottom: 15px;
+        @include breakpoints(lg){margin-bottom: 0;}
+
+    }
+    .newsletterForm-right{
+        display: none;
+        visibility: hidden;
+
+    }
+    p{
+        display: block; margin:0;
+        color: $gray-light;
+    }
+    h3{
+        font-size: 18px;
+    }
+    .form-field,.form{margin:0;}
+    .form-prefixPostfix{
+        margin: 10px auto 15px;
+        .form-input{
+            position: relative;
+            background: $white;
+            min-height: 50px;
+            width: 100%;
+            border-radius: 3px 0 0 3px;
+            border: 1px solid #e6e6e6;
+            border-right: 0;
+        }
+        .button{
+            text-transform: uppercase;
+            color: $white;
+            min-width:100px;
+            font-size: 13px;
+            min-height: 50px;
+            width: auto;
+            border-radius: 0 3px  3px 0;
+            margin:0;
+        }
+
+    }
+}
+
+// Resonsive footer-info-heading
+.expander {display: none;}
+@media only screen and (max-width: 991px){
+    .collapsed-block{
+        .footer-info-heading{
+            //padding-bottom: 5px; margin-bottom: 25px;
+            background-color: #292b2f;
+            padding: 10px 20px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            font-weight: normal;
+            &.open{
+                .angle-up{display: block;}
+                .angle-down{display: none;}
+            }
+        }
+
+        .icon--angle-updown{
+            .angle-up{display: none;}
+            .angle-down{display: block;}
+        }
+        .expander {display: inline-block; float: right;
+            .icon{
+                width: 1.2rem;
+                height: 1.2rem;
+            }
+
+        }
+
+        .footer-info-list{display: none;  margin: 0 0 20px;}
+
+    }
+    .footer-infor{
+        .footer-info-list{display: block;}
+    }
+    .footer-socials{
+        margin-bottom: 20px;
+    }
+}

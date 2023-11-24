@@ -1,0 +1,3 @@
+{
+  "components/wbcomponents/addons/wb_menu/default-item": "{{#if status '==' 'true'}}\r\n\t{{#if horizontal '==' 'true'}}\r\n    <li class=\"list-inline-item\">\r\n\t{{else}}\r\n\t<li class=\"list-item\">\r\n\t{{/if}}\r\n\t\r\n\t\t<a href=\"{{url}}\">{{title}}</a>\r\n\t</li>\r\n{{/if}}\r\n\r\n"
+}

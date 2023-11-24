@@ -1,0 +1,67 @@
+
+{{#each categories}}
+
+	{{#if id '==' ../category_id}}
+
+			{{#if (merge ../this
+			category_name = name
+			category_image = image
+			category_url = url)}}
+			{{/if}}
+	{{else}}
+		{{#each children}}
+			{{#if id '===' ../../category_id}}
+				{{#if (merge ../../this
+					category_name = name
+					category_url = url
+					category_image = image
+					)}}
+				{{/if}}
+			{{else}}
+				{{#each children}}
+					{{#if id '===' ../../../category_id}}
+						{{#if (merge ../../../../this
+							category_name = name
+							category_url = url
+							category_image = image
+							)}}
+						{{/if}}
+
+					{{/if}}
+				{{/each}}
+				{{/if}}
+		{{/each}}
+	{{/if}}
+{{/each}}
+
+
+{{#if category_url}}
+	<div class="wb-categories__items">
+		<div class="wb-categories__heading">
+			<h3>{{category_name}}</h3>
+			<a class="shopnow" href="{{category_url}}" title="{{category_name}}">{{lang 'wbTheme.wb_category.view_all' }}</a>
+		</div>
+		<div class="wb-categories__thumb card-figure">
+			<a href="{{category_url}}" title="{{category_name}}">
+				<div class="card-img-container">
+					{{> components/common/responsive-img
+					image=category_image
+					class="card-image"
+					fallback_size=theme_settings.thumb_size
+					lazyload=theme_settings.lazyload_mode
+					default_image=theme_settings.default_image_product
+					}}
+				</div>
+			</a>
+		</div>
+
+	</div>
+
+
+{{/if}}
+
+
+
+
+
+

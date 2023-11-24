@@ -1,0 +1,62 @@
+
+<section class="productCarousel products-list"
+
+    data-slick='{
+        "dots": false,
+        "infinite": false,
+        "mobileFirst": true,
+        "slidesToShow": {{columns}},
+        "rows": {{row}},
+        "slidesToScroll": 1,
+        "responsive": [
+            {
+				"breakpoint": 1600,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": {{columns}}
+				}
+			},
+			{
+				"breakpoint": 1260,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 5
+				}
+			},
+			{
+				"breakpoint": 991,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 4
+				}
+			},
+			{
+				"breakpoint": 700,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 3
+
+				}
+			},
+			{
+				"breakpoint": 160,
+				"settings": {
+					"slidesToScroll": 2,
+					"slidesToShow": 2,
+					"dots": true,
+					"arrows": false
+
+				}
+			}
+        ]
+    }'
+
+>
+
+    {{#forEach products }}
+		<div class="productCarousel-slide product-layout product-grid">
+			{{> components/wbcomponents/products/card_grid theme_settings=../theme_settings customer=../customer productsnew=../productsnew}}
+		</div>
+    {{/forEach}}
+
+</section>

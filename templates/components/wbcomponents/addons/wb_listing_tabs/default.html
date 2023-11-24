@@ -1,0 +1,17 @@
+{{!--
+Arguments:
+	- moduleId (number): section instance index number
+	- class_sfx (string): Use for CSS class styling suffix
+--}}
+
+{{#if status }}
+
+<div  class="module-wrapper clearfix {{class_sfx}}">
+	{{> components/wbcomponents/addons/wb_listing_tabs/default/default_tabs
+		category_id=(lang (concat (concat 'wbTheme.wb_listingtab.category_' moduleId) '.category_id'))
+		categories   = categories
+		theme_settings = theme_settings
+		limit_subcategory = 3	
+	}}
+</div>
+{{/if}}

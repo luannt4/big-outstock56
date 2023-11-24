@@ -1,0 +1,36 @@
+<div id="menu--verticalCategories" class="navPages-container navPages-verticalCategories">
+
+    <a href="#" class="navPages-action megamenuToogle-wrapper hidden-sm hidden-xs"
+        data-collapsible="verticalCategories"
+        data-collapsible-disabled-breakpoint="medium"
+        data-collapsible-disabled-state="{{#lengthEqual breadcrumbs 1}}{{display_homeState}}{{else}}open{{/lengthEqual}}"
+        data-collapsible-enabled-state="{{#lengthEqual breadcrumbs 1}}{{display_homeState}}{{else}}open{{/lengthEqual}}"
+		data-collapsible-limit="{{limit_item}}"
+		data-collapsible-textmore="{{lang 'wbTheme.wb_megamenu.vertical.more_categories'}}"
+		data-collapsible-textclose="{{lang 'wbTheme.wb_megamenu.vertical.close_categories'}}">
+			<svg class="icon-alignleft" width="24" height="24"><use xlink:href="#icon-alignleft"></use></svg>
+			<span class="title-mega">{{lang 'wbTheme.wb_megamenu.label'}} </span>
+
+		</a>
+
+    <div class="verticalCategories {{#lengthEqual breadcrumbs 1}}{{#or (if theme_settings.theme_style '==' 'home3') (if theme_settings.theme_style '==' 'home4') }}is-open{{/or}}  {{else}}is-open{{/lengthEqual}}" id="verticalCategories"  aria-hidden="true" tabindex="-1">
+		<span class="mobileMenu-close fa fa-times" ></span>
+        <ul class="navPages-list navPages-list--categories">
+            {{#each categories}}
+				{{> components/wbcomponents/addons/wb_mega/vertical/vertical-list
+					status = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.status'))
+					type-menu= (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.type-menu'))
+					icon-image = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.icon-image'))
+					content_column = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.content_column'))
+					banner_enable = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.show_banner'))
+					banner_mode = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.banner_mode'))
+					banner_url = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.url'))
+					banner_image = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.image'))
+					placeholder = (lang (concat (concat 'wbTheme.wb_megamenu.vertical.menu_cat_'@index)'.placeholderImage'))
+
+				}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
+

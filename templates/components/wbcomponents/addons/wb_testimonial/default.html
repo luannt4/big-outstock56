@@ -1,0 +1,36 @@
+{{#if status }}
+<div class="module-wrapper wb-testimonial {{class_sfx}}">
+	<h3 class="block-title ">
+		<span class="title">{{lang 'wbTheme.wb_testimonial.title' }}</span>
+		<span class="subtitle">{{lang 'wbTheme.wb_testimonial.summary' }}</span>
+	</h3>
+	<div class="block-content clearfix">
+
+		<div class="wb-testimonial--carousel"
+           data-slick='{
+				"dots": true,
+				"arrows": false,
+				"infinite": false,
+				"mobileFirst": true,
+				"slidesToShow": 1,
+				"slidesToScroll": 1,
+				"autoplay": false,
+				"autoplaySpeed": 5000
+			}'
+    	>
+		{{#for  limitation }}
+			{{> components/wbcomponents/addons/wb_testimonial/default-item
+				status		= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.status'))
+				avatar		= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.image'))
+				placeholder	= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.placeholderImage'))
+				content		= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.content'))
+				author_name	= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.author_name'))
+				author_position	= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.author_position'))
+			}}
+		{{/for}}
+		</div>
+
+
+	</div>
+</div>
+{{/if}}

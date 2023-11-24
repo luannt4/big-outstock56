@@ -1,0 +1,36 @@
+{{#if status }}
+<article class="collapsed-block col {{class_sfx}}"  data-section-type="footer-webPages">
+	{{#if (lang (concat (concat 'wbTheme.' prefix) '.heading')) '!=' ' '}}
+		    <h5 class="footer-info-heading">
+				{{#if heading-fontawesome '==' ' '}}
+					<i class="fa fa-{{heading-fontawesome}}"></i> 
+				{{/if}}
+				{{lang (concat (concat 'wbTheme.' prefix) '.heading')}}
+				<div class="expander" >
+					<i class="icon icon--angle-updown" aria-hidden="true">
+						<svg class="angle-up"><use xlink:href="#icon-angle-up"></use></svg>
+						<svg class="angle-down"><use xlink:href="#icon-angle-down"></use></svg>
+					</i>
+				</div>
+			</h5>
+	{{/if}}
+	
+	{{#if horizontal '==' 'true'}}
+    <ul class="footer-info-list list-inline">
+	{{else}}
+	<ul class="footer-info-list">
+	{{/if}}
+	
+		{{#for limitation}}
+			{{> components/wbcomponents/addons/wb_menu/default-item 
+				status = (lang (concat (concat (concat (concat 'wbTheme.' ../prefix) '.row_' ) $index)  '.status'))
+				title = (lang (concat (concat (concat (concat 'wbTheme.' ../prefix) '.row_' ) $index)  '.title')) 
+				url = (lang (concat (concat (concat (concat 'wbTheme.' ../prefix) '.row_' ) $index)  '.url')) 
+				
+				horizontal =  ../horizontal
+			}}
+		{{/for}}
+	   
+    </ul>
+</article>
+{{/if}}

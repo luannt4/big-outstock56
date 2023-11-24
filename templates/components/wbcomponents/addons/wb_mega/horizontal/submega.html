@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+	{{#if banner-mode '==' 'left'}}
+	<div class="imageArea colRight col-xl-3 d-none d-xl-block">
+		{{#if banner-img '!=' ' '}}
+		<a href="{{banner-url}}"><img class="img-fluid" src="{{cdn banner-img }}"  alt="{{name}}"  /></a>
+		{{else}}
+		<a href="{{banner-url}}"><img class="img-fluid" src="{{cdn banner-placeholder}}" alt="{{name}}"  /></a>
+		{{/if}}
+	</div>
+	{{/if}}
+	<div class="cateArea {{banner-mode}} {{#if banner-mode '!=' 'none'}}col-xl-9 col-md-12 columns-{{columns}} {{else}} col-md-12 columns-{{columns}}{{/if}}">
+		<ul class="navPage-subMenu-list">
+			{{#each children}}
+				<li class="navPage-subMenu-item">
+					{{#if children}}
+						<a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="{{url}}" data-collapsible="navPages-{{id}}">
+							{{name}}
+						</a>
+						{{#if image}}
+						<div class=" navPage-subMenu-banner">
+							<a href="{{url}}">
+								{{> components/common/responsive-img
+								image=image
+								fallback_size=theme_settings.thumb_size
+								lazyload=theme_settings.lazyload_mode
+								default_image=theme_settings.default_image_product
+								}}
+							</a>
+
+						</div>
+						{{/if}}
+						<ul class="navPage-childList">
+							{{#each (limit children 8)}}
+								<li class="navPage-childList-item">
+									{{#if children}}
+										<a class="navPage-childList-action navPages-action navPages-action-depth-max has-subMenu" href="{{url}}" data-collapsible="navPages-{{id}}">
+											{{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+										</a>
+										{{> components/common/navigation-dropdown}}
+									{{else}}
+										<a class="navPage-childList-action navPages-action" href="{{url}}">{{name}}</a>
+									{{/if}}
+								</li>
+							{{/each}}
+						</ul>
+
+
+					{{else}}
+						<a class="navPage-childList-action navPages-action" href="{{url}}">{{name}}</a>
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+
+	{{#if banner-mode '==' 'right'}}
+	<div class="imageArea colRight col-xl-3 d-none d-xl-block">
+		{{#if banner-img '!=' ' '}}
+		<a href="{{banner-url}}">
+			<div class="card-img-container">
+				<img class="card-image lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn banner-img }}"  alt="{{name}}"  />
+			</div>
+		</a>
+		{{else}}
+		<a href="{{banner-url}}">
+			<div class="card-img-container">
+			<img class="card-image lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn banner-placeholder}}" alt="{{name}}"  />
+			</div>
+		</a>
+		{{/if}}
+	</div>
+	{{/if}}
+
+</div>
+{{#if banner-mode '!=' ' '}}
+<div class="navPages-contentbottom  d-none d-xl-block">
+	{{{content-bottom}}}
+</div>
+{{/if}}

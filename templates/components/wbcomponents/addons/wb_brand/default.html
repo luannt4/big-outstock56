@@ -1,0 +1,78 @@
+{{#if status }}
+<div class="module-wrapper wb-brand wb-brand--{{prefix}} {{class_sfx}} wow fadeIn">
+	{{#unless hide_title}}
+	<h5 class="block-title">
+		{{lang 'wbBanner.home3category.heading'}}
+	</h5>
+	{{/unless}}
+	<div class="block-content clearfix">
+
+		<div id="homeBrands" class="productCarousel " data-column="{{column}}" data-limitation="{{limitation}}"
+			data-slick='{
+		        "dots": false,
+		        "infinite": false,
+		        "mobileFirst": true,
+		        "slidesToShow": 1,
+		        "slidesToScroll": 4,
+		        "responsive": [
+		            {
+						"breakpoint": 1900,
+						"settings": {
+							"slidesToScroll": 1,
+							"slidesToShow": {{column}}
+						}
+					},
+		            {
+		                "breakpoint": 1200,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": {{subtract column  1}}
+		                }
+		            },
+					{
+		                "breakpoint": 992,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 4
+		                }
+		            },
+		            {
+		                "breakpoint": 700,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 3
+		                }
+		            },
+		            {
+		                "breakpoint": 0,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 2,
+		                    "arrows": false
+		                }
+		            }
+		        ]
+		    }'
+
+		>
+
+			{{#for  limitation }}
+				{{> components/wbcomponents/addons/wb_brand/default/default-item
+					enable	= (lang  (concat (concat (concat (concat 'wbBanner.' ../prefix) '.banner') $index)'.enable'))
+					placeholder	= (lang  (concat (concat (concat (concat 'wbBanner.' ../prefix) '.banner') $index)'.placeholderImage'))
+					image	= (lang  (concat (concat (concat (concat 'wbBanner.' ../prefix) '.banner') $index)'.image'))
+					url		= (lang  (concat (concat (concat (concat 'wbBanner.' ../prefix) '.banner') $index)'.url'))
+					title	= (lang  (concat (concat (concat (concat 'wbBanner.' ../prefix) '.banner') $index)'.title'))
+					hide_title = ../hide_title
+				}}
+
+			{{/for}}
+
+		</div>
+
+
+
+	</div>
+</div>
+{{/if}}
+

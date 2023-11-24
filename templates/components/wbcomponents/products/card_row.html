@@ -1,0 +1,81 @@
+<article class="product-item-container {{#if alternate}}card--alternate{{/if}}">
+    <div class="left-block">
+        <a href="{{url}}"
+           class="card-figure__link product-item-photo"
+           aria-label="{{name}},{{> components/products/product-aria-label}}"
+           {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+        >
+        {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+        {{#if theme_settings.product_sale_badges '===' 'sash'}}
+        <div class="sale-flag-sash">
+            <span class="sale-text">{{lang 'wbTheme.categories.sale_badge_text'}}</span>
+        </div>
+        {{else if theme_settings.product_sale_badges '===' 'topleft'}}
+        <div class="sale-flag-side">
+            <span class="sale-text">{{lang 'wbTheme.categories.sale_badge_text'}}</span>
+        </div>
+        {{else if theme_settings.product_sale_badges '===' 'discount'}}
+        {{#if price.with_tax}}
+        {{#if price.non_sale_price_with_tax}}
+        {{> components/wbcomponents/products/discount discounts = (multiply (divide (subtract price.non_sale_price_with_tax.value price.with_tax.value  ) price.non_sale_price_with_tax.value) 100)}}
+        {{/if}}
+        {{/if}}
+
+        {{#if price.without_tax}}
+        {{> components/wbcomponents/products/discount discounts = (multiply (divide (subtract price.non_sale_price_without_tax.value price.without_tax.value  ) price.non_sale_price_without_tax.value ) 100)}}
+        {{/if}}
+        {{else if theme_settings.product_sale_badges '===' 'burst'}}
+        <div class="starwrap">
+            <div class="sale-text-burst">{{lang 'wbTheme.categories.sale_badge_text'}}</div>
+            <div class="sale-flag-star"></div>
+        </div>
+        {{/if}}
+        {{/or}}
+        <div class="card-img-container">
+            {{> components/common/responsive-img
+            image=image
+            class="card-image"
+            fallback_size=theme_settings.thumb_size
+            lazyload=theme_settings.lazyload_mode
+            default_image=theme_settings.default_image_product
+            }}
+        </div>
+        </a>
+    </div>
+
+    <div class="right-block">
+
+        <h4 class="card-title">
+            <a aria-label="{{name}},{{> components/products/product-aria-label}}"
+               href="{{url}}"
+               {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+        </h4>
+
+        {{#if brand.name}}
+		<p class="card-text card-brand" data-test-info-type="brandName">{{brand.name}}</p>
+        {{/if}}
+
+
+        {{#if show_rating}}
+        <div class="ratings ">
+            <div class="card-text" data-test-info-type="productRating">
+                <span class="rating--small">
+                    {{> components/products/ratings rating=rating}}
+
+                </span>
+            </div>
+        </div>
+        {{/if}}
+
+        <div class="card-text" data-test-info-type="price">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+            {{> components/products/price price=price}}
+            {{else}}
+            {{> components/common/login-for-pricing}}
+            {{/or}}
+        </div>
+
+        {{> components/products/bulk-discount-rates}}
+
+    </div>
+</article>

@@ -1,0 +1,112 @@
+// =============================================================================
+// HEADER (CSS)
+//
+// 1. Setting font size of header-logo to 0, since wrapper element may vary, and
+//    inline-block whitespace messes with header height. Font-size is reset to
+//    appropriate size on header-logo-text.
+// 2. Needs left/right margin so it doesn't cover left/right nav bar toggles
+// 3. Offset the letter-spacing on the last character by adding a right negative
+//    margin. This centers the text logo properly.
+// 4. When the word "cart" is added to the mobile header's cart link, add more
+//    margin to compensate.
+//
+// -----------------------------------------------------------------------------
+
+@media  (min-width: 992px){
+    .header-mobile {display: none;}
+}
+
+@media  (max-width: 991px){
+    header > *:not(.header-mobile){ display: none;}
+    .header-mobile {
+        box-shadow: none;
+        > *:not(.header-mobile){ display: none; }
+
+        .sticky-top { position: fixed ;width:100%;    background: $header-bg; z-index:1000;    box-shadow: 1px 1px 2px rgba(0,0,0,0.2) }
+        .header-mobiletop { display: block; padding:5px 0;}
+        .header-mobilebottom{display: block; }
+        .cart-container{ text-align: right;}
+        .cart-button--search{font-size: 24px; color: #c1c1c1;    padding: 0 15px;}
+        .cart-button{color: stencilColor("navUser-color"); margin: 0 10px;  display: block;
+            .icon{width: 24px; height: 24px;}
+
+            .cart-quantity{
+                display: block;
+                top: -5px;
+                position: absolute;   right:14px; background: $background; overflow: hidden;   font-weight: normal;}
+        }
+
+        //  MobileMenu Sidebar Left
+        // -----------------------------------------------------------------------------
+        .navPages-item{
+            @include linkColor($gray-dark,stencilColor("navUser-color-hover"));
+        }
+        .mobileMenu-body{padding: 15px;}
+        .search-info-content{padding: 7px 0;}
+
+        .mobileMenu-logo{
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background:#bfbfbf;
+            text-align:center;
+            position: relative; z-index: 99;
+
+        }
+        .navPage-currency{list-style: none; margin: 0 0 10px;
+            a{@include linkGraylighter(); }
+        }
+        span.mobileMenu-close{
+            display: block;
+            background: transparent;
+
+            height: 25px; width:25px;
+            padding: 2px 0;
+            position : absolute; z-index: 115;
+            margin:10px;
+            right: 0;
+            border-radius: 0;
+            svg{fill: $black;}
+        }
+
+        .megamenu-container{min-height: 30px;}
+        .logo-container{padding: 0;    text-align: center;
+            .header-logo{margin:0;}
+        }
+
+        .quickSearchResults{margin-top: 5px; text-align: left;
+            + .modal-close{display: none;    background: $gray;top: auto; bottom: 0;     margin: 9px 8px;color: $white;}
+            &.is-open{
+                left: 0; display: block; background-color: white; box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);  overflow-y: scroll;
+                max-height: 300px; z-index: 100; width: 100%;
+                + .modal-close{display: block;}
+            }
+        }
+        .wb-searchpro {margin:0;
+            .form-fieldset{background: #fff;  border: none;}
+            .input-group{
+                .form-control{padding: 0px 10px;  height: auto; border: none; background: none; }
+                .btn{min-width: auto;color: $gray;  font-size: 18px; padding: 0 15px;}
+            }
+
+        }
+
+
+    }
+
+    .has-activeNavPages{
+        .is-open{
+            .mobileMenu-overlay{display: block;}
+        }
+    }
+    a.mobileMenu-toggle{width:34px; height: 30px; left: auto; margin: 0; padding: 7px;border-radius: 3px; border: none; background: rgba(255, 255, 255,1);
+        .mobileMenu-toggleIcon{top:13px;}
+        .mobileMenu-toggleIcon,
+        .mobileMenu-toggleIcon::before,
+        .mobileMenu-toggleIcon::after{background: #333;}
+    }
+
+
+
+}
+

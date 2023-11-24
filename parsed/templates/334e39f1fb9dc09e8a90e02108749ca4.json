@@ -1,0 +1,4 @@
+{
+  "components/wbcomponents/addons/wb_promotion/default": "{{#if status }}\r\n<div class=\"module-wrapper wb-promotion {{class_sfx}}\">\r\n\t<marquee class=\"wb-promotion--carousel\" direction=\"\" onmouseover=\"this.stop();\" onmouseout=\"this.start();\">\r\n\t\t{{#for  limitation }}\r\n\t\t{{> components/wbcomponents/addons/wb_promotion/default-item\r\n\r\n\t\tstatus\t= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.status'))\r\n\t\turl\t= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.url'))\r\n\t\ttitle\t= (lang  (concat (concat (concat (concat 'wbTheme.' ../prefix) '.item') $index)'.title'))\r\n\t\t}}\r\n\t\t{{/for}}\r\n\t</marquee>\r\n</div>\r\n{{/if}}\r\n",
+  "components/wbcomponents/addons/wb_promotion/default-item": "\r\n{{#if status '==' 'true'}}\r\n<p class=\"wb-promotion--item\">\r\n\t<a href=\"{{url}}\" title=\"{{title}}\" >\r\n\t\t{{{title}}}\r\n\t</a>\r\n</p>\r\n{{/if}}\r\n"
+}

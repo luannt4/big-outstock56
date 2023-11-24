@@ -1,0 +1,61 @@
+<section class="productCarousel products-list"
+    data-list-name="{{list}}"
+    data-slick='{
+        "dots": false,
+        "infinite": false,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 1,
+        "responsive": [
+            {
+				"breakpoint": 1900,
+				"settings": {
+					"slidesToScroll": {{columns}},
+					"slidesToShow": {{columns}}
+				}
+			},
+			{
+				"breakpoint": 1260,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 5
+				}
+			},
+			{
+				"breakpoint": 991,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 4
+				}
+			},
+			{
+				"breakpoint": 700,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 3
+
+				}
+			},
+			{
+				"breakpoint": 320,
+				"settings": {
+					"slidesToScroll": 2,
+					"slidesToShow": 2,
+					"dots": true,
+					"arrows": false
+
+				}
+			}
+        ]
+    }'>
+
+    {{#each products}}
+    <div data-product-slide class="productCarousel-slide product-layout product-grid">
+        {{> components/wbcomponents/products/card_grid settings=../settings theme_settings=../theme_settings show_rating=../settings.show_product_rating customer=../customer event="list" position=(add @index 1)}}
+    </div>
+
+    {{/each}}
+    {{#if products.length '>' 1}}
+        {{> components/carousel-content-announcement}}
+    {{/if}}
+</section>
