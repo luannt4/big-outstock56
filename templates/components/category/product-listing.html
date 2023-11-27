@@ -1,13 +1,15 @@
+{{inject 'noCompareMessage' (lang 'compare.no_compare')}}
+
 {{#if category.products}}
     {{> components/products/filter sort=pagination.category.sort}}
-    <form class="category-list" action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Category: {{category.name}}" {{/if}} data-product-compare>
-            {{#if settings.data_tag_enabled}}
-                {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
-            {{else}}
-                {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
-            {{/if}}
 
-    </form>
+<div data-list-name="Category: {{category.name}}">
+        {{#if settings.data_tag_enabled}}
+        {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+        {{else}}
+        {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+        {{/if}}
+    </div>
 
     {{> components/common/paginator pagination.category}}
 {{else}}

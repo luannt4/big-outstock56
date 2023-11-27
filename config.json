@@ -407,7 +407,7 @@
   },
   "variations": [
     {
-      "name": "Default",
+      "name": "Home5",
       "id": "default",
       "meta": {
         "desktop_screenshot": "desktop_default.jpg",
@@ -431,7 +431,7 @@
       }
     },
     {
-      "name": "Home2",
+      "name": "Home6",
       "id": "home2",
       "meta": {
         "desktop_screenshot": "desktop_home2.jpg",

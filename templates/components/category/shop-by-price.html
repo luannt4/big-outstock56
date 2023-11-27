@@ -1,5 +1,5 @@
 {{#and theme_settings.shop_by_price_visibility shop_by_price}}
-    <div class="module-wrapper sidebarBlock">
+    <div class="sidebarBlock">
         <h2 class="sidebarBlock-heading" data-shop-by-price>{{lang 'category.shop_by_price'}}</h2>
         <ul class="navList">
             {{#each shop_by_price}}
@@ -14,7 +14,7 @@
                    {{/if}}
                    href="{{url}}"
                 >
-                    {{low.formatted}} - {{high.formatted}}
+                   {{lang 'category.filter_price_range'}} {{low.formatted}} - {{high.formatted}}
                 </a>
                 <span class="price-filter-message aria-description--hidden">{{lang 'category.filter_select_announcement'}}</span>
             </li>

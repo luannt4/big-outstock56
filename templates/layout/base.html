@@ -15,46 +15,45 @@
             document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
         </script>
 
+        {{#or (if theme_settings.csspreload '===' '') (if theme_settings.csspreload '===' 'none')}}
+            {{getFontsCollection font-display='block'}}
+            {{{stylesheet '/assets/css/theme.css'}}}
+        {{else}}
+            <!-- connect to domain of Google Font files -->
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <script>document.write('{{{ getFontsCollection }}}'.replace(/:[i]{3,}/g, '').replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"'));</script>
+            <noscript>{{getFontsCollection font-display='block'}}</noscript>
+            {{{stylesheet '/assets/css/critical.css'}}}
+            <script rel="preconnect" src="{{cdn 'assets/vendor/loadcss/cssrelpreload.min.js' resourceHint='preload' as='script'}}" async></script>
+        {{/or}}
+
+        {{#if theme_settings.csspreload '===' 'speedtest'}}
+            <meta class="foundation-data-attribute-namespace">
+            <style id="themeCSSPreload">
+                meta.foundation-data-attribute-namespace { font-family: false }
+	            body { visibility: hidden !important }
+            </style>
+            <style>@media (max-width: 800px) { .pace, .nanobar { display: none } }</style>
+            {{{stylesheet '/assets/css/theme.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet';var el=document.getElementById('themeCSSPreload');el.parentNode.removeChild(el);window.stencilStyleLoaded=true;window.stencilAutoload&&window.stencilAutoload()"}}}
+            <noscript>{{{stylesheet '/assets/css/theme.css'}}}</noscript>
+            {{!-- Load Lazysizes script ASAP so images will appear --}}
+            <script>window.lazySizesConfig = { loadHidden: false, expand: 0 }; window.lazySizesConfig.loadMode = 1;</script>
+        {{/if}}
+
         {{> components/common/polyfill-script }}
         <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
 
-	{{#or (if theme_settings.csspreload '===' '') (if theme_settings.csspreload '===' 'none')}}
-		{{ getFontsCollection }}
-		{{{stylesheet '/assets/css/theme.css'}}}
-	{{else}}
-        <!-- connect to domain of Google Font files -->
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<script>document.write('{{{ getFontsCollection }}}'.replace(/:[i]{3,}/g, '').replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"'));</script>
-		<noscript>{{ getFontsCollection }}</noscript>
-        {{{stylesheet '/assets/css/critical.css'}}}
-	{{/or}}
+        {{!-- Load Lazysizes script ASAP so images will appear --}}
+        <script>
+            {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
+            window.lazySizesConfig = window.lazySizesConfig || {};
+            window.lazySizesConfig.loadMode = 1;
+        </script>
 
-	{{#if theme_settings.csspreload '===' 'performance'}}
-		<style>@media (max-width: 800px) { .pace, .nanobar { display: none } }</style>
-		{{{stylesheet '/assets/css/theme.css'}}}
+        {{getFontsCollection font-display='block'}}
 
-		<script>window.stencilStyleLoaded = true;</script>
-		<script>window.lazySizesConfig = { loadHidden: false, expand: 150, expFactor: 3 }; window.lazySizesConfig.loadMode = 1;</script>
-
-	{{else if theme_settings.csspreload '===' 'speedtest'}}
-		<meta class="foundation-data-attribute-namespace">
-		<style id="themeCSSPreload">
-			meta.foundation-data-attribute-namespace { font-family: false }
-			body { visibility: hidden !important }
-		</style>
-
-		<style>@media (max-width: 800px) { .pace, .nanobar { display: none } }</style>
-		{{{stylesheet '/assets/css/theme.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet';var el=document.getElementById('themeCSSPreload');el.parentNode.removeChild(el);window.stencilStyleLoaded=true;window.stencilAutoload&&window.stencilAutoload()"}}}
-		<noscript>{{{stylesheet '/assets/css/theme.css'}}}</noscript>
-
-		<script>window.lazySizesConfig = { loadHidden: false, expand: 0 }; window.lazySizesConfig.loadMode = 1;</script>
-	{{/if}}
-
-    {{> components/common/polyfill-script }}
-
-    <script async rel="preconnect" src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
-    <script defer rel="preconnect" src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
-
+        <script async rel="preconnect" src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
 
         {{{head.scripts}}}
 
@@ -77,31 +76,17 @@
 </head>
 <body class="page-type-{{theme_settings.theme_style}} {{#forEach breadcrumbs}}{{#if total '==' 1}}homepage{{/if}}{{/forEach}} {{#if page_type '==' 'category'}} page--category{{else if page_type '==' 'product'}} page--product{{/if}}">
 <div id="wb-container" class="wb-effect10">
-    {{{snippet 'WB Block header'}}}
-    {{#if theme_settings.theme_style '==' 'default' }}
-        {{> components/wbcomponents/header/header1 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
-    {{else if theme_settings.theme_style '==' 'home2' }}
+
+    {{#if theme_settings.theme_style '==' 'home2' }}
         {{> components/wbcomponents/header/header2 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
-    {{else if theme_settings.theme_style '==' 'home3' }}
-        {{> components/wbcomponents/header/header3 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
-    {{else if theme_settings.theme_style '==' 'home4' }}
-        {{> components/wbcomponents/header/header4 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
     {{else}}
         {{> components/wbcomponents/header/header1 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
     {{/if}}
 
-    {{{snippet 'WB Block Body'}}}
     {{> components/common/body }}
 
-    {{{snippet 'WB Block Footer'}}}
-    {{#if theme_settings.theme_style '==' 'default' }}
-        {{> components/wbcomponents/footer/footer1 }}
-    {{else if theme_settings.theme_style '==' 'home2' }}
+    {{#if theme_settings.theme_style '==' 'home2' }}
         {{> components/wbcomponents/footer/footer2 }}
-    {{else if theme_settings.theme_style '==' 'home3' }}
-        {{> components/wbcomponents/footer/footer3 }}
-    {{else if theme_settings.theme_style '==' 'home4' }}
-        {{> components/wbcomponents/footer/footer4 }}
     {{else}}
         {{> components/wbcomponents/footer/footer1 }}
     {{/if}}
@@ -109,7 +94,7 @@
     {{#if theme_settings.general_backtotop}}
     <section class="scrollToTop">
         <button type="button" class="button button--icon hoverOutRound"  aria-label="{{lang 'carousel.arrowAriaLabel'}}  data-title="Scroll Up">
-        <i class="icon icon--chevron-up" aria-hidden="true"><svg><use xlink:href="#icon-angle-up"></use></svg></i>
+            <i class="icon icon--chevron-up" aria-hidden="true"><svg><use xlink:href="#icon-angle-up"></use></svg></i>
         </button>
     </section>
     {{/if}}
@@ -140,26 +125,35 @@
 <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
 
-{{#all (if theme_settings.csspreload '!==' '') (if theme_settings.csspreload '!==' 'none') }}
-    <script>
-        {{!-- Exported in app.js --}}
-        window.stencilBootstrapArgs = { page_type: "{{page_type}}", jsContext: {{jsContext}}, autoload: true };
-    </script>
-    <script  src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
-
-{{else}}
-    <script  src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
-    <script>
-        {{!-- Exported in app.js --}}
+<script>
+    {{!-- Exported in app.js --}}
+    function onThemeBundleMain() {
         window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
-    </script>
-{{/all}}
+
+        function browserSupportsFormData() {
+            return typeof FormData !== 'undefined'
+                && !!FormData.prototype.keys;
+        }
+        function loadFormDataPolyfillScript(src) {
+            var formDataPolyfillScript = document.createElement('script');
+            formDataPolyfillScript.src = src;
+            formDataPolyfillScript.onerror = function () {
+                console.error('Failed to load formData polyfill script ' + src);
+            };
+            document.body.appendChild(formDataPolyfillScript);
+        }
+
+        if (!browserSupportsFormData()) {
+            loadFormDataPolyfillScript('{{cdn 'assets/dist/theme-bundle.polyfill_form_data.js'}}');
+        }
+    }
+</script>
+<script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
 
 
 {{#if theme_settings.show_on_topheader}}
 <!-- Begin  Top Header -->
 <script>
-    window.WBStickyHeader();
     document.addEventListener('DOMContentLoaded', function(){
         window.WBStickyHeader();
     });
@@ -175,10 +169,6 @@
 </script>
 {{/if}}
 
-{{#if theme_settings.instagram_status}}
-<!-- Show On instagram -->
-<script> window.WBInstagramFeed();</script>
-{{/if}}
 
 {{{footer.scripts}}}
 </body>
