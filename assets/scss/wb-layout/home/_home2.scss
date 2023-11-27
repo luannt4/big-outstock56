@@ -1,303 +1,391 @@
-// =============================================================================
-// Home 1
-// =============================================================================
+@mixin importHome2 {
+    // =============================================================================
+    // Home 2
+    // =============================================================================
 
-.main-body{min-height:500px; overflow: hidden;  margin-bottom: 50px; }
-.page-content{margin-bottom: 30px;}
-
-//====== Custom Product and Category   =======
-.navUser__compare{
-    position: fixed;
-    z-index: 90;
-    top: 30%;
-    right: 30px;
-    a.navUser-item--compare{
-        @include buttonGray();
-        border-radius: 3px;
-        padding: 8px 20px;
-
-    }
-
-}
-.wb-slideshow{
-    padding: 2rem 0;
-    background: #d8d8d8;
-    background: url("https://cdn11.bigcommerce.com/s-qs8sldb88q/content/site/home6/bacgraw.jpg") no-repeat;
-    @include breakpoint(large){
-        padding: 4rem 0;
-    }
-    @media (min-width: 1600px) {
-        .slick-initialized{
-            max-height: 38.57143rem;
-        }
-    }
-    .heroCarousel-image-wrapper{
-        border-radius: 3px;
+    .main-body {
+        min-height: 500px;
         overflow: hidden;
+        margin-bottom: 50px;
     }
-    .slick-slider{
-        .heroCarousel-content{
-            max-width: inherit;
-            width: 60%;
-            margin: 0;
-            padding: 0 50px;
-            top: 20%;
-            .heroCarousel-action{
-                @include btPrimaryColor();
-            }
-        }
-    }
-}
-// WB Latest Blog
-// -----------------------------------------------------------------------------
-div.wb-latestblog{
-    // @extend div.wb-extraslider--horizontal;
-    .post-img-wrapp{
-        max-width: get-width(stencilString('blog_size'));
-        @include lazy-loaded-padding('blog_size');
-    }
-    .blog-thumbnail {
-        margin: 0 0 1rem;
-        @include hoverFade();
-        .post-img-wrapp {
-            overflow: hidden;
-            position: relative;
-        }
-    }
-
-    .blog-post{
-        display: block;
-        margin-bottom: 0;
-    }
-    .blog-title {
-        font-size: 15px;
-        margin-top: 5px;
-        margin-bottom: 10px;
-        font-weight: bold;
-        @include line-clamp(2);
-
-        a {@include linkGrayDark();}
-    }
-
-    .blog-meta{
-        font-size: 13px;
-        color: #999;
-    }
-
-    .post-bottom{
-        border-top: 1px solid #ebebeb;
-        margin-top: 12px;
-        padding-top: 20px;
-        display: flex;
-        justify-content: space-between;
-    }
-    .blog-post-body{
-        font-size: 13px;
-    }
-
-    .btn--readmore{
-        color: $textBody;
-        text-transform: capitalize;
-        &:hover{color: $background;}
-    }
-
-
-
-}
-
-// WB Category
-// -----------------------------------------------------------------------------
-.wb-category{
-    margin-top: 50px;
-    @include extraSliderArrow();
-    &--item{
-        transition: 0.3s all ease-in-out;
-        background-color: #f7f7f7;
-        padding: 5px 15px;
-        border-radius: 5px;
-        @include breakpoint("medium") {
-            padding: 30px;
-        }
-        &:hover{
-            background-color: #eee;
-        }
-        h5{
-            margin: 10px 0 20px;
-            text-align: center;
-            color: $color-greyDarker;
-            line-height: 20px;
-            font-size: 15px;
-        }
-        .wb-category--count{
-            text-align: center;
-            display: block;
-            color: $color-greyLight;
-        }
-        &:hover{
-            img{
-                opacity: 0.8;
-            }
-            h5{
-                color:stencilColor("color-textLink--hover");
-            }
-        }
-    }
-    &--link{
-        display: block;
-        .card-img-container{
-            @include aspect-ratio(16, 10);
-        }
-    }
-
-}
-
-.wb-brand--company{
-    padding: 80px 0 40px;
-    border-top: 1px solid #ebebeb;
-    @include hoverFadeReverse();
-    .wb-brand--link:after{
-        padding-bottom:84px;
-    }
-}
-
-
-//====== Static Banner  ==========================================
-.banner-figures{padding: 0; background: none; color: $gray; text-align: left;
-    .banner-figcaption__title{margin: 10px 0 ;    }
-    .banner-figcaption__text{margin-bottom: 10px;}
-}
-.staticBanner{ border:none;
-    .block-content{ padding: 0; }
-    .flex-row{margin:0 -15px;
-        .banner-figures{margin: 0 15px;}
-    }
-}
-
-@include breakpoint("medium") {
-    div.staticBanner--blockBanner1{
-        margin-bottom: 0;
-        .banner-figures{
-            border-radius: 3px;
-            overflow: hidden;
-            + .banner-figures{
-                margin-top: 30px;
-            }
-
-        }
-    }
-}
-
-div.staticBanner--sidebarBanner{
-    .block-content{padding: 0 !important;}
-}
-
-//====== SW Extraslider  ==========================================
-div.wb-extraslider--horizontal{
-    .slick-slide{
-        > div + div{
-            .product-layout{
-                margin-top: 50px;
-            }
-        }
-    }
-    @include extraSliderArrow();
-}
-
-
-div.wb-extraslider--sidebar{
-    @include roundSlickArrow();
-    .slick-slider .slick-prev,
-    .slick-slider .slick-next{top: -50px;}
-    .products-list .product-layout:before{display: none;}
-
-    .product-list .product-item-container{
-        margin-bottom: 20px;
-        padding: 0;
-        border-bottom: none;
-        overflow: hidden;
-        &:last-child{
-            margin: 0;
-        }
-        .left-block{float: left; margin: 0 15px 0 0; width: 85px; border:none;}
-        .right-block{padding: 0;}
-    }
-}
-
-
-// 2. WB Testimonial
-// -----------------------------------------------------------------------------
-.wb-testimonial{
-    @include breakpoint(medium) {
-        margin: 0;
-    }
-    .block-title{
-        margin-bottom: 20px;
-    }
-    &-img-info{
-        margin : 0 auto 10px;
-        border-radius: 50%;
-        display: block;
-        overflow: hidden;
-        max-width: 100px;
-        .card-img-container:after{
-            padding-bottom: 100%;
-        }
-    }
-    &--info{ text-align: center; margin-bottom: 15px;
-        h5{ margin:0;}
-        .position{
-            color: $background;
-            font-weight: 500;
-        }
-
-    }
-    &-text{
-        text-align: center;
-        max-width: 90%;
-        margin: 0 auto;
+    .page-content {
         margin-bottom: 30px;
     }
-}
 
-//  WB INSTAGRAM
-// -----------------------------------------------------------------------------
-.wb-instagram{
-    margin-bottom: 0;
-    .productCarousel{margin: 0;
-        .instagram-item{padding: 0; }
+    //====== Custom Product and Category   =======
+    .navUser__compare {
+        position: fixed;
+        z-index: 90;
+        top: 30%;
+        right: 30px;
+
+        a.navUser-item--compare {
+            @include buttonGray();
+            border-radius: 3px;
+            padding: 8px 20px;
+
+        }
+
+    }
+    .wb-slideshow {
+        padding: 2rem 0;
+        background: #d8d8d8;
+        background: url("https://cdn11.bigcommerce.com/s-qs8sldb88q/content/site/home6/bacgraw.jpg") no-repeat;
+        @include breakpoint(large) {
+            padding: 4rem 0;
+        }
+        @media (min-width: 1600px) {
+            .slick-initialized {
+                max-height: 38.57143rem;
+            }
+        }
+
+        .heroCarousel-image-wrapper {
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .slick-slider {
+            .heroCarousel-content {
+                max-width: inherit;
+                width: 60%;
+                margin: 0;
+                padding: 0 50px;
+                top: 20%;
+
+                .heroCarousel-action {
+                    @include btPrimaryColor();
+                }
+            }
+        }
+    }
+    // WB Latest Blog
+    // -----------------------------------------------------------------------------
+    div.wb-latestblog {
+        // @extend div.wb-extraslider--horizontal;
+        .post-img-wrapp {
+            max-width: get-width(stencilString('blog_size'));
+            @include lazy-loaded-padding('blog_size');
+        }
+
+        .blog-thumbnail {
+            margin: 0 0 1rem;
+            @include hoverFade();
+
+            .post-img-wrapp {
+                overflow: hidden;
+                position: relative;
+            }
+        }
+
+        .blog-post {
+            display: block;
+            margin-bottom: 0;
+        }
+
+        .blog-title {
+            font-size: 15px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            @include line-clamp(2);
+
+            a {
+                @include linkGrayDark();
+            }
+        }
+
+        .blog-meta {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .post-bottom {
+            border-top: 1px solid #ebebeb;
+            margin-top: 12px;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .blog-post-body {
+            font-size: 13px;
+        }
+
+        .btn--readmore {
+            color: $textBody;
+            text-transform: capitalize;
+
+            &:hover {
+                color: $background;
+            }
+        }
+
+
     }
 
-    .block-title{
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        border-radius: 3px;
-        transform: translateY(-50%);
-        max-width: 210px;
-        width: 100%;
-        color: $white;
-        background: $background;
-        text-align: center;
-        z-index: 2;
-        margin: 0 auto;
-        padding: 10px 2rem;
-        line-height: 22px;
-        .title{
-            color: $gray-dark;
-            margin-bottom: .5rem;
-            text-transform: uppercase;
-            font-size: 18px;
-            font-weight: 500;
+    // WB Category
+    // -----------------------------------------------------------------------------
+    .wb-category {
+        margin-top: 50px;
+        @include extraSliderArrow();
+
+        &--item {
+            transition: 0.3s all ease-in-out;
+            background-color: #f7f7f7;
+            padding: 5px 15px;
+            border-radius: 5px;
+            @include breakpoint("medium") {
+                padding: 30px;
+            }
+
+            &:hover {
+                background-color: #eee;
+            }
+
+            h5 {
+                margin: 10px 0 20px;
+                text-align: center;
+                color: $color-greyDarker;
+                line-height: 20px;
+                font-size: 15px;
+            }
+
+            .wb-category--count {
+                text-align: center;
+                display: block;
+                color: $color-greyLight;
+            }
+
+            &:hover {
+                img {
+                    opacity: 0.8;
+                }
+
+                h5 {
+                    color: stencilColor("color-textLink--hover");
+                }
+            }
+        }
+
+        &--link {
+            display: block;
+
+            .card-img-container {
+                @include aspect-ratio(16, 10);
+            }
+        }
+
+    }
+
+    .wb-brand--company {
+        padding: 80px 0 40px;
+        border-top: 1px solid #ebebeb;
+        @include hoverFadeReverse();
+
+        .wb-brand--link:after {
+            padding-bottom: 84px;
+        }
+    }
+
+
+    //====== Static Banner  ==========================================
+    .banner-figures {
+        padding: 0;
+        background: none;
+        color: $gray;
+        text-align: left;
+
+        .banner-figcaption__title {
+            margin: 10px 0;
+        }
+
+        .banner-figcaption__text {
+            margin-bottom: 10px;
+        }
+    }
+    .staticBanner {
+        border: none;
+
+        .block-content {
+            padding: 0;
+        }
+
+        .flex-row {
+            margin: 0 -15px;
+
+            .banner-figures {
+                margin: 0 15px;
+            }
+        }
+    }
+
+    @include breakpoint("medium") {
+        div.staticBanner--blockBanner1 {
+            margin-bottom: 0;
+
+            .banner-figures {
+                border-radius: 3px;
+                overflow: hidden;
+
+                + .banner-figures {
+                    margin-top: 30px;
+                }
+
+            }
+        }
+    }
+
+    div.staticBanner--sidebarBanner {
+        .block-content {
+            padding: 0 !important;
+        }
+    }
+
+    //====== SW Extraslider  ==========================================
+    div.wb-extraslider--horizontal {
+        .slick-slide {
+            > div + div {
+                .product-layout {
+                    margin-top: 50px;
+                }
+            }
+        }
+
+        @include extraSliderArrow();
+    }
+
+
+    div.wb-extraslider--sidebar {
+        @include roundSlickArrow();
+
+        .slick-slider .slick-prev,
+        .slick-slider .slick-next {
+            top: -50px;
+        }
+
+        .products-list .product-layout:before {
             display: none;
         }
-        .subtitle{
-            font-size: 14px;
+
+        .product-list .product-item-container {
+            margin-bottom: 20px;
+            padding: 0;
+            border-bottom: none;
+            overflow: hidden;
+
+            &:last-child {
+                margin: 0;
+            }
+
+            .left-block {
+                float: left;
+                margin: 0 15px 0 0;
+                width: 85px;
+                border: none;
+            }
+
+            .right-block {
+                padding: 0;
+            }
         }
     }
-    .card-img-container:after{
-        padding-bottom: 100%;
+
+
+    // 2. WB Testimonial
+    // -----------------------------------------------------------------------------
+    .wb-testimonial {
+        @include breakpoint(medium) {
+            margin: 0;
+        }
+
+        .block-title {
+            margin-bottom: 20px;
+        }
+
+        &-img-info {
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            display: block;
+            overflow: hidden;
+            max-width: 100px;
+
+            .card-img-container:after {
+                padding-bottom: 100%;
+            }
+        }
+
+        &--info {
+            text-align: center;
+            margin-bottom: 15px;
+
+            h5 {
+                margin: 0;
+            }
+
+            .position {
+                color: $background;
+                font-weight: 500;
+            }
+
+        }
+
+        &-text {
+            text-align: center;
+            max-width: 90%;
+            margin: 0 auto;
+            margin-bottom: 30px;
+        }
+    }
+
+    //  WB INSTAGRAM
+    // -----------------------------------------------------------------------------
+    .wb-instagram {
+        margin-bottom: 0;
+
+        .productCarousel {
+            margin: 0;
+
+            .instagram-item {
+                padding: 0;
+            }
+        }
+
+        .block-title {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            border-radius: 3px;
+            transform: translateY(-50%);
+            max-width: 210px;
+            width: 100%;
+            color: $white;
+            background: $background;
+            text-align: center;
+            z-index: 2;
+            margin: 0 auto;
+            padding: 10px 2rem;
+            line-height: 22px;
+
+            .title {
+                color: $gray-dark;
+                margin-bottom: .5rem;
+                text-transform: uppercase;
+                font-size: 18px;
+                font-weight: 500;
+                display: none;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+        }
+
+        .card-img-container:after {
+            padding-bottom: 100%;
+        }
+
     }
 
 }
-
