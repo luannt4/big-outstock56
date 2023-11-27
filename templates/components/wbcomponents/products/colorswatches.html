@@ -1,0 +1,16 @@
+{{#each product.options}}
+	{{{dynamicComponent 'components/products/options'}}}
+{{/each}}
+
+{{#if product.shipping}}
+	<div class="productView-info-dl">			
+	{{#if product.shipping.calculated}}
+	{{else}}
+		{{#if product.shipping.price.value '===' 0}}
+			{{lang 'products.shipping_free'}} <i class="fa fa-truck fa-flip-horizontal" style="padding-right:5px;"></i>
+		{{else}}
+			{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}} <i class="fa fa-truck fa-flip-horizontal" style="padding-right:5px;"></i>
+		{{/if}}
+	{{/if}}
+	</div>
+{{/if}}

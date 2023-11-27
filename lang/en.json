@@ -1,7 +1,8 @@
 {
     "header": {
-        "welcome_back": "{name}",
-        "skip_to_main": "Skip to main content"
+        "welcome_back": "Good day, {name}",
+        "skip_to_main": "Skip to main content",
+	"my_account": "My Account"
     },
     "footer": {
         "title": "Footer Start",
@@ -39,6 +40,7 @@
     "cart": {
         "nav_aria_label": "Cart with 0 items",
         "continue_shopping": "Click here to continue shopping",
+        "login_to_checkout": "Login to proceed to checkout",
         "items": "{NUM, plural, =0{(0 items)} one {(# item)} other {(# items)}}",
         "checkout": {
             "address": {
@@ -153,6 +155,7 @@
         "yes": "Yes",
         "from": "From",
         "to": "to",
+        "ok": "OK",
         "cancel": "Cancel",
         "close": "Close",
         "or": "or",
@@ -161,6 +164,7 @@
         "change": "Change",
         "sign_up": "Register",
         "login": "Sign in",
+        "login_for_pricing": "Log in for pricing",
         "logout": "Sign out",
         "account": "Account",
         "cart": "Cart",
@@ -290,7 +294,7 @@
             "orders": "Orders",
             "returns": "Returns",
             "messages": "Messages ({num_new_messages})",
-            "wishlists": "Wish Lists ({num_wishlists})",
+            "wishlists": "Wish Lists",
             "recently_viewed": "Recently Viewed",
             "settings": "Account Settings",
             "addresses": "Addresses",
@@ -305,7 +309,7 @@
             "add_heading": "Add New Address",
             "primary": "Primary",
             "phone": "Phone:",
-            "new_address": "Stote Location",
+            "new_address": "New Address",
             "no_addresses": "You currently have no addresses added to your profile"
         },
         "messages": {
@@ -344,6 +348,7 @@
                 "ship_to": "Ship To",
                 "ship_to_multi": "Items shipped to {street}, {city}, {state}, {zip}, {country}",
                 "ship_to_multi_text": "Order will be shipped to multiple addresses",
+                "pickup_details": "Pickup Details",
                 "bill_to": "Bill To",
                 "how_to_pay": "Here's how to pay for your order:",
                 "order_details": "Order Details",
@@ -363,7 +368,13 @@
                 "actions": "Actions",
                 "reorder": "Reorder",
                 "return": "Return",
-                "print_invoice": "Print Invoice"
+                "pickup": "Pickup Details",
+                "pickup_method": "Pickup method",
+                "in_store_pickup": "In-store pickup",
+                "print_invoice": "Print Invoice",
+                "phone": "Phone",
+                "email": "Email",
+                "opening_hours": "Opening hours"
             },
             "downloads": {
                 "heading": "Order #{number} Downloads",
@@ -378,6 +389,7 @@
         "payment_methods": {
             "heading": "Payment Methods",
             "payment_method": "Payment method",
+            "bank_account": "Bank account",
             "billing_address": "Billing address",
             "card_ending_in": "ending in {last_four}",
             "card_expiry": "{month}/{year}",
@@ -391,13 +403,15 @@
                 "american_express": "American Express",
                 "credit_card": "Credit Card",
                 "dankort": "Dankort",
-                "diners": "Diners Club",
+                "diners_club": "Diners Club",
                 "discover": "Discover",
                 "jcb": "JCB",
                 "maestro": "Maestro",
                 "mastercard": "Mastercard",
+                "unionpay": "Union Pay",
                 "visa": "Visa"
             },
+            "ach": "ACH",
             "paypal": "PayPal",
             "billing_address_labels": {
               "address_line_1": "Address Line 1",
@@ -425,6 +439,7 @@
             "reason": "Return Reason",
             "action": "Return Action",
             "comments": "Your Comments",
+            "submit_request": "Submit Return Request",
             "list": {
                 "return_number": "Return #{id}",
                 "product_details": "Returning {num_products}"
@@ -530,7 +545,8 @@
             "rma": "RMA Number",
             "question": "Comments/Questions",
             "submit": "Submit Form",
-            "successful": "We've received your feedback and will respond shortly if required. <a href=\"{shopPath}\">Continue</a>."
+            "successful": "We've received your feedback and will respond shortly if required. <a href=\"{shopPath}\">Continue</a>.",
+            "manual_captcha_instruction": "Please answer the question below for additional verification."
         },
         "create_account": {
             "submit_value": "Create Account"
@@ -755,6 +771,7 @@
         "shipping_free": "Free Shipping",
         "shipping_calculated": "Calculated at Checkout",
         "sold_out": "Sold Out",
+        "out_of_stock_default_message": "Sold Out",
         "pre_order": "Pre-Order Now",
         "choose_options": "Choose Options",
         "quick_view": "Quick view",
@@ -807,6 +824,10 @@
         "qty": "Qty",
         "code": "Code/SKU",
         "shipping_address": "Shipping Address",
+        "fulfillment": "Fulfillment",
+        "digital": "Digital",
+        "shipping": "Shipping",
+        "pickup": "Pickup",
         "product_name": "Product Name",
         "price": "Price",
         "total": "Total",
@@ -899,13 +920,6 @@
     "maintenance": {
         "down": "Down for Maintenance"
     },
-    "admin": {
-        "maintenance_header": "Your store is down for maintenance.",
-        "maintenance_tooltip": "Only administrators can view the store at the moment. Visit your control panel settings page to disable maintenance mode.",
-        "maintenance_showstore_link": "Click here to see what your visitors will see.",
-        "prelaunch_header": "Your storefront is private. Share your site with preview code:",
-        "page_builder_link": "Design this page in Page Builder"
-    },
     "carousel": {
         "arrow_and_dot_aria_label": "Go to slide [SLIDE_NUMBER] of [SLIDES_QUANTITY]",
         "active_dot_aria_label": "active",
@@ -974,6 +988,7 @@
         "accept_all_cookies": "Accept All Cookies",
         "gdpr_settings": "Settings",
         "data_collection_preferences": "Website Data Collection Preferences",
+        "manage_data_collection_preferences": "Manage Website Data Collection Preferences",
         "use_data_by_cookies": " uses data collected by cookies and JavaScript libraries to improve your shopping experience.",
         "data_categories_table": "The table below outlines how we use this data by category. To opt out of a category of data collection, select 'No' and save your preferences.",
         "allow": "Allow",

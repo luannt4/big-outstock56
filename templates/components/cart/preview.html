@@ -9,41 +9,43 @@
                 </p>
 
                 <strong class="previewCartCheckout-price">
-                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                    {{cart.sub_total.formatted}}
+                    {{#or customer (unless settings.hide_price_from_guests)}}
+                        {{cart.sub_total.formatted}}
                     {{else}}
-                    {{> components/common/login-for-pricing}}
+                        {{> components/common/login-for-pricing}}
                     {{/or}}
                 </strong>
             </div>
 
             <div class="previewCartCheckout-additionalCheckoutButtons">
                 {{#each cart.additional_checkout_buttons}}
-                {{{this}}}
+                    {{{this}}}
                 {{/each}}
             </div>
 
             {{#if cart.show_multiple_address_shipping}}
-            <div class="previewCartAction-checkoutMultiple">
-                <a href="{{urls.checkout.multiple_address}}">
-                    {{lang 'cart.preview.checkout_multiple'}}
-                </a>
-            </div>
+                <div class="previewCartAction-checkoutMultiple">
+                    <a href="{{urls.checkout.multiple_address}}">
+                        {{lang 'cart.preview.checkout_multiple'}}
+                    </a>
+                </div>
             {{/if}}
 
+            
 
-
-            <a href="#" class="button " role="button" data-reveal-close>
+            <a href="#" class="button button--primary" role="button" data-reveal-close>
                 {{lang 'cart.added_to_cart.continue_shopping'}}
             </a>
 
-            <a href="{{urls.cart}}" class="button ">
+            <a href="{{urls.cart}}" class="button button--primary">
                 {{lang 'cart.added_to_cart.view_or_edit_cart'}}
             </a>
             {{#if cart.show_primary_checkout_button}}
-            <a href="{{urls.checkout.single_address}}" class="button button--primary">
-                {{lang 'cart.added_to_cart.proceed_to_checkout'}}
-            </a>
+			
+                <a href="{{urls.checkout.single_address}}" class="button button--action" data-primary-checkout-now-action>
+                    {{lang 'cart.added_to_cart.proceed_to_checkout'}}
+                </a>
+           
             {{/if}}
         </section>
         <section class="productView">
@@ -73,25 +75,12 @@
                     </div>
 
                     <div class="productView-price">
-                        {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                        {{#or customer (unless settings.hide_price_from_guests)}}
                             {{quantity}} &times; {{price.formatted}}
                         {{else}}
                             {{> components/common/login-for-pricing}}
                         {{/or}}
                     </div>
-
-                    {{#each configurable_fields}}
-                    <dl class="productView-info">
-                        <dt class="productView-info-name">
-                            {{name}}
-                        </dt>
-                        {{#if is_file}}
-                        <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
-                        {{else}}
-                        {{{value}}}
-                        {{/if}}
-                    </dl>
-                    {{/each}}
 
                     {{#each options}}
                         <dl class="productView-info">
@@ -99,7 +88,7 @@
                                 {{name}}
                             </dt>
                             <dd class="productView-info-value">
-                                {{{ sanitize value}}}
+                                {{> components/common/product-options}}
                             </dd>
                         </dl>
                     {{/each}}
@@ -124,3 +113,4 @@
         </section>
     {{/if}}
 </div>
+{{{remote_api_scripts}}}

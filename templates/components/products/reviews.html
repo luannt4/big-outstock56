@@ -1,11 +1,15 @@
 
 <section class="toggle productReviews" id="product-reviews" data-product-reviews>
-        <div class="form-group">
-                <a href="{{product.url}}{{#if is_ajax}}#writeReview{{/if}}" class="button button--primary"
-                   {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
-                   {{lang 'products.reviews.new'}}
-                </a>
-            </div>
+    <div class="form-group">
+
+        <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+           class="productView-reviewLink productView-reviewLink--new button button--primary"
+           {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
+        role="button"
+        >
+        {{lang 'products.reviews.new'}}
+        </a>
+    </div>
     <h4 class="toggle-title">
         {{lang 'products.reviews.header' total=reviews.total}}
         {{#if theme_settings.show_product_reviews}}
@@ -23,13 +27,13 @@
         <ul class="productReviews-list" id="productReviews-list">
             {{#each reviews.list}}
             <li class="productReview">
-                <article itemprop="review" itemscope itemtype="https://schema.org/Review">
+                <article>
                     <header>
-                        <span class="productReview-rating rating--small" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                        <span class="productReview-rating rating--small">
                             {{> components/products/ratings rating=rating}}
-                            <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
+                            <span class="productReview-ratingNumber">{{ rating }}</span>
                         </span>
-                        <h5 itemprop="name" class="productReview-title">{{{ sanitize title }}}</h5>
+                        <h5 class="productReview-title">{{{ sanitize title }}}</h5>
                         {{#if name}}
                             <meta itemprop="author" content="{{name}}">
                             <p class="productReview-author">
@@ -41,12 +45,12 @@
                             </p>
                         {{/if}}
                     </header>
-                    <p itemprop="reviewBody" class="productReview-body">{{{ sanitize text }}}</p>
+                    <p class="productReview-body">{{{ sanitize text }}}</p>
                 </article>
             </li>
             {{/each}}
         </ul>
-        {{> components/common/paginator pagination.reviews}}
+        {{> components/common/paginator pagination.reviews reload=true}}
     </div>
 </section>
 

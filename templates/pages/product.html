@@ -20,6 +20,11 @@ cart: true
 ---
 {{inject 'productId' product.id}}
 
+{{#partial "head"}}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+{{/partial}}
+
 {{#partial "page"}}
 
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
@@ -35,31 +40,24 @@ cart: true
         </aside>
         {{/if}}
 
-        <main class="{{#if theme_settings.settings_detailSidebar '!=' 'none' }}col-xxl-10 col-lg-9 col-sm-12 page-content {{else}} page-content {{/if}}"  id="product-listing-container">
+        <main class="{{#if theme_settings.settings_detailSidebar '!=' 'none' }}col-xxl-10 col-lg-9 col-sm-12 page-content {{else}}col-sm-12 page-content{{/if}}"  id="product-listing-container">
             {{#if theme_settings.settings_detailSidebar '!=' 'none' }}
                 <div class="sidebar-overlay"></div>
                 <div class="wb-opensidebar">
                     <a href="javascript:void(0)" class="open-sidebar button button--action d-md-block d-lg-none"><i class="fa fa-sliders"></i> {{lang 'wbTheme.categories.sidebar' }} </a>
                 </div>
             {{/if}}
-
-            <div itemscope itemtype="https://schema.org/Product">
-                {{> components/wbcomponents/products/product-view
-                    gallery = theme_settings.settings_productgallery
-                    title_sizechart= (lang 'wbTheme.products.name_sizechart')
-                    img_sizechart= (lang 'wbTheme.products.image_sizechart')
-                    schema=true
-                    cart= cart
-                }}
+            <div itemscope itemtype="http://schema.org/Product">
+                {{> components/wbcomponents/products/product-view }}
 
                 {{{region name="product_below_content"}}}
 
-                {{#if product.videos.list.length}}
-                    {{> components/products/videos product.videos}}
-                {{/if}}
+                {{#all product.videos.list.length (if theme_settings.show_product_details_tabs '!==' true)}}
+                {{> components/products/videos product.videos}}
+                {{/all}}
 
                 {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
-                    {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
                 {{/all}}
 
                 {{> components/products/tabs}}
@@ -67,5 +65,6 @@ cart: true
         </main>
     </div>
 
+    {{> components/products/schema}}
 {{/partial}}
 {{> layout/base}}

@@ -1,0 +1,87 @@
+
+<section class="productCarousel products-list"
+    
+    
+    data-slick='{
+        "dots": false,
+        "infinite": false,
+        "mobileFirst": true,
+        "slidesToShow": 3,
+        "slidesToScroll": 1,
+		"responsive": [
+		            {
+		                "breakpoint": 1900,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": {{ columns }}
+		                }
+		            },
+					{
+		                "breakpoint": 1260,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 4
+		                }
+		            },
+					{
+		                "breakpoint": 991,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 3
+		                }
+					},
+					{
+						"breakpoint": 700,
+						"settings": {
+							"slidesToScroll": 1,
+							"slidesToShow": 3,
+							"dots": true,
+							"arrows": false
+							
+						}
+					},
+		            {
+		                "breakpoint": 320,
+		                "settings": {
+		                    "slidesToScroll": 1,
+							"slidesToShow": 2,
+							"dots": true,
+							"arrows": false
+		                }
+		            },
+		            {
+		                "breakpoint": 0,
+		                "settings": {
+		                    "slidesToScroll": 1,
+							"slidesToShow":2,
+							"dots": true,
+							"arrows": false
+		                }
+		            }
+		        ]
+        
+    }'
+    
+>
+   
+   
+	{{#forEach products}}
+		
+		{{#if ../row '==' 1}}<div class="productCarousel-slide product-layout product-grid">{{/if}}
+		
+		{{#if ../row '==' 2}}
+			{{#ifOdd ../index}}<div class="productCarousel-slide product-layout product-grid"> {{/ifOdd}}
+		{{/if}}
+
+			{{> components/wbcomponents/products/card_grid  show_wishlist=../settings.show_wishlist show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer}}
+		
+        {{#if ../row '==' 1}}</div>{{/if}}
+		{{#if ../row '==' 2}}
+			{{#ifEven ../index}}</div>{{/ifEven}}
+		{{/if}} 
+		
+		
+    {{/forEach}}
+    
+   
+</section>

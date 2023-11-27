@@ -1,0 +1,53 @@
+{{#if carousel}}
+<div class="slideshow">
+    <div class="heroCarousel"
+    data-slick='{
+        "dots": true,
+        "arrows": true,
+        "mobileFirst": false,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "autoplay": true,
+        "autoplaySpeed": {{carousel.swap_frequency}},
+        "responsive": [
+            {
+                "breakpoint": 992,
+                "settings": {
+                    "arrows": false
+                }
+            },
+            {
+                "breakpoint": 0,
+                "settings": {
+                    "arrows": false
+                }
+            }
+        ]
+    }'>
+   
+        {{#each carousel.slides}}
+        <div class="heroCarousel-slide ">
+          
+            <a href="{{url}}">
+                <img class="heroCarousel-image"  src="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"/>
+                {{#if heading}}
+                    {{> components/carousel-content show_background=false}}
+                {{else}}
+                    {{#if text}}
+                        {{> components/carousel-content show_background=false}}
+                    {{else}}
+                        {{#if button_text}}
+                            {{> components/carousel-content show_background=false}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            </a>
+        </div>
+        {{/each}}
+    
+    </div>
+        
+    
+
+</div>
+{{/if}}
