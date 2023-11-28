@@ -8,25 +8,16 @@
 //
 // -----------------------------------------------------------------------------
 
-.productCarousel { // 1
-    width: 1px;
-    min-width: 100%;
-    position: relative;
-    @media (max-width: 767px){
-        margin: 0 -5px;
-    }
-    @include breakpoint("large") {
-        margin: 0 -15px;
-    }
+.productCarousel {
     @include grid-row(
         $behavior: nest
-    );
+    ); // 1
+    min-width: 100%;
+    position: relative;
+    width: 1px;
 }
 
 .productCarousel-slide { // 1
-    @media (max-width: 767px){
-        padding: 0 5px;
-    }
     @include grid-column(6);
 
     @include breakpoint("small") {
@@ -39,7 +30,6 @@
 
     @include breakpoint("large") {
         width: grid-calc(2, $total-columns);
-        padding: 0 15px;
     }
 
     .card {

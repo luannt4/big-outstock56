@@ -15,6 +15,9 @@
 .no-padding{padding: 0 !important;}
 .hidden{display:none !important;}
 
+@mixin transition($x){
+    transition: $x;
+}
 // Text overflow
 // Requires inline-block or block for proper styling
 @mixin text-overflow() {

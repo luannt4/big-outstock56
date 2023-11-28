@@ -224,11 +224,7 @@ export default class Cart extends PageManager {
             this.bindEvents();
             this.$overlay.hide();
 
-            // custom by wikitheme
-            const quantity = $('[data-cart-quantity]', this.$cartContent).data('cartQuantity') || 0;
-            const subTotal = $('[data-subtotal]', this.$cartTotals).data('subtotal');
             $('body').trigger('cart-quantity-update', quantity);
-            $('body').trigger('cart-subtotal-update', subTotal);
 
             $(`[data-cart-itemid='${this.$activeCartItemId}']`, this.$cartContent)
                 .filter(`[data-action='${this.$activeCartItemBtnAction}']`)

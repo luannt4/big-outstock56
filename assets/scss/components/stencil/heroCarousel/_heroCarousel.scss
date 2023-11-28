@@ -24,20 +24,15 @@
     }
 
     &.slick-initialized {
-        max-height: remCalc(300px);
-
         @include breakpoint("small") {
-            max-height: remCalc(290px);
+            max-height: remCalc(400px);
         }
 
         @include breakpoint("medium") {
-            max-height: remCalc(500px);
+            max-height: remCalc(600px);
         }
-        @include breakpoint(1600px) {
-            max-height: remCalc(750px);
-        }
-
     }
+
     // for IE
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
         opacity: 0;
@@ -57,9 +52,9 @@
 
     .slick-next,
     .slick-prev {
+        margin: 0;
         top: 50%;
         transform: translateY(-50%);
-        margin: 0;
     }
 
     .slick-next {
@@ -77,15 +72,14 @@
             left: 25px;
         }
     }
+
     .slick-dots {
-        //bottom: spacing("third");
-        bottom: -35px;
+        bottom: spacing("third");
 
         @include breakpoint("medium") {
             bottom: spacing("single");
         }
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         li {
             @include carouselOpaqueBackgrounds($slick-dot-bgColor);
         }
@@ -124,15 +118,16 @@
 
 .heroCarousel-slide {
     position: relative;
+
     a {
         text-decoration: none;
     }
 
     .heroCarousel-image {
-        object-fit: contain;
-        width: 100%;
         height: 100%;
+        object-fit: contain;
         object-position: 50% 0%;
+        width: 100%;
 
         @include breakpoint("small") {
             object-position: 50% 50%;
@@ -147,8 +142,8 @@
 
         &.compat-object-fit { // 1
             .heroCarousel-image {
-                width: 100%;
                 height: 100%;
+                width: 100%;
             }
         }
     }
@@ -162,35 +157,52 @@
     }
 
     .heroCarousel-image-wrapper {
-        display: flex;
-        justify-content: center;
         align-items: flex-start;
-        //height: 56.25vw;
+        display: flex;
+        height: 56.25vw;
+        justify-content: center;
         max-height: 100vh;
-        transition: height .3s ease;
+        transition: height 0.3s ease;
+
+        @include breakpoint("small") {
+            max-height: remCalc(400px);
+        }
+
+        @include breakpoint("medium") {
+            max-height: remCalc(600px);
+        }
     }
 }
 
 .heroCarousel-content {
+    background-color: rgba($carousel-bgColor, 1);
+    padding: spacing("half") spacing("single") (spacing("double"));
+    text-align: center;
 
     @include breakpoint("small") {
-        //@include carouselOpaqueBackgrounds;
-        width: remCalc(700px);
-        padding: spacing("single") * 1.5;
-        width: 70%;
-        top:20%;
+        @include carouselOpaqueBackgrounds;
+        background-color: rgba($carousel-bgColor, 0.9);
         left: 0;
-        padding: spacing("single");
         margin: 0 auto;
+        max-height: 80%;
+        overflow: auto;
+        padding: spacing("single") * 1.5;
+        padding: spacing("single");
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-        max-height: 80%;
-        overflow: auto;
+        width: remCalc(700px);
+        width: 70%;
 
         &.heroCarousel-content--empty {
             background-color: transparent;
+            left: 50%;
+            overflow: visible;
+            padding: 0;
+            right: auto;
+            transform: translateX(-50%) translateY(-50%);
+            width: auto;
         }
     }
 }
@@ -198,7 +210,7 @@
 .heroCarousel-title {
     color: $carousel-title-color;
     font-size: fontSize("small");
-    margin-top: 0;
+    margin: 0;
 
     @include breakpoint("medium") {
         font-size: fontSize("hero");
@@ -208,6 +220,7 @@
 .heroCarousel-description {
     color: $carousel-description-color;
     font-size: fontSize("tiny");
+    margin: 0;
 
     @include breakpoint("small") {
         font-size: fontSize("smallest");
@@ -219,9 +232,5 @@
 }
 
 .heroCarousel-action {
-    margin: 0;
-
-    @include breakpoint("medium") {
-        margin-top: spacing("single");
-    }
+    margin: spacing("single") 0 0;
 }

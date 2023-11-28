@@ -103,7 +103,7 @@
 .form-actions {
     @include grid-row();
     display: block;
-    //text-align: center;
+    text-align: center;
 
     @include breakpoint("small") {
         margin-top: spacing("single");

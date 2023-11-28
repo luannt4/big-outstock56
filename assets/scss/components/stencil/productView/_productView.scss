@@ -172,7 +172,6 @@
     a {
         color: $productView-brand-link-color;
 
-        // scss-lint:disable NestingDepth
         &:hover {
             color: $productView-brand-link-color--hover;
         }
@@ -216,7 +215,6 @@
         padding: 0;
     }
 }
-
 
 
 // Details - Product Information
@@ -328,8 +326,8 @@
         }
 
         > .form-radio + .form-label {
-            text-align: justify;
             display: inline-block;
+            text-align: justify;
         }
 
         > .form-label:nth-of-type(2) {
@@ -337,38 +335,61 @@
         }
     }
 
-    .form-action {
-
-        padding: 0;
+    .add-to-cart-buttons {
+        display: inline-grid;
         float: left;
-        width: 50%;
+        margin-bottom: 1rem;
+        width: 100%;
 
+        @include breakpoint("small") {
+            padding: 0 remCalc(10);
+            width: 50%;
+        }
 
         @include breakpoint("medium") {
-            padding: 0;
-            width: auto;
+            padding-right: spacing("half");
+            width: 50%;
         }
 
         @include breakpoint("large") {
             display: inline-block;
             margin-top: 1rem;
+            padding-right: spacing("half");
+            width: 50%;
         }
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         .button {
+            margin: 0;
+            width: 100%;
+        }
+    }
+
+    .add-to-cart-wallet-buttons {
+        margin-top: spacing("half");
+
+        div[data-smart-button-container-id] {
+            line-height: 0;
+            margin-top: 6px;
+
+            button,
+            div {
+                width: 100%;
+            }
+        }
+
+        button.show-more-button {
+            color: stencilColor("color-textSecondary");
+            display: block;
+            margin-top: spacing("quarter");
+            padding: spacing("quarter") 0;
+            text-align: center;
+            text-decoration: underline;
+            vertical-align: middle;
             width: 100%;
 
-            @include breakpoint("medium") {
-                width: auto;
+            &:hover {
+                color: stencilColor("color-textSecondary--hover");
             }
-
-            @include breakpoint("large") {
-                margin-right: spacing("half");
-            }
-        }
-
-        .button--primary {
-            margin-right: spacing("half");
         }
     }
 }
