@@ -8,14 +8,17 @@ cart: true
 ---
 
 {{#partial "head"}}
-    {{{stylesheet '/assets/css/blog.css'}}}
-{{/partial}}
-
-{{#partial "hero"}}
-	{{> components/wbcomponents/common/breadcrumbs breadcrumbs=breadcrumbs active_url=blog.url}}
+    {{#if pagination.blog.previous}}
+        <link rel="prev" href="{{pagination.blog.previous}}">
+    {{/if}}
+    {{#if pagination.blog.next}}
+        <link rel="next" href="{{pagination.blog.next}}">
+    {{/if}}
 {{/partial}}
 
 {{#partial "page"}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
 <section class="page page--blog">
     <div class="row">
         <div class="col-xl-9 col-lg-8 col-md-12  page-content">
