@@ -168,7 +168,7 @@ export default class Search extends CatalogPage {
 
         $('[data-search-page-tabs]').on('keyup', this.onTabChangeWithArrows);
 
-        if (this.$productListingContainer.find('li.product').length === 0 || url.query.section === 'content') {
+        if (this.$productListingContainer.find('.product-layout').length === 0 || url.query.section === 'content') {
             this.showContent(false);
         } else {
             this.showProducts(false);

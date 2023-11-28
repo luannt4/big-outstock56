@@ -295,3 +295,11 @@ nav.navBar--sub{ width: 100%; padding:0; margin-bottom: 30px;
         }
     }
 }
+.products-search{
+    @include breakpoint("medium") {
+        .product-layout {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
+    }
+}

@@ -41,7 +41,7 @@
             {{else}}
             </div>
             {{/if}}
-            
+
             {{#or heading text button_text}}
                 {{> components/carousel-content}}
             {{/or}}
@@ -54,8 +54,5 @@
     {{/each}}
     {{#if carousel.slides.length '>' 1}}
         {{> components/carousel-content-announcement}}
-        {{#if play_pause_button}}
-            {{> components/carousel-play-pause-button}}
-        {{/if}}
     {{/if}}
 </section>

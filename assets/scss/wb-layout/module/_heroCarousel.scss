@@ -10,14 +10,18 @@
     color: $gray;
     background-color: rgba(255, 255, 255, 0.8);
 }
-.wb-slideshow{ overflow: hidden;
-
+.heroCarousel-slide{
+    opacity: 0.5;
+}
+.wb-slideshow{
+    background: #00669f;
+    overflow: hidden;
         .slideshow  {border-radius: 3px; overflow: hidden;}
-        @include breakpoint("small") {
+        /*@include breakpoint("small") {
         .slick-prev{left: 0;}
         .slick-next{right: 0;}
-        }
-        @include roundSliderArrow();
+        }*/
+        //@include roundSliderArrow();
 
         @media (min-width: 1600px){
             .heroCarousel {
@@ -107,6 +111,5 @@
                 }
             }
         }
-
 
 }

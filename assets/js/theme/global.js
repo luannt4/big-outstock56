@@ -13,11 +13,13 @@ import cartPreview from './global/cart-preview';
 import privacyCookieNotification from './global/cookieNotification';
 import carousel from './common/carousel';
 import svgInjector from './global/svg-injector';
+
 // custom by wikitheme
 import WBaddToCart from './wbtheme/addToCart';
 import WBStickyHeader from './wbtheme/stickyHeader';
 import WBtheme from './wbtheme/theme';
 
+window.WBStickyHeader = WBStickyHeader;
 window.WBaddToCart = WBaddToCart;
 
 export default class Global extends PageManager {
@@ -33,9 +35,9 @@ export default class Global extends PageManager {
         carousel(this.context);
         menu();
         mobileMenuToggle();
-        privacyCookieNotification(); 
+        privacyCookieNotification();
         svgInjector();
-        wbtheme(this.context);
+        WBtheme(this.context);
 
     }
 }

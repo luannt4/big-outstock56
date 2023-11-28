@@ -9,7 +9,6 @@
         {{else if 	section '==' 'section4'}} {{> components/wbcomponents/addons/wb_extraslider/horizontal status=true products = products.featured productType="featured"  row=1 columns=5  class_sfx="wb-extraslider--horizontal titleMline" }}
         {{else if 	section '==' 'section5'}} {{> components/wbcomponents/addons/wb_latest_blog/default status=true blogs= blog.recent_posts  show_desc="yes" column=4 hide_heading=false hide_readmore=true class_sfx="wb-extraslider--horizontal titleMline"}}
         {{else if 	section '==' 'section6'}} {{> components/wbcomponents/addons/wb_brand/default prefix="company" status=true  hide_title=true column=5 limitation=5 }}
-        {{else if 	section '==' 'section7'}}   {{> components/wbcomponents/addons/wb_instagram/default status=true    row=1 columns=6 class_sfx=" " hide_heading=false}}
         {{/if}}
 
         {{#if container '==' 'yes'}}

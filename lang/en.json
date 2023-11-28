@@ -1342,21 +1342,21 @@
                     "load-webpage": "no",
                     "icon-image": " ",
                     "menu-badge": " ",
-                    "position": "right"
+                    "position": "left"
                 },
                 "menu_cat_4": {
                     "status": "true",
                     "load-webpage": "no",
                     "icon-image": " ",
                     "menu-badge": " ",
-                    "position": "right"
+                    "position": "left"
                 },
                 "menu_cat_5": {
                     "status": "false",
                     "load-webpage": "no",
                     "icon-image": " ",
                     "menu-badge": " ",
-                    "position": "right"
+                    "position": "left"
                 }
             }
 
@@ -1379,6 +1379,7 @@
         },
         "latest_blog":{
             "status": "true",
+            "title": "From our blog",
             "subtitle": "Commodo sociosqu venenatis cras dolor sagittis integer luctus sem primis eget",
             "posted_date": "Posted: {date_published}"
         },
