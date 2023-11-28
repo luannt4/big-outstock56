@@ -24,9 +24,7 @@ window.WBaddToCart = WBaddToCart;
 
 export default class Global extends PageManager {
     onReady() {
-        const {
-            channelId, cartId, productId, categoryId, secureBaseUrl, maintenanceModeSettings, adminBarLanguage,
-        } = this.context;
+        const { cartId, secureBaseUrl } = this.context;
         cartPreview(secureBaseUrl, cartId);
         quickSearch();
         currencySelector(cartId);
@@ -38,6 +36,5 @@ export default class Global extends PageManager {
         privacyCookieNotification();
         svgInjector();
         WBtheme(this.context);
-
     }
 }
