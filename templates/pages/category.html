@@ -83,7 +83,7 @@ cart: true
                         <a href="{{url}}"
                            class="card-figure__link"
                            aria-label="{{name}},{{> components/products/product-aria-label}}"
-                           {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+                           data-event-type="product-click"
                         >
                             <div class="img-thumbnail">
                                 <img  class="img-responsive lazyload" src="{{getImage image 'brand_size' (cdn ../theme_settings.default_image_product)}}" alt="{{name}}" />

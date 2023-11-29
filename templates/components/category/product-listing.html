@@ -4,11 +4,7 @@
     {{> components/products/filter sort=pagination.category.sort}}
 
 <div data-list-name="Category: {{category.name}}">
-        {{#if settings.data_tag_enabled}}
-        {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
-        {{else}}
-        {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
-        {{/if}}
+    {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
     </div>
 
     {{> components/common/paginator pagination.category}}

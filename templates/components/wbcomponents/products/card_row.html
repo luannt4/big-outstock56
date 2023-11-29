@@ -3,7 +3,7 @@
         <a href="{{url}}"
            class="card-figure__link product-item-photo"
            aria-label="{{name}},{{> components/products/product-aria-label}}"
-           {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+           data-event-type="product-click"
         >
         {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
         {{#if theme_settings.product_sale_badges '===' 'sash'}}
@@ -48,7 +48,7 @@
         <h4 class="card-title">
             <a aria-label="{{name}},{{> components/products/product-aria-label}}"
                href="{{url}}"
-               {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+               data-event-type="product-click">{{name}}</a>
         </h4>
 
         {{#if brand.name}}

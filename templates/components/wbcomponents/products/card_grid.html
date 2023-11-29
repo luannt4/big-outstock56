@@ -42,7 +42,7 @@
         <a href="{{url}}"
 		   class="product-item-photo"
 		   aria-label="{{name}},{{> components/products/product-aria-label}}"
-		   {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+           data-event-type="product-click"
 		>
 			<div class="card-img-container ">
 				{{> components/common/responsive-img
@@ -89,16 +89,10 @@
 
 			{{#if theme_settings.show_product_quick_view}}
 			<div class="action-item buttons--quickview" title="{{lang 'products.quick_view'}}">
-
-				{{#if settings.data_tag_enabled}}
 				<a href="#" class="quickview btn-button d-none d-md-block" data-event-type="product-click" data-product-id="{{id}}" aria-label="{{lang 'products.quick_view'}}">
 					<svg width="16" height="14"><use xlink:href="#icon-eye" /></svg>
 				</a>
-				{{else}}
-				<a href="#" class="quickview btn-button d-none d-md-block" data-product-id="{{id}}" aria-label="{{lang 'products.quick_view'}}">
-					<svg width="16" height="14"><use xlink:href="#icon-eye" /></svg>
-				</a>
-				{{/if}}
+
 			</div>
 			{{/if}}
 
@@ -111,7 +105,7 @@
         <h4 class="card-title">
 			<a aria-label="{{name}},{{> components/products/product-aria-label}}"
 			   href="{{url}}"
-			   {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+               data-event-type="product-click">{{name}}</a>
         </h4>
 
 		{{#if show_rating}}

@@ -7,11 +7,7 @@
     </ul>
 
     <div role="tabpanel" aria-hidden="false" class="tab-content has-jsContent is-active" id="tab-related">
-        {{#if settings.data_tag_enabled}}
         {{> components/products/carousel products=product.related_products columns=5  list="Related Products"}}
-        {{else}}
-        {{> components/products/carousel products=product.related_products columns=5 }}
-        {{/if}}
     </div>
 
 
