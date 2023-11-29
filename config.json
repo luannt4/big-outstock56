@@ -5,8 +5,8 @@
   "meta": {
     "price": 11900,
     "documentation_url": "https://support.bigcommerce.com/articles/Public/Cornerstone-Theme-Manual",
-    "author_name": "BigCommerce",
-    "author_email": "support@bigcommerce.com",
+    "author_name": "wikitheme",
+    "author_email": "contact@ibigecommerce.com",
     "author_support_url": "https://support.bigcommerce.com/",
     "composed_image": "composed.jpg",
     "features": [
@@ -82,7 +82,6 @@
     "show_accept_klarna": false,
     "show_product_details_tabs": true,
     "show_product_reviews": true,
-    "show_quick_payment_buttons": true,
     "show_custom_fields_tabs": false,
     "show_product_weight": true,
     "show_product_dimensions": false,
