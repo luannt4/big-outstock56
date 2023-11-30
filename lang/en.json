@@ -1131,7 +1131,7 @@
                     "type-menu": "mega",
                     "mega-category-col": "4",
                     "mega-banner-mode": "right",
-                    "mega-banner-img": "webdav:site/home5/banner/banner-menu.png",
+                    "mega-banner-img": " ",
                     "mega-banner-placeholder": "http://placehold.jp/330x250.png",
                     "mega-banner-url": "#placeholder_link",
                     "mega-contentbottom": "<strong>30% Off</strong> the shipping of your first order with the code: <strong>DUKA-SALE30</strong>"

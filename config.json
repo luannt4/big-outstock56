@@ -380,7 +380,7 @@
     "home_section6": "section6",
     "home_section7": "section7",
     "general_backtotop": true,
-    "show_on_topheader": true,
+    "show_on_topheader": false,
     "address_email": "contact@ibigecommerce.com",
     "show_product_compare": true,
     "settings_ajaxcartpopup": true,

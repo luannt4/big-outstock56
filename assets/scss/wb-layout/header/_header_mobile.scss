@@ -11,6 +11,11 @@
 //    margin to compensate.
 //
 // -----------------------------------------------------------------------------
+//
+// Mobile Menu Toggle
+//
+// 3. Animate lines from 'x' to hamburger
+// -----------------------------------------------------------------------------
 
 @media  (min-width: 992px){
     .header-mobile {display: none;}
@@ -18,39 +23,39 @@
 
 @media  (max-width: 991px){
     header > *:not(.header-mobile){ display: none;}
-    .header-mobile {
-        box-shadow: none;
-        > *:not(.header-mobile){ display: none; }
+    .header{
+        position: static;
+        height: auto;
+    }
 
-        .sticky-top { position: fixed ;width:100%;    background: $header-bg; z-index:1000;    box-shadow: 1px 1px 2px rgba(0,0,0,0.2) }
-        .header-mobiletop { display: block; padding:5px 0;}
+    .header-mobile { box-shadow: none; background: $gray-dark;
+        > *:not(.header-mobile){ display: none; }
+        .header-mobiletop { display: block; padding:10px 0;background:  #fff;}
         .header-mobilebottom{display: block; }
         .cart-container{ text-align: right;}
+        .sticky-headtop { position: fixed;width:100%; background: $header-bg; z-index:800; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15)  }
         .cart-button--search{font-size: 24px; color: #c1c1c1;    padding: 0 15px;}
-        .cart-button{color: stencilColor("navUser-color"); margin: 0 10px;  display: block;
-            .icon{width: 24px; height: 24px;}
-
-            .cart-quantity{
-                display: block;
-                top: -5px;
-                position: absolute;   right:14px; background: $background; overflow: hidden;   font-weight: normal;}
+        .cart-button{
+            color: #333;
+            height: 23px;
+            display:inline-block;
+            vertical-align: middle;
         }
 
         //  MobileMenu Sidebar Left
         // -----------------------------------------------------------------------------
-        .navPages-item{
-            @include linkColor($gray-dark,stencilColor("navUser-color-hover"));
-        }
         .mobileMenu-body{padding: 15px;}
-        .search-info-content{padding: 7px 0;}
+        .search-info-content{padding: 7px 0;
+
+        }
 
         .mobileMenu-logo{
             overflow: hidden;
             display: flex;
-            align-items: center;
-            background:#bfbfbf;
-            text-align:center;
-            position: relative; z-index: 99;
+            min-height: 55px;
+            text-align: center;
+            justify-content: center;
+            background: #c1c1c1;
 
         }
         .navPage-currency{list-style: none; margin: 0 0 10px;
@@ -66,15 +71,16 @@
             margin:10px;
             right: 0;
             border-radius: 0;
-            svg{fill: $black;}
         }
 
         .megamenu-container{min-height: 30px;}
-        .logo-container{padding: 0;    text-align: center;
+        .logo-container{padding: 0;
+            display:flex;
+            justify-content: center;
             .header-logo{margin:0;}
         }
 
-        .quickSearchResults{margin-top: 5px; text-align: left;
+        .quickSearchResults{margin-top: 5px;    display: none; overflow: hidden;
             + .modal-close{display: none;    background: $gray;top: auto; bottom: 0;     margin: 9px 8px;color: $white;}
             &.is-open{
                 left: 0; display: block; background-color: white; box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);  overflow-y: scroll;
@@ -83,10 +89,10 @@
             }
         }
         .wb-searchpro {margin:0;
-            .form-fieldset{background: #fff;  border: none;}
+            .form-fieldset{padding: 3px 5px; background: $white; border-radius: 3px;}
             .input-group{
-                .form-control{padding: 0px 10px;  height: auto; border: none; background: none; }
-                .btn{min-width: auto;color: $gray;  font-size: 18px; padding: 0 15px;}
+                .form-control{padding: 0px 10px;  height: auto; border: none; background: none;  }
+                .btn{min-width: auto;color: $gray;  font-size: 18px; padding: 0 5px;}
             }
 
         }
@@ -99,11 +105,9 @@
             .mobileMenu-overlay{display: block;}
         }
     }
-    a.mobileMenu-toggle{width:34px; height: 30px; left: auto; margin: 0; padding: 7px;border-radius: 3px; border: none; background: rgba(255, 255, 255,1);
+    a.mobileMenu-toggle{width:34px; height: 30px; left: auto; margin: 0; padding: 7px;
         .mobileMenu-toggleIcon{top:13px;}
-        .mobileMenu-toggleIcon,
-        .mobileMenu-toggleIcon::before,
-        .mobileMenu-toggleIcon::after{background: #333;}
+
     }
 
 

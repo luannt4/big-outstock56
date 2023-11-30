@@ -7,7 +7,19 @@ body.page--product{
         display: none;
     }
 }
-
+.btn-productViewzoom{
+    margin: 2rem 0 0;
+    text-align: center;
+    button{
+        margin: 0 auto;
+        padding: 0.7rem 1.5rem;
+        display: flex;
+        text-transform: capitalize;
+        align-items: center;
+        gap: 5px;
+        border-color: #e3e3e3;
+    }
+}
 // Product view layout
 // -----------------------------------------------------------------------------
 .productView-brand{font-size:15px; margin:0;}
@@ -15,11 +27,13 @@ body.page--product{
 .sidebar--none{
     margin: 0;
     display: block;
-    .productView { margin:0;}
+    .productView { }
 }
 .productView {
     margin: 0;
     padding: 0;
+    margin-left: -1rem;
+    margin-right: -1rem;
     margin-bottom: 20px;
     width: 100%;
 }
@@ -70,9 +84,8 @@ body.page--product{
     }
 
     .productView--vertical{
-        width: 80px;
-
-        @include breakpoints(xs){width:65px;margin-right : 5px;}
+        width: 90px;
+        @include breakpoints(xs){width:70px;margin-right : 5px;}
         position: relative;
         float: left;
         margin: 0;

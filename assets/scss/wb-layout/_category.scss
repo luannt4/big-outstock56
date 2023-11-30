@@ -485,9 +485,9 @@ div.products-category {
 
         }
         .card-title{
-            @include line-clamp(1);
+            @include line-clamp(2);
             font-size: 14px;
-            margin-bottom: 0;
+            margin-bottom: 5px;
             min-height: 1.8em;
             font-weight: 400;
             text-transform: capitalize;

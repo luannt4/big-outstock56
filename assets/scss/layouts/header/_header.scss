@@ -36,9 +36,19 @@
 .header {
     background-color: $header-bg;
     border-bottom: container("border");
+    position: fixed;
+    top: 0;
     width: 100%;
     z-index: zIndex("higher");
-    //height: $header-height;
+
+    @include breakpoint("medium") {
+        border-bottom: container("border");
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+        position: relative;
+    }
 
     &.is-open {
         height: 100%;

@@ -202,18 +202,10 @@
 }
 
 .productView-reviewLink {
-    color: stencilColor("color-textSecondary");
     display: inline-block;
     margin-left: spacing("quarter");
     vertical-align: middle;
 
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &--new {
-        padding: 0;
-    }
 }
 
 
@@ -338,11 +330,9 @@
     .add-to-cart-buttons {
         display: inline-grid;
         float: left;
-        margin-bottom: 1rem;
         width: 100%;
 
         @include breakpoint("small") {
-            padding: 0 remCalc(10);
             width: 50%;
         }
 
@@ -353,7 +343,6 @@
 
         @include breakpoint("large") {
             display: inline-block;
-            margin-top: 1rem;
             padding-right: spacing("half");
             width: 50%;
         }

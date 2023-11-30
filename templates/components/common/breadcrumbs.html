@@ -1,20 +1,22 @@
-<nav aria-label="Breadcrumb">
-    <ol class="breadcrumbs">
+<div class="wb-breadcrumbs" aria-label="Breadcrumb">
+    <div class="entry-header">
+    <ul class="breadcrumbs">
         {{#unless theme_settings.hide_breadcrumbs }}
             {{#each breadcrumbs}}
-                <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+                <li class="breadcrumb-item {{#if @last}}is-active{{/if}}">
                     <a class="breadcrumb-label"
                        href="{{url}}"
                        {{#if @last}}aria-current="page"{{/if}}
                     >
                         <span>{{name}}</span>
                     </a>
-                    {{#unless @last}}<svg width="16" height="16"><use xlink:href="#icon-chevron-right"></use></svg> {{/unless}}
+                    {{#unless @last}}<svg width="16" height="16" class="icon"><use xlink:href="#icon-chevron-right"></use></svg> {{/unless}}
                 </li>
             {{/each}}
         {{/unless}}
-    </ol>
-</nav>
+    </ul>
+    </div>
+</div>
 
 <script type="application/ld+json">
 {

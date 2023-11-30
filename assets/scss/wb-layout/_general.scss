@@ -132,12 +132,12 @@ address {
 .button{
    border-radius: 3px;
 }
-.button--action{background:$gray; border-color:$gray; color:white;
+/*.button--action{background:$gray; border-color:$gray; color:white;
     &:focus{
         background:$gray; border-color:$gray; color:white;
     }
     &:hover{background: lighten($gray, 5%); border-color:lighten($gray, 5%);color:white;}
-}
+}*/
 .button--small{padding: .8rem 1rem;
     @include breakpoint(medium){
         min-width: 120px;

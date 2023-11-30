@@ -41,7 +41,7 @@ export default class {
         }
 
         // force collapse on page load
-        this.$collapsible.trigger(CollapsibleEvents.click);
+        //this.$collapsible.trigger(CollapsibleEvents.click);
     }
 
     /**

@@ -62,7 +62,7 @@
     .sidebarBlock-heading{
         font-size: 18px;
         margin:0;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         position: relative;
     }
     .navList{
@@ -211,10 +211,10 @@ section.quickSearchResults {
         font-size: 24px; font-weight: normal; margin:0;
     }
 }
-.breadcrumb{
+.breadcrumbs{ margin:0;
     &:before{display:none !important;}
-    .breadcrumb-item {display: inline-block;}
-    a.breadcrumb-label{ @include linkGray(); }
+    .breadcrumb-item {display: inline-block; vertical-align: text-top;}
+    a.breadcrumb-label{@include linkGray(); }
 }
 
 
@@ -403,8 +403,8 @@ ul.navList-childList {
 
     }
 	.button--small {
-        border: none;
-        min-width: 32px; height: 32px;
+        border: none;padding:5px;
+        min-width: 30px; height: 30px;
 
         .icon{    height: 1.25rem;width: 1.25rem;}
     }

@@ -20,13 +20,13 @@
             margin-bottom: 80px;
         }
 
-        .container {
+        /*.container {
             @include breakpoint(medium) {
                 display: grid;
                 grid-template-columns:  repeat(2, minmax(100px, 1fr));
                 grid-gap: 60px;
             }
-        }
+        }*/
     }
     //====== Custom Product and Category   =======
     .navUser__compare {
@@ -120,7 +120,7 @@
             padding: 5px 15px;
             border-radius: 5px;
             @include breakpoint("medium") {
-                padding: 30px;
+                padding: 20px;
             }
 
             &:hover {
@@ -234,7 +234,7 @@
 
         .slick-slider .slick-prev,
         .slick-slider .slick-next {
-            top: -50px;
+            top: -45px;
         }
 
         .products-list .product-layout:before {
@@ -269,7 +269,9 @@
     // -----------------------------------------------------------------------------
     .wb-testimonial {
         @include breakpoint(medium) {
-            margin: 0;
+            margin: 0 auto;
+            max-width:700px;
+            display: block;
         }
 
         .block-title {
